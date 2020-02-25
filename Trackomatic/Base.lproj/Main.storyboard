@@ -707,8 +707,8 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="706" height="410"/>
+                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="706" height="385"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8t7-SV-9bG">
@@ -776,13 +776,13 @@
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbz-wd-VIH">
-                                <rect key="frame" x="0.0" y="98" width="706" height="312"/>
+                                <rect key="frame" x="0.0" y="98" width="706" height="262"/>
                                 <clipView key="contentView" id="bgx-z3-E04">
-                                    <rect key="frame" x="1" y="0.0" width="704" height="311"/>
+                                    <rect key="frame" x="1" y="0.0" width="704" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" headerView="DAr-Mn-Uiz" viewBased="YES" id="IaZ-KT-z2f">
-                                            <rect key="frame" x="0.0" y="0.0" width="704" height="286"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="704" height="236"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -845,24 +845,33 @@
                                                                     <rect key="frame" x="64" y="-5" width="40" height="32"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <buttonCell key="cell" type="push" title="S" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P5c-Ox-ZGD">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
+                                                                        <connections>
+                                                                            <binding destination="SZT-BL-96O" name="value" keyPath="state.solo" id="t7G-mr-yZ8"/>
+                                                                        </connections>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.solo" id="eCr-rU-KDD"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Mv-bt-fHj">
                                                                     <rect key="frame" x="97" y="-4" width="40" height="32"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <buttonCell key="cell" type="push" title="M" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lhj-tK-620">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.mute" id="Dev-d2-Rbc"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlU-uM-rvK">
                                                                     <rect key="frame" x="1" y="20" width="132" height="19"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="cLy-Qp-IOS"/>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="player.volume" id="Lv2-no-XRD"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.player.volume" id="fJh-Ax-32S"/>
                                                                     </connections>
                                                                 </slider>
                                                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a4R-Cd-vwd">
@@ -870,7 +879,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-1" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Edc-9e-cbb"/>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="player.pan" id="kTJ-tW-ejc"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.player.pan" id="u1C-9f-THs"/>
                                                                     </connections>
                                                                 </slider>
                                                             </subviews>

@@ -11,6 +11,6 @@ import AVFoundation
 
 class TrackMixerCellView: NSTableCellView {
     
-    @objc dynamic weak var player: AVAudioPlayerNode!;
+    @objc dynamic weak var state: MultiPlayer.TrackState!;
     
 }

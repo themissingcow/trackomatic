@@ -135,7 +135,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             // Mixer
             if let c = tableView.makeView( withIdentifier: Cells.Mixer, owner: nil ) as? TrackMixerCellView
             {
-                c.player = player.players[ row ];
+                c.state = player.states[ row ];
                 cell = c;
             }
         }
