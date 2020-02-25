@@ -1,0 +1,517 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E212C7F824051259000936EB /* TrackNameCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7F724051259000936EB /* TrackNameCellView.swift */; };
+		E212C7FA24051275000936EB /* TrackMixerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7F924051275000936EB /* TrackMixerCellView.swift */; };
+		E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7FB24051287000936EB /* TrackWaveformCellView.swift */; };
+		E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268BC71240446CE00C56DC6 /* MultiPlayer.swift */; };
+		E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FC2404433200C3D009 /* AppDelegate.swift */; };
+		E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FE2404433200C3D009 /* ViewController.swift */; };
+		E2FEC5012404433400C3D009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEC5002404433400C3D009 /* Assets.xcassets */; };
+		E2FEC5042404433400C3D009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2FEC5022404433400C3D009 /* Main.storyboard */; };
+		E2FEC5102404433500C3D009 /* TrackomaticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC50F2404433500C3D009 /* TrackomaticTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E2FEC50C2404433400C3D009 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2FEC4F12404433200C3D009 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2FEC4F82404433200C3D009;
+			remoteInfo = Trackomatic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E222DF7B2405B3A200EE9EB1 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E212C7F724051259000936EB /* TrackNameCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackNameCellView.swift; sourceTree = "<group>"; };
+		E212C7F924051275000936EB /* TrackMixerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMixerCellView.swift; sourceTree = "<group>"; };
+		E212C7FB24051287000936EB /* TrackWaveformCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackWaveformCellView.swift; sourceTree = "<group>"; };
+		E268BC71240446CE00C56DC6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
+		E2FEC4F92404433200C3D009 /* Trackomatic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackomatic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2FEC4FC2404433200C3D009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E2FEC4FE2404433200C3D009 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E2FEC5002404433400C3D009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2FEC5032404433400C3D009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E2FEC5052404433400C3D009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2FEC5062404433400C3D009 /* Trackomatic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Trackomatic.entitlements; sourceTree = "<group>"; };
+		E2FEC50B2404433400C3D009 /* TrackomaticTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackomaticTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2FEC50F2404433500C3D009 /* TrackomaticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackomaticTests.swift; sourceTree = "<group>"; };
+		E2FEC5112404433500C3D009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E2FEC4F62404433200C3D009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2FEC5082404433400C3D009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E212C7F224050ED1000936EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E212C7F724051259000936EB /* TrackNameCellView.swift */,
+				E212C7F924051275000936EB /* TrackMixerCellView.swift */,
+				E212C7FB24051287000936EB /* TrackWaveformCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E268BC6F240446CE00C56DC6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E268BC70240446CE00C56DC6 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				E268BC71240446CE00C56DC6 /* MultiPlayer.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		E2FEC4F02404433200C3D009 = {
+			isa = PBXGroup;
+			children = (
+				E2FEC4FB2404433200C3D009 /* Trackomatic */,
+				E2FEC50E2404433500C3D009 /* TrackomaticTests */,
+				E2FEC4FA2404433200C3D009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E2FEC4FA2404433200C3D009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2FEC4F92404433200C3D009 /* Trackomatic.app */,
+				E2FEC50B2404433400C3D009 /* TrackomaticTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E2FEC4FB2404433200C3D009 /* Trackomatic */ = {
+			isa = PBXGroup;
+			children = (
+				E212C7F224050ED1000936EB /* Views */,
+				E268BC70240446CE00C56DC6 /* Objects */,
+				E268BC6F240446CE00C56DC6 /* ViewControllers */,
+				E2FEC4FC2404433200C3D009 /* AppDelegate.swift */,
+				E2FEC4FE2404433200C3D009 /* ViewController.swift */,
+				E2FEC5002404433400C3D009 /* Assets.xcassets */,
+				E2FEC5022404433400C3D009 /* Main.storyboard */,
+				E2FEC5052404433400C3D009 /* Info.plist */,
+				E2FEC5062404433400C3D009 /* Trackomatic.entitlements */,
+			);
+			path = Trackomatic;
+			sourceTree = "<group>";
+		};
+		E2FEC50E2404433500C3D009 /* TrackomaticTests */ = {
+			isa = PBXGroup;
+			children = (
+				E2FEC50F2404433500C3D009 /* TrackomaticTests.swift */,
+				E2FEC5112404433500C3D009 /* Info.plist */,
+			);
+			path = TrackomaticTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E2FEC4F82404433200C3D009 /* Trackomatic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2FEC5142404433500C3D009 /* Build configuration list for PBXNativeTarget "Trackomatic" */;
+			buildPhases = (
+				E2FEC4F52404433200C3D009 /* Sources */,
+				E2FEC4F62404433200C3D009 /* Frameworks */,
+				E2FEC4F72404433200C3D009 /* Resources */,
+				E222DF7B2405B3A200EE9EB1 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Trackomatic;
+			productName = Trackomatic;
+			productReference = E2FEC4F92404433200C3D009 /* Trackomatic.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E2FEC50A2404433400C3D009 /* TrackomaticTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2FEC5172404433500C3D009 /* Build configuration list for PBXNativeTarget "TrackomaticTests" */;
+			buildPhases = (
+				E2FEC5072404433400C3D009 /* Sources */,
+				E2FEC5082404433400C3D009 /* Frameworks */,
+				E2FEC5092404433400C3D009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2FEC50D2404433400C3D009 /* PBXTargetDependency */,
+			);
+			name = TrackomaticTests;
+			productName = TrackomaticTests;
+			productReference = E2FEC50B2404433400C3D009 /* TrackomaticTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E2FEC4F12404433200C3D009 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Tom Cowland";
+				TargetAttributes = {
+					E2FEC4F82404433200C3D009 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					E2FEC50A2404433400C3D009 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = E2FEC4F82404433200C3D009;
+					};
+				};
+			};
+			buildConfigurationList = E2FEC4F42404433200C3D009 /* Build configuration list for PBXProject "Trackomatic" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E2FEC4F02404433200C3D009;
+			productRefGroup = E2FEC4FA2404433200C3D009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E2FEC4F82404433200C3D009 /* Trackomatic */,
+				E2FEC50A2404433400C3D009 /* TrackomaticTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E2FEC4F72404433200C3D009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2FEC5012404433400C3D009 /* Assets.xcassets in Resources */,
+				E2FEC5042404433400C3D009 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2FEC5092404433400C3D009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E2FEC4F52404433200C3D009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */,
+				E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */,
+				E212C7FA24051275000936EB /* TrackMixerCellView.swift in Sources */,
+				E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */,
+				E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */,
+				E212C7F824051259000936EB /* TrackNameCellView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2FEC5072404433400C3D009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2FEC5102404433500C3D009 /* TrackomaticTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2FEC50D2404433400C3D009 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2FEC4F82404433200C3D009 /* Trackomatic */;
+			targetProxy = E2FEC50C2404433400C3D009 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E2FEC5022404433400C3D009 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2FEC5032404433400C3D009 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E2FEC5122404433500C3D009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E2FEC5132404433500C3D009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		E2FEC5152404433500C3D009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Trackomatic/Trackomatic.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Trackomatic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E2FEC5162404433500C3D009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Trackomatic/Trackomatic.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Trackomatic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E2FEC5182404433500C3D009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
+				INFOPLIST_FILE = TrackomaticTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.TrackomaticTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trackomatic.app/Contents/MacOS/Trackomatic";
+			};
+			name = Debug;
+		};
+		E2FEC5192404433500C3D009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
+				INFOPLIST_FILE = TrackomaticTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.TrackomaticTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trackomatic.app/Contents/MacOS/Trackomatic";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E2FEC4F42404433200C3D009 /* Build configuration list for PBXProject "Trackomatic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2FEC5122404433500C3D009 /* Debug */,
+				E2FEC5132404433500C3D009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2FEC5142404433500C3D009 /* Build configuration list for PBXNativeTarget "Trackomatic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2FEC5152404433500C3D009 /* Debug */,
+				E2FEC5162404433500C3D009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2FEC5172404433500C3D009 /* Build configuration list for PBXNativeTarget "TrackomaticTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2FEC5182404433500C3D009 /* Debug */,
+				E2FEC5192404433500C3D009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E2FEC4F12404433200C3D009 /* Project object */;
+}
