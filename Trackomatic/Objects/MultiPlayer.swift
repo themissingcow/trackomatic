@@ -16,6 +16,8 @@ class MultiPlayer : NSObject {
         @objc dynamic var mute = false;
         @objc dynamic var solo = false;
         
+        @objc dynamic var loop = true;
+        
         @objc dynamic weak var player: AVAudioPlayerNode!;
         @objc dynamic weak var file: AVAudioFile!;
         
@@ -29,6 +31,7 @@ class MultiPlayer : NSObject {
     
     var safeStart: TimeInterval = 0.1;
     @objc dynamic var maxLength: AVAudioFramePosition = 0;
+    @objc dynamic var playing: Bool = false;
     
     var files: [ AVAudioFile ] { didSet { setupFrom( files: files ); } }
 
@@ -36,7 +39,7 @@ class MultiPlayer : NSObject {
     {
         if let player = keyPlayer, let time = player.lastRenderTime
         {
-            return player.playerTime( forNodeTime: time )?.sampleTime ?? 0;
+            return lastPlayStart + ( player.playerTime( forNodeTime: time )?.sampleTime ?? 0 );
         }
         return 0;
     }
@@ -48,7 +51,7 @@ class MultiPlayer : NSObject {
     fileprivate var audioFormat: AVAudioFormat;
     fileprivate var engine: AVAudioEngine;
     fileprivate var mixer: AVAudioMixerNode;
-    fileprivate var lastPlayHostTime: UInt64?;
+    fileprivate var lastPlayStart: AVAudioFramePosition = 0;
     fileprivate var keyPlayer: AVAudioPlayerNode?;
     fileprivate var players : [ AVAudioPlayerNode ];
     fileprivate var muteMixers : [ AVAudioMixerNode ];
@@ -88,9 +91,13 @@ class MultiPlayer : NSObject {
     func play( atFrame: AVAudioFramePosition = 0 )
     {
         if players.count == 0 { return; }
-    
+        
+        lastPlayStart = atFrame;
+        
+        self.stop();
+
         let scheduleTime = ( players[0].lastRenderTime?.sampleTime ?? 0 ) + Int64( 44100.0 * safeStart );
-                
+
         for i in 0..<files.count
         {
             let file = files[ i ];
@@ -103,10 +110,19 @@ class MultiPlayer : NSObject {
             }
             
             let remainingSamples = AUAudioFrameCount( file.length - startFrame );
-                        
-            player.scheduleSegment( file, startingFrame: startFrame, frameCount: remainingSamples, at: nil ) {
-                player.scheduleFile( file, at: nil );
+            
+            func rescheduler( _ : AVAudioPlayerNodeCompletionCallbackType )
+            {
+                player.scheduleFile(
+                    file, at: nil,
+                    completionCallbackType: .dataRendered, completionHandler: rescheduler
+                );
             };
+
+            player.scheduleSegment(
+                file, startingFrame: startFrame, frameCount: remainingSamples, at: nil
+                //completionCallbackType: .dataRendered, completionHandler: states[ i ].loop ? rescheduler : nil
+            )
             
             player.prepare( withFrameCount: 44100 );
         }
@@ -115,6 +131,7 @@ class MultiPlayer : NSObject {
         {
             player.play( at: AVAudioTime( sampleTime: scheduleTime, atRate: 44100 ) );
         }
+        playing = true;
     }
     
     func stop()
@@ -125,6 +142,7 @@ class MultiPlayer : NSObject {
             player.reset();
             player.stop();
         }
+        playing = false;
     }
     
     // MARK: - Player Management
