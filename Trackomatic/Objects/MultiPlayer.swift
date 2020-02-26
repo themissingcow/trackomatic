@@ -16,7 +16,7 @@ class MultiPlayer : NSObject {
         @objc dynamic var mute = false;
         @objc dynamic var solo = false;
         
-        @objc dynamic var loop = true;
+        @objc dynamic var loop = false;
         
         @objc dynamic weak var player: AVAudioPlayerNode!;
         @objc dynamic weak var file: AVAudioFile!;
@@ -103,20 +103,33 @@ class MultiPlayer : NSObject {
 
         for i in 0..<files.count
         {
+            // TODO: Rewrite so we just have one array of states
+            
             let file = files[ i ];
             let player = players[ i ];
+            let state = states[ i ];
                         
             var startFrame = atFrame;
-            if file.length <= atFrame
+            
+            // If we're not looping, we're past the end so have nothing to do
+            if file.length <= startFrame
             {
-                startFrame = atFrame % file.length;
+                if state.loop
+                {
+                    startFrame = startFrame % file.length;
+                }
+                else
+                {
+                    continue;
+                }
             }
             
             let remainingSamples = AUAudioFrameCount( file.length - startFrame );
             
             func rescheduler( _ : AVAudioPlayerNodeCompletionCallbackType )
             {
-                if !playing { return; }
+                // Check nothing has changed since we started
+                if !playing || !state.loop { return; }
                 
                 player.scheduleFile(
                     file, at: nil,
@@ -198,6 +211,12 @@ class MultiPlayer : NSObject {
         for state in states
         {
             state.projectLength = maxLength;
+            
+            // Automaticlly turn on loop for relatively short files
+            if state.file.length < ( maxLength / 2 )
+            {
+                state.loop = true;
+            }
         }
     }
     

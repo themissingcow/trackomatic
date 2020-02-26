@@ -708,7 +708,7 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="750" height="464"/>
+                        <rect key="frame" x="0.0" y="0.0" width="744" height="464"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e10-CS-RPD">
@@ -754,19 +754,19 @@
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbz-wd-VIH">
-                                <rect key="frame" x="0.0" y="98" width="750" height="316"/>
+                                <rect key="frame" x="0.0" y="98" width="744" height="316"/>
                                 <clipView key="contentView" id="bgx-z3-E04">
-                                    <rect key="frame" x="1" y="1" width="748" height="314"/>
+                                    <rect key="frame" x="1" y="1" width="742" height="314"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="50" viewBased="YES" id="IaZ-KT-z2f">
-                                            <rect key="frame" x="0.0" y="0.0" width="748" height="314"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="50" viewBased="YES" id="IaZ-KT-z2f">
+                                            <rect key="frame" x="0.0" y="0.0" width="742" height="314"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="0.0" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="250" minWidth="250" maxWidth="250" id="kmb-rJ-ziV">
+                                                <tableColumn width="275" minWidth="275" maxWidth="275" id="kmb-rJ-ziV">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Mix">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -779,11 +779,11 @@
                                                     </textFieldCell>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="MixerCell" id="SZT-BL-96O" customClass="TrackMixerCellView" customModule="Trackomatic" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="1" width="250" height="50"/>
+                                                            <rect key="frame" x="0.0" y="1" width="275" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zcU-yK-rn1" userLabel="Solo Button">
-                                                                    <rect key="frame" x="158" y="-3" width="40" height="32"/>
+                                                                    <rect key="frame" x="183" y="-3" width="40" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="28" id="UQi-g9-YDD"/>
                                                                         <constraint firstAttribute="height" constant="21" id="h8h-ZS-STO"/>
@@ -791,16 +791,13 @@
                                                                     <buttonCell key="cell" type="push" title="S" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P5c-Ox-ZGD">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
-                                                                        <connections>
-                                                                            <binding destination="SZT-BL-96O" name="value" keyPath="state.solo" id="t7G-mr-yZ8"/>
-                                                                        </connections>
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <binding destination="SZT-BL-96O" name="value" keyPath="state.solo" id="eCr-rU-KDD"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Mv-bt-fHj" userLabel="Mute Button">
-                                                                    <rect key="frame" x="126" y="-3" width="40" height="32"/>
+                                                                    <rect key="frame" x="151" y="-3" width="40" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="28" id="3cO-2r-oWd"/>
                                                                         <constraint firstAttribute="height" constant="21" id="Wqy-FL-NXm"/>
@@ -814,7 +811,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a4R-Cd-vwd" userLabel="Pan Slider">
-                                                                    <rect key="frame" x="194" y="5" width="54" height="19"/>
+                                                                    <rect key="frame" x="219" y="5" width="54" height="19"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="50" id="2yk-V9-AXG"/>
                                                                     </constraints>
@@ -824,7 +821,7 @@
                                                                     </connections>
                                                                 </slider>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3fg-SO-nS9">
-                                                                    <rect key="frame" x="2" y="28" width="246" height="16"/>
+                                                                    <rect key="frame" x="2" y="28" width="271" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" title="Label" id="2Od-tn-Uaw">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -835,31 +832,47 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YlU-uM-rvK" userLabel="Volume Slider">
-                                                                    <rect key="frame" x="2" y="5" width="128" height="19"/>
+                                                                    <rect key="frame" x="34" y="5" width="121" height="19"/>
                                                                     <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="cLy-Qp-IOS"/>
                                                                     <connections>
                                                                         <binding destination="SZT-BL-96O" name="value" keyPath="state.player.volume" id="fJh-Ax-32S"/>
                                                                     </connections>
                                                                 </slider>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-NH-grp" userLabel="Loop Button">
+                                                                    <rect key="frame" x="4" y="3" width="28" height="22"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="28" id="Q8t-2n-WMX"/>
+                                                                        <constraint firstAttribute="height" constant="21" id="fPy-Pf-9hM"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="recessed" bezelStyle="recessed" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SiM-Z8-guN">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                        <font key="font" metaFont="systemBold" size="12"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.loop" id="DG0-24-jRd"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="0Mv-bt-fHj" secondAttribute="bottom" constant="4" id="0Oz-pR-WLc"/>
+                                                                <constraint firstAttribute="trailing" secondItem="3fg-SO-nS9" secondAttribute="trailing" constant="4" id="0dO-oj-QwD"/>
                                                                 <constraint firstItem="zcU-yK-rn1" firstAttribute="leading" secondItem="0Mv-bt-fHj" secondAttribute="trailing" constant="4" id="2Ij-c6-mzg"/>
-                                                                <constraint firstItem="YlU-uM-rvK" firstAttribute="leading" secondItem="SZT-BL-96O" secondAttribute="leading" constant="4" id="4VS-l4-ye1"/>
-                                                                <constraint firstAttribute="trailing" secondItem="3fg-SO-nS9" secondAttribute="trailing" constant="4" id="CmJ-zM-jL4"/>
                                                                 <constraint firstItem="3fg-SO-nS9" firstAttribute="leading" secondItem="SZT-BL-96O" secondAttribute="leading" constant="4" id="HTS-2C-f5B"/>
                                                                 <constraint firstItem="a4R-Cd-vwd" firstAttribute="leading" secondItem="zcU-yK-rn1" secondAttribute="trailing" constant="4" id="Hoi-WX-JMw"/>
                                                                 <constraint firstItem="0Mv-bt-fHj" firstAttribute="leading" secondItem="YlU-uM-rvK" secondAttribute="trailing" constant="4" id="IrC-4W-D6B"/>
                                                                 <constraint firstItem="zcU-yK-rn1" firstAttribute="centerY" secondItem="YlU-uM-rvK" secondAttribute="centerY" id="MuJ-o9-OOY"/>
                                                                 <constraint firstItem="a4R-Cd-vwd" firstAttribute="centerY" secondItem="YlU-uM-rvK" secondAttribute="centerY" id="R4o-Br-giI"/>
                                                                 <constraint firstItem="0Mv-bt-fHj" firstAttribute="centerY" secondItem="YlU-uM-rvK" secondAttribute="centerY" id="eQi-uz-MFS"/>
+                                                                <constraint firstItem="YlU-uM-rvK" firstAttribute="centerY" secondItem="Eap-NH-grp" secondAttribute="centerY" id="mYE-Em-t1a"/>
                                                                 <constraint firstItem="3fg-SO-nS9" firstAttribute="top" secondItem="SZT-BL-96O" secondAttribute="top" constant="6" id="pN5-mn-DCr"/>
+                                                                <constraint firstItem="Eap-NH-grp" firstAttribute="leading" secondItem="SZT-BL-96O" secondAttribute="leading" constant="4" id="rMI-Zl-HSc"/>
                                                                 <constraint firstAttribute="trailing" secondItem="a4R-Cd-vwd" secondAttribute="trailing" constant="4" id="xpL-m8-HDd"/>
+                                                                <constraint firstItem="YlU-uM-rvK" firstAttribute="leading" secondItem="Eap-NH-grp" secondAttribute="trailing" constant="4" id="zoT-Cb-uy1"/>
                                                             </constraints>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="492" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ck4-Oa-pa8">
+                                                <tableColumn width="467" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ck4-Oa-pa8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Waveform">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -873,11 +886,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="WaveformCell" id="DhO-CL-BaL" customClass="TrackWaveformCellView" customModule="Trackomatic" customModuleProvider="target">
-                                                            <rect key="frame" x="250" y="1" width="492" height="50"/>
+                                                            <rect key="frame" x="275" y="1" width="467" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="VuA-cp-BCE" customClass="TCWaveformView">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="492" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="467" height="50"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="waveformColor">
                                                                             <color key="value" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -906,7 +919,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ZgP-f8-Ch0">
-                                    <rect key="frame" x="1" y="288" width="748" height="16"/>
+                                    <rect key="frame" x="1" y="299" width="742" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="geb-hd-xul">
@@ -914,8 +927,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="sou-Vk-srP" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
-                                <rect key="frame" x="250" y="414" width="500" height="50"/>
+                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sou-Vk-srP" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
+                                <rect key="frame" x="275" y="414" width="500" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Y9S-bC-0bl"/>
                                 </constraints>
@@ -956,6 +969,7 @@
     </scenes>
     <resources>
         <image name="NSFolder" width="32" height="32"/>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="NSTouchBarPlayTemplate" width="14" height="30"/>
         <image name="NSTouchBarRecordStopTemplate" width="12" height="30"/>
     </resources>
