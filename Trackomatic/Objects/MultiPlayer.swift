@@ -39,6 +39,7 @@ class MultiPlayer : NSObject {
     {
         if let player = keyPlayer, let time = player.lastRenderTime
         {
+            if !time.isSampleTimeValid { return lastPlayStart; }
             return lastPlayStart + ( player.playerTime( forNodeTime: time )?.sampleTime ?? 0 );
         }
         return 0;
@@ -51,7 +52,7 @@ class MultiPlayer : NSObject {
     fileprivate var audioFormat: AVAudioFormat;
     fileprivate var engine: AVAudioEngine;
     fileprivate var mixer: AVAudioMixerNode;
-    fileprivate var lastPlayStart: AVAudioFramePosition = 0;
+    fileprivate var lastPlayStart: AVAudioFramePosition;
     fileprivate var keyPlayer: AVAudioPlayerNode?;
     fileprivate var players : [ AVAudioPlayerNode ];
     fileprivate var muteMixers : [ AVAudioMixerNode ];
@@ -64,6 +65,8 @@ class MultiPlayer : NSObject {
         players = [];
         muteMixers = [];
         states = [];
+        
+        lastPlayStart = 0;
         
         audioFormat = AVAudioFormat( standardFormatWithSampleRate: 44100.0, channels: 2 )!;
         
@@ -113,15 +116,17 @@ class MultiPlayer : NSObject {
             
             func rescheduler( _ : AVAudioPlayerNodeCompletionCallbackType )
             {
+                if !playing { return; }
+                
                 player.scheduleFile(
                     file, at: nil,
-                    completionCallbackType: .dataRendered, completionHandler: rescheduler
+                    completionCallbackType: .dataConsumed, completionHandler: rescheduler
                 );
             };
 
             player.scheduleSegment(
-                file, startingFrame: startFrame, frameCount: remainingSamples, at: nil
-                //completionCallbackType: .dataRendered, completionHandler: states[ i ].loop ? rescheduler : nil
+                file, startingFrame: startFrame, frameCount: remainingSamples, at: nil,
+                completionCallbackType: .dataConsumed, completionHandler: states[ i ].loop ? rescheduler : nil
             )
             
             player.prepare( withFrameCount: 44100 );
@@ -136,13 +141,11 @@ class MultiPlayer : NSObject {
     
     func stop()
     {
+        playing = false;
         for player in players
         {
             player.stop();
-            player.reset();
-            player.stop();
         }
-        playing = false;
     }
     
     // MARK: - Player Management
