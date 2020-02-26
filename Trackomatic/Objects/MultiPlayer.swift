@@ -19,6 +19,8 @@ class MultiPlayer : NSObject {
         @objc dynamic weak var player: AVAudioPlayerNode!;
         @objc dynamic weak var file: AVAudioFile!;
         
+        @objc dynamic var projectLength: Int64 = 0;
+        
         fileprivate weak var muteMixer: AVAudioMixerNode!;
 
     }
@@ -171,6 +173,10 @@ class MultiPlayer : NSObject {
                 maxLength = file.length;
                 keyPlayer = players[ i ];
             }
+        }
+        for state in states
+        {
+            state.projectLength = maxLength;
         }
     }
     

@@ -902,6 +902,20 @@
                                                         <tableCellView identifier="WaveformCell" id="DhO-CL-BaL" customClass="TrackWaveformCellView" customModule="Trackomatic" customModuleProvider="target">
                                                             <rect key="frame" x="257" y="1" width="445" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="VuA-cp-BCE" customClass="TCWaveformView">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="445" height="40"/>
+                                                                </customView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="VuA-cp-BCE" firstAttribute="leading" secondItem="DhO-CL-BaL" secondAttribute="leading" id="7FL-oW-8RQ"/>
+                                                                <constraint firstItem="VuA-cp-BCE" firstAttribute="top" secondItem="DhO-CL-BaL" secondAttribute="top" id="Mk5-pQ-aX2"/>
+                                                                <constraint firstAttribute="bottom" secondItem="VuA-cp-BCE" secondAttribute="bottom" id="agD-cS-2ef"/>
+                                                                <constraint firstAttribute="trailing" secondItem="VuA-cp-BCE" secondAttribute="trailing" id="s2o-cH-9Kb"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="waveformView" destination="VuA-cp-BCE" id="HcL-GT-uYw"/>
+                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>

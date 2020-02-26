@@ -11,6 +11,9 @@
 		E212C7FA24051275000936EB /* TrackMixerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7F924051275000936EB /* TrackMixerCellView.swift */; };
 		E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7FB24051287000936EB /* TrackWaveformCellView.swift */; };
 		E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268BC71240446CE00C56DC6 /* MultiPlayer.swift */; };
+		E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */; };
+		E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046672405D5B00061E2E3 /* TCWaveformView.m */; };
+		E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0466B2405D8140061E2E3 /* WaveformCache.swift */; };
 		E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FC2404433200C3D009 /* AppDelegate.swift */; };
 		E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FE2404433200C3D009 /* ViewController.swift */; };
 		E2FEC5012404433400C3D009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEC5002404433400C3D009 /* Assets.xcassets */; };
@@ -46,6 +49,12 @@
 		E212C7F924051275000936EB /* TrackMixerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMixerCellView.swift; sourceTree = "<group>"; };
 		E212C7FB24051287000936EB /* TrackWaveformCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackWaveformCellView.swift; sourceTree = "<group>"; };
 		E268BC71240446CE00C56DC6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
+		E2D046642405D5B00061E2E3 /* TCWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWaveformView.h; sourceTree = "<group>"; };
+		E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWaveformDataSource.m; sourceTree = "<group>"; };
+		E2D046662405D5B00061E2E3 /* TCWaveformDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWaveformDataSource.h; sourceTree = "<group>"; };
+		E2D046672405D5B00061E2E3 /* TCWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWaveformView.m; sourceTree = "<group>"; };
+		E2D0466A2405D6830061E2E3 /* Trackomatic-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trackomatic-Bridging-Header.h"; sourceTree = "<group>"; };
+		E2D0466B2405D8140061E2E3 /* WaveformCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformCache.swift; sourceTree = "<group>"; };
 		E2FEC4F92404433200C3D009 /* Trackomatic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackomatic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FEC4FC2404433200C3D009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2FEC4FE2404433200C3D009 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,9 +105,22 @@
 		E268BC70240446CE00C56DC6 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				E2D0466B2405D8140061E2E3 /* WaveformCache.swift */,
 				E268BC71240446CE00C56DC6 /* MultiPlayer.swift */,
 			);
 			path = Objects;
+			sourceTree = "<group>";
+		};
+		E2D046412405D1490061E2E3 /* TCAudioKit */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0466A2405D6830061E2E3 /* Trackomatic-Bridging-Header.h */,
+				E2D046662405D5B00061E2E3 /* TCWaveformDataSource.h */,
+				E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */,
+				E2D046642405D5B00061E2E3 /* TCWaveformView.h */,
+				E2D046672405D5B00061E2E3 /* TCWaveformView.m */,
+			);
+			path = TCAudioKit;
 			sourceTree = "<group>";
 		};
 		E2FEC4F02404433200C3D009 = {
@@ -122,6 +144,7 @@
 		E2FEC4FB2404433200C3D009 /* Trackomatic */ = {
 			isa = PBXGroup;
 			children = (
+				E2D046412405D1490061E2E3 /* TCAudioKit */,
 				E212C7F224050ED1000936EB /* Views */,
 				E268BC70240446CE00C56DC6 /* Objects */,
 				E268BC6F240446CE00C56DC6 /* ViewControllers */,
@@ -195,6 +218,7 @@
 				TargetAttributes = {
 					E2FEC4F82404433200C3D009 = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					E2FEC50A2404433400C3D009 = {
 						CreatedOnToolsVersion = 11.0;
@@ -249,8 +273,11 @@
 				E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */,
 				E212C7FA24051275000936EB /* TrackMixerCellView.swift in Sources */,
 				E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */,
+				E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */,
+				E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */,
 				E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */,
 				E212C7F824051259000936EB /* TrackNameCellView.swift in Sources */,
+				E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +367,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Trackomatic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -393,7 +422,9 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "Trackomatic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -401,6 +432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Trackomatic/Trackomatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -413,6 +445,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Trackomatic/TCAudioKit/Trackomatic-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -421,6 +455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Trackomatic/Trackomatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -433,6 +468,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Trackomatic/TCAudioKit/Trackomatic-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

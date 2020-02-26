@@ -66,6 +66,9 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     func loadFromDirectory( dir: URL )
     {
+        player.files = [];
+        trackTableView.reloadData();
+        
         do {
             
             let contents = try FileManager.default.contentsOfDirectory(
@@ -144,6 +147,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             // Waveform
             if let c = tableView.makeView( withIdentifier: Cells.Waveform, owner: nil ) as? TrackWaveformCellView
             {
+                c.state = player.states[ row ];
                 cell = c;
             }
         }
