@@ -443,6 +443,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0a;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Trackomatic/TCAudioKit/Trackomatic-Bridging-Header.h";
@@ -466,6 +467,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0a;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Trackomatic/TCAudioKit/Trackomatic-Bridging-Header.h";
