@@ -708,14 +708,14 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="744" height="464"/>
+                        <rect key="frame" x="0.0" y="0.0" width="744" height="410"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e10-CS-RPD">
-                                <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                <rect key="frame" x="20" y="332" width="62" height="62"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="hmV-LU-NWK"/>
-                                    <constraint firstAttribute="height" constant="60" id="yy0-n3-H1d"/>
+                                    <constraint firstAttribute="width" constant="62" id="Kbk-CD-BWp"/>
+                                    <constraint firstAttribute="height" constant="62" id="alw-in-PEU"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" title="Open" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="above" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7Yc-FK-hOS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -726,10 +726,10 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDz-gR-z1V">
-                                <rect key="frame" x="110" y="20" width="60" height="60"/>
+                                <rect key="frame" x="98" y="334" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="uU0-6u-7J6"/>
-                                    <constraint firstAttribute="width" constant="60" id="zyl-2N-P23"/>
+                                    <constraint firstAttribute="width" constant="60" id="mtg-mc-GZh"/>
+                                    <constraint firstAttribute="height" constant="60" id="zwt-Fc-4M0"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" title="Play" bezelStyle="shadowlessSquare" image="NSTouchBarPlayTemplate" imagePosition="above" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sMs-RT-4ne">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -737,24 +737,11 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="playPressed:" target="XfG-lQ-9wD" id="Vgd-fS-9lf"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-DP-aH8">
-                                <rect key="frame" x="180" y="20" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="sze-BV-Nde"/>
-                                    <constraint firstAttribute="width" constant="60" id="wH5-hu-plZ"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" title="Stop" bezelStyle="shadowlessSquare" image="NSTouchBarRecordStopTemplate" imagePosition="above" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Krs-6O-NNC">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="stopPressed:" target="XfG-lQ-9wD" id="IDj-pJ-5qy"/>
+                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="self.player.playing" id="fQm-dC-r9J"/>
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbz-wd-VIH">
-                                <rect key="frame" x="0.0" y="98" width="744" height="316"/>
+                                <rect key="frame" x="0.0" y="0.0" width="744" height="316"/>
                                 <clipView key="contentView" id="bgx-z3-E04">
                                     <rect key="frame" x="1" y="1" width="742" height="314"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -764,7 +751,8 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="0.0" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableViewGridLines key="gridStyleMask" vertical="YES" horizontal="YES"/>
+                                            <color key="gridColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="275" minWidth="275" maxWidth="275" id="kmb-rJ-ziV">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Mix">
@@ -927,8 +915,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sou-Vk-srP" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
-                                <rect key="frame" x="275" y="414" width="500" height="50"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="sou-Vk-srP" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
+                                <rect key="frame" x="275" y="316" width="469" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Y9S-bC-0bl"/>
                                 </constraints>
@@ -936,24 +924,45 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="playheadColor">
                                         <color key="value" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-DP-aH8">
+                                <rect key="frame" x="98" y="334" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Cet-JO-oo2"/>
+                                    <constraint firstAttribute="width" constant="60" id="bfg-qz-Qaj"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" title="Stop" bezelStyle="shadowlessSquare" image="NSTouchBarRecordStopTemplate" imagePosition="above" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Krs-6O-NNC">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="stopPressed:" target="XfG-lQ-9wD" id="IDj-pJ-5qy"/>
+                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="self.player.playing" id="RZh-oP-aJw">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="e10-CS-RPD" firstAttribute="top" secondItem="hhh-DP-aH8" secondAttribute="top" id="50v-hZ-V7I"/>
+                            <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="sou-Vk-srP" secondAttribute="bottom" id="7UI-qB-oXG"/>
                             <constraint firstAttribute="trailing" secondItem="sou-Vk-srP" secondAttribute="trailing" id="7s2-pH-u3p"/>
-                            <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="sou-Vk-srP" secondAttribute="bottom" id="8PD-aL-6gw"/>
-                            <constraint firstAttribute="bottom" secondItem="QDz-gR-z1V" secondAttribute="bottom" constant="20" id="AoE-53-0mV"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="EEC-or-Y4F"/>
-                            <constraint firstItem="e10-CS-RPD" firstAttribute="top" secondItem="wbz-wd-VIH" secondAttribute="bottom" constant="18" id="FXI-I3-cTQ"/>
-                            <constraint firstItem="QDz-gR-z1V" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="30" id="IDj-ZL-Jp5"/>
+                            <constraint firstItem="hhh-DP-aH8" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="Kdf-FH-MCi"/>
                             <constraint firstAttribute="trailing" secondItem="wbz-wd-VIH" secondAttribute="trailing" id="O8I-PK-JdV"/>
-                            <constraint firstItem="sou-Vk-srP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="SlS-cg-Bt3"/>
-                            <constraint firstAttribute="bottom" secondItem="e10-CS-RPD" secondAttribute="bottom" constant="20" id="cjO-Vx-NBU"/>
-                            <constraint firstItem="sou-Vk-srP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="250" id="lEA-3O-EKx"/>
-                            <constraint firstItem="e10-CS-RPD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="w7X-Tq-LBu"/>
-                            <constraint firstItem="QDz-gR-z1V" firstAttribute="top" secondItem="hhh-DP-aH8" secondAttribute="top" id="ylN-NB-Eda"/>
-                            <constraint firstItem="hhh-DP-aH8" firstAttribute="leading" secondItem="QDz-gR-z1V" secondAttribute="trailing" constant="10" id="zAD-YL-3fi"/>
+                            <constraint firstAttribute="bottom" secondItem="wbz-wd-VIH" secondAttribute="bottom" id="QiO-ik-B0D"/>
+                            <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="bottom" constant="16" id="aAR-Vq-Huk"/>
+                            <constraint firstItem="QDz-gR-z1V" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="aFf-Am-CV6"/>
+                            <constraint firstItem="e10-CS-RPD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="hq6-hj-caC"/>
+                            <constraint firstItem="hhh-DP-aH8" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="top" id="hui-CB-qQi"/>
+                            <constraint firstItem="QDz-gR-z1V" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="top" id="kGn-kn-CHt"/>
+                            <constraint firstItem="sou-Vk-srP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="275" id="lEA-3O-EKx"/>
+                            <constraint firstItem="e10-CS-RPD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="16" id="xEK-OF-NWx"/>
                         </constraints>
                     </view>
                     <connections>

@@ -17,7 +17,8 @@ class TimelineView: NSView {
     
     @IBInspectable var playheadColor: NSColor = NSColor.black;
     @IBInspectable var backgroundColor: NSColor = NSColor.white;
-    
+    @IBInspectable var borderColor: NSColor = NSColor.black;
+
     var delegate: TimelineViewDelegate?;
 
     var length: AVAudioFramePosition = 0 {
@@ -40,7 +41,16 @@ class TimelineView: NSView {
 
         context.setFillColor( backgroundColor.cgColor );
         context.fill( dirtyRect );
-                
+        
+        context.setLineWidth( 2.0 );
+        context.setStrokeColor( borderColor.cgColor );
+         
+        context.move( to: CGPoint( x: 0, y: 0 ) );
+        context.addLine(to: CGPoint( x: 0, y: frame.height ));
+        context.addLine(to: CGPoint( x: frame.width, y: frame.height ));
+        context.addLine(to: CGPoint( x: frame.width, y: 0 ));
+        context.strokePath()
+            
         if length == 0
         {
             return;
@@ -53,6 +63,8 @@ class TimelineView: NSView {
         context.move( to: CGPoint( x: x, y: 0 ) );
         context.addLine(to: CGPoint( x: x, y: frame.height ));
         context.strokePath()
+        
+     
     }
     
     override func mouseDown(with event: NSEvent)
