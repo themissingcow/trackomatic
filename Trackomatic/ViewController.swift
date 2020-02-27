@@ -10,6 +10,7 @@ import Cocoa
 import AVFoundation
 
 fileprivate enum Cells {
+    static let Group = NSUserInterfaceItemIdentifier( rawValue: "GroupCell" )
     static let Mixer = NSUserInterfaceItemIdentifier( rawValue: "MixerCell" )
     static let Waveform = NSUserInterfaceItemIdentifier( rawValue: "WaveformCell" )
 }
@@ -21,6 +22,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     @IBOutlet weak var trackPlayheadView: TimelineView!
     
     @objc dynamic var player = MultiPlayer();
+    
+    fileprivate var rows: [ Any ] = [];
     
     fileprivate var updateTimer: Timer?;
                 
@@ -93,32 +96,34 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         
         do {
             
-            let contents = try FileManager.default.contentsOfDirectory(
+            var rows: [ Any ] = [];
+            var files: [ AVAudioFile ] = [];
+            
+            let topLevelFiles = filesFrom( directory: dir, recursive: false );
+            rows.append( contentsOf: topLevelFiles );
+            files.append( contentsOf: topLevelFiles );
+            
+            let dirContents = try FileManager.default.contentsOfDirectory(
                 at: dir,
-                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ]
+                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
+                options: [ .skipsSubdirectoryDescendants, .skipsHiddenFiles ]
             );
             
-            let suppportedExtensions = Set( [ "aif", "wav", "mp3", "m4a" ] );
-            var files: [ AVAudioFile ] = [];
-
-            for url in contents
+            // Load subdirectories as groups
+            for url in dirContents
             {
                 let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
+                if !info.isDirectory! { continue; }
                 
-                if info.isDirectory! { continue; }
-                if !suppportedExtensions.contains( url.pathExtension ) { continue; }
-                
-                do {
-                    let file = try AVAudioFile(forReading: url );
-                    files.append( file );
-                }
-                catch
-                {
-                    print( "Unable to load \(url)" );
-                }
+                rows.append( url );
+
+                let dirFiles = filesFrom( directory: url, recursive: true );
+                files.append( contentsOf: dirFiles );
+                rows.append( contentsOf: dirFiles );
             }
             
             self.player.files = files;
+            self.rows = rows;
             
             self.timelineView.length = self.player.maxLength;
             self.trackPlayheadView.length = self.player.maxLength;
@@ -133,38 +138,99 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         self.trackTableView.reloadData();
     }
     
+    func filesFrom( directory: URL, recursive: Bool = true ) -> [ AVAudioFile ]
+    {
+        var files: [ AVAudioFile ] = [];
+        
+        print( directory );
+        
+        do {
+            let contents = try FileManager.default.contentsOfDirectory(
+                at: directory,
+                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
+                options: recursive ? [ .skipsHiddenFiles ] : [ .skipsHiddenFiles, .skipsSubdirectoryDescendants ]
+            );
+            
+            let suppportedExtensions = Set( [ "aif", "wav", "mp3", "m4a" ] );
+
+            for url in contents
+            {
+                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
+                
+                if info.isDirectory! { continue; }
+                if !suppportedExtensions.contains( url.pathExtension ) { continue; }
+                
+                do {
+                    let file = try AVAudioFile(forReading: url );
+                    files.append( file );
+                }
+                catch
+                {
+                    print( "Unable to load audio file \(url)" );
+                }
+            }
+        }
+        catch
+        {
+            print( "Unable to list directory \(directory)" );
+
+        }
+        
+        files.sort { (a, b) in a.url.lastPathComponent < b.url.lastPathComponent; }
+        
+        return files;
+    }
+    
     // MARK: NSTableView
+    
+    func tableView(_ tableView: NSTableView, isGroupRow row: Int) -> Bool
+    {
+        return rows[ row ] as? URL != nil;
+    }
     
     func numberOfRows(in tableView: NSTableView) -> Int
     {
-        return player.files.count;
+        return rows.count;
     }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?
     {
-        return player.files[ row ];
+        return rows[ row ];
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
         var cell: NSView?;
-    
-        if tableColumn == trackTableView.tableColumns[ 0 ]
+        
+        if let groupUrl = rows[ row ] as? URL
         {
-            // Mixer
-            if let c = tableView.makeView( withIdentifier: Cells.Mixer, owner: nil ) as? TrackMixerCellView
+            if let c = tableView.makeView( withIdentifier: Cells.Group, owner: nil ) as? NSTableCellView
             {
-                c.state = player.states[ row ];
+                c.textField?.stringValue = groupUrl.lastPathComponent;
                 cell = c;
             }
         }
-        else
+        else if let file = rows[ row ] as? AVAudioFile
         {
-            // Waveform
-            if let c = tableView.makeView( withIdentifier: Cells.Waveform, owner: nil ) as? TrackWaveformCellView
+            let trackIndex = player.files.firstIndex( of: file )!;
+            
+            if tableColumn == trackTableView.tableColumns[ 0 ]
             {
-                c.state = player.states[ row ];
-                cell = c;
+                // Mixer
+                if let c = tableView.makeView( withIdentifier: Cells.Mixer, owner: nil ) as? TrackMixerCellView
+                {
+                    c.state = player.states[ trackIndex ];
+                    cell = c;
+                }
+            }
+            else
+            {
+                // Waveform
+                if let c = tableView.makeView( withIdentifier: Cells.Waveform, owner: nil ) as? TrackWaveformCellView
+                {
+                    c.state = player.states[ trackIndex ];
+                    cell = c;
+                }
             }
         }
         
