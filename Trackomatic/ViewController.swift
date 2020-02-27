@@ -96,7 +96,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
                 includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ]
             );
             
-            let suppportedExtensions = Set( [ "aif", "wav" ] );
+            let suppportedExtensions = Set( [ "aif", "wav", "mp3", "m4a" ] );
             var files: [ AVAudioFile ] = [];
 
             for url in contents
