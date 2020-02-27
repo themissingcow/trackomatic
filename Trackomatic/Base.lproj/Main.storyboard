@@ -922,11 +922,15 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="playheadColor">
-                                        <color key="value" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="value" red="0.46168729167517431" green="0.54765336906617179" blue="0.80102412564766845" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="playheadWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="drawBorder" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-DP-aH8">
@@ -948,14 +952,30 @@
                                     </binding>
                                 </connections>
                             </button>
+                            <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="i9y-Ua-GoW" userLabel="Lower Playhead" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
+                                <rect key="frame" x="275" y="0.0" width="469" height="316"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="playheadColor">
+                                        <color key="value" red="0.46168729167517431" green="0.54765336906617179" blue="0.80102412564766845" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="playheadWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="drawBorder" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i9y-Ua-GoW" secondAttribute="trailing" id="0D2-br-sdG"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="sou-Vk-srP" secondAttribute="bottom" id="7UI-qB-oXG"/>
                             <constraint firstAttribute="trailing" secondItem="sou-Vk-srP" secondAttribute="trailing" id="7s2-pH-u3p"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="EEC-or-Y4F"/>
                             <constraint firstItem="hhh-DP-aH8" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="Kdf-FH-MCi"/>
+                            <constraint firstItem="i9y-Ua-GoW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="275" id="N8G-5i-xrl"/>
                             <constraint firstAttribute="trailing" secondItem="wbz-wd-VIH" secondAttribute="trailing" id="O8I-PK-JdV"/>
                             <constraint firstAttribute="bottom" secondItem="wbz-wd-VIH" secondAttribute="bottom" id="QiO-ik-B0D"/>
+                            <constraint firstAttribute="bottom" secondItem="i9y-Ua-GoW" secondAttribute="bottom" id="Sgk-sT-DJP"/>
+                            <constraint firstItem="i9y-Ua-GoW" firstAttribute="top" secondItem="sou-Vk-srP" secondAttribute="bottom" id="UJ1-9J-3o7"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="bottom" constant="16" id="aAR-Vq-Huk"/>
                             <constraint firstItem="QDz-gR-z1V" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="aFf-Am-CV6"/>
                             <constraint firstItem="e10-CS-RPD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="hq6-hj-caC"/>
@@ -967,6 +987,7 @@
                     </view>
                     <connections>
                         <outlet property="timelineView" destination="sou-Vk-srP" id="C8J-BK-4u6"/>
+                        <outlet property="trackPlayheadView" destination="i9y-Ua-GoW" id="SyR-iQ-q5v"/>
                         <outlet property="trackTableView" destination="IaZ-KT-z2f" id="rOy-vs-R1k"/>
                     </connections>
                 </viewController>

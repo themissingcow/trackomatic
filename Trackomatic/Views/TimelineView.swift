@@ -16,8 +16,12 @@ protocol TimelineViewDelegate: class {
 class TimelineView: NSView {
     
     @IBInspectable var playheadColor: NSColor = NSColor.black;
-    @IBInspectable var backgroundColor: NSColor = NSColor.white;
+    @IBInspectable var playheadWidth: CGFloat = 1.0;
+    
+    @IBInspectable var drawBorder: Bool = false;
     @IBInspectable var borderColor: NSColor = NSColor.black;
+    
+    @IBInspectable var backgroundColor: NSColor = NSColor.clear;
 
     var delegate: TimelineViewDelegate?;
 
@@ -36,20 +40,23 @@ class TimelineView: NSView {
     override func draw(_ dirtyRect: NSRect) {
                         
         super.draw(dirtyRect);
-            
+
         let context = NSGraphicsContext.current!.cgContext;
 
         context.setFillColor( backgroundColor.cgColor );
         context.fill( dirtyRect );
         
-        context.setLineWidth( 2.0 );
-        context.setStrokeColor( borderColor.cgColor );
-         
-        context.move( to: CGPoint( x: 0, y: 0 ) );
-        context.addLine(to: CGPoint( x: 0, y: frame.height ));
-        context.addLine(to: CGPoint( x: frame.width, y: frame.height ));
-        context.addLine(to: CGPoint( x: frame.width, y: 0 ));
-        context.strokePath()
+        if drawBorder
+        {
+            context.setLineWidth( 2.0 );
+            context.setStrokeColor( borderColor.cgColor );
+             
+            context.move( to: CGPoint( x: 0, y: 0 ) );
+            context.addLine(to: CGPoint( x: 0, y: frame.height ));
+            context.addLine(to: CGPoint( x: frame.width, y: frame.height ));
+            context.addLine(to: CGPoint( x: frame.width, y: 0 ));
+            context.strokePath()
+        }
             
         if length == 0
         {
@@ -58,7 +65,7 @@ class TimelineView: NSView {
         
         let x = CGFloat( Double(position) / Double(length) ) * frame.width;
         
-        context.setLineWidth( 4.0 );
+        context.setLineWidth( playheadWidth );
         context.setStrokeColor( playheadColor.cgColor );
         context.move( to: CGPoint( x: x, y: 0 ) );
         context.addLine(to: CGPoint( x: x, y: frame.height ));

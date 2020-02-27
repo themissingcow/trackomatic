@@ -18,6 +18,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     @IBOutlet weak var trackTableView: NSTableView!
     @IBOutlet weak var timelineView: TimelineView!
+    @IBOutlet weak var trackPlayheadView: TimelineView!
     
     @objc dynamic var player = MultiPlayer();
     
@@ -69,6 +70,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         {
             updateTimer = Timer.scheduledTimer( withTimeInterval: 0.1, repeats: true ) { _ in
                 self.timelineView.position = self.player.position;
+                self.trackPlayheadView.position = self.player.position;
             }
             updateTimer!.fire();
         }
@@ -117,8 +119,11 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             }
             
             self.player.files = files;
+            
             self.timelineView.length = self.player.maxLength;
-            self.timelineView.position = 1000;
+            self.trackPlayheadView.length = self.player.maxLength;
+            self.timelineView.position = 0;
+            self.trackPlayheadView.position = 0;
         }
         catch
         {
