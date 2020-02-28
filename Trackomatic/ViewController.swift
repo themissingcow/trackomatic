@@ -141,8 +141,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     func filesFrom( directory: URL, recursive: Bool = true ) -> [ AVAudioFile ]
     {
         var files: [ AVAudioFile ] = [];
-        
-        print( directory );
+
+        // TODO: Move to FileManager.enumerate as contentsOfDirectory is shallow so recursive is broken
         
         do {
             let contents = try FileManager.default.contentsOfDirectory(
@@ -211,7 +211,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             }
         }
         else if let file = rows[ row ] as? AVAudioFile
-        {            
+        {
             if tableColumn == trackTableView.tableColumns[ 0 ]
             {
                 // Mixer
