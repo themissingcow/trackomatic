@@ -12,7 +12,7 @@ class TrackWaveformCellView: NSTableCellView {
 
     @IBOutlet weak var waveformView: TCWaveformView!
     
-    weak var state: MultiPlayer.TrackState! {
+    weak var state: MultiPlayer.Track! {
         didSet {
             updateWaveform();
         }
@@ -21,7 +21,7 @@ class TrackWaveformCellView: NSTableCellView {
     private func updateWaveform()
     {
         let width = UInt32(NSWidth( self.frame ));
-        let scale = Float( self.state.file.length ) / Float( self.state.projectLength );
+        let scale = Float( self.state.file.length ) / Float( self.state.parent.length );
         
         let defaultQueue = DispatchQueue.global(qos: .default)
         defaultQueue.async {

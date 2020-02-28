@@ -125,8 +125,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             self.player.files = files;
             self.rows = rows;
             
-            self.timelineView.length = self.player.maxLength;
-            self.trackPlayheadView.length = self.player.maxLength;
+            self.timelineView.length = self.player.length;
+            self.trackPlayheadView.length = self.player.length;
             self.timelineView.position = 0;
             self.trackPlayheadView.position = 0;
         }
@@ -211,15 +211,13 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             }
         }
         else if let file = rows[ row ] as? AVAudioFile
-        {
-            let trackIndex = player.files.firstIndex( of: file )!;
-            
+        {            
             if tableColumn == trackTableView.tableColumns[ 0 ]
             {
                 // Mixer
                 if let c = tableView.makeView( withIdentifier: Cells.Mixer, owner: nil ) as? TrackMixerCellView
                 {
-                    c.state = player.states[ trackIndex ];
+                    c.state = player.trackFor( file: file );
                     cell = c;
                 }
             }
@@ -228,7 +226,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
                 // Waveform
                 if let c = tableView.makeView( withIdentifier: Cells.Waveform, owner: nil ) as? TrackWaveformCellView
                 {
-                    c.state = player.states[ trackIndex ];
+                    c.state = player.trackFor( file: file );
                     cell = c;
                 }
             }

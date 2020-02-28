@@ -11,42 +11,47 @@ import AVFoundation
 
 class MultiPlayer : NSObject {
     
-    class TrackState : NSObject {
+    class Track : NSObject {
         
+        // A muted track does not play unless it is solo'd.
+        // Setting solo on one or more tracks overrides any existing mutes.
         @objc dynamic var mute = false;
         @objc dynamic var solo = false;
         
         @objc dynamic var loop = false;
-        
-        @objc dynamic weak var player: AVAudioPlayerNode!;
-        @objc dynamic weak var file: AVAudioFile!;
-        
-        @objc dynamic var projectLength: Int64 = 0;
-        
-        fileprivate weak var muteMixer: AVAudioMixerNode!;
 
+        @objc dynamic public fileprivate(set) var file: AVAudioFile!;
+        @objc dynamic public fileprivate(set) var player: AVAudioPlayerNode!;
+
+        @objc dynamic weak public fileprivate(set) var parent: MultiPlayer!;
+        
+        fileprivate var muteMixer: AVAudioMixerNode!;
+        
     }
     
     // MARK: - Pubic properties
     
     var safeStart: TimeInterval = 0.1;
-    @objc dynamic var maxLength: AVAudioFramePosition = 0;
-    @objc dynamic var playing: Bool = false;
     
-    var files: [ AVAudioFile ] { didSet { setupFrom( files: files ); } }
-
-    var position: AVAudioFramePosition
+    
+    // MARK: - Files
+    
+    var files: [ AVAudioFile ] = []
     {
-        if let player = keyPlayer, let time = player.lastRenderTime
-        {
-            if !time.isSampleTimeValid { return lastPlayStart; }
-            return lastPlayStart + ( player.playerTime( forNodeTime: time )?.sampleTime ?? 0 );
+        didSet { setupFrom( files: files ); }
+    };
+    
+    // MARK: - Tracks
+    
+    @objc dynamic public private(set) var tracks: [ Track ] = [];
+    
+    func trackFor( file: AVAudioFile ) -> Track?
+    {
+        return tracks.first { track in
+            return track.file == file;
         }
-        return 0;
     }
     
-    @objc dynamic var states: [ TrackState ];
-
     // MARK: - Internal vars
 
     fileprivate var audioFormat: AVAudioFormat;
@@ -54,20 +59,14 @@ class MultiPlayer : NSObject {
     fileprivate var mixer: AVAudioMixerNode;
     fileprivate var lastPlayStart: AVAudioFramePosition;
     fileprivate var keyPlayer: AVAudioPlayerNode?;
-    fileprivate var players : [ AVAudioPlayerNode ];
-    fileprivate var muteMixers : [ AVAudioMixerNode ];
     
     // MARK: Init
     
     override init()
     {
-        files = [];
-        players = [];
-        muteMixers = [];
-        states = [];
-        
         lastPlayStart = 0;
         
+        // TODO: Move to project sample rate
         audioFormat = AVAudioFormat( standardFormatWithSampleRate: 44100.0, channels: 2 )!;
         
         engine = AVAudioEngine();
@@ -88,33 +87,44 @@ class MultiPlayer : NSObject {
         super.init();
     }
     
-    
     // MARK: - Transport Control
+    
+    @objc dynamic var playing: Bool = false;
+    @objc dynamic var length: AVAudioFramePosition = 0;
+
+    // TODO: Move to the more normal play/stop/position, where seeking is achieved by setting position.
+
+    var position: AVAudioFramePosition
+    {
+       if let player = keyPlayer, let time = player.lastRenderTime
+       {
+           if !time.isSampleTimeValid { return lastPlayStart; }
+           return lastPlayStart + ( player.playerTime( forNodeTime: time )?.sampleTime ?? 0 );
+       }
+       return 0;
+    }
     
     func play( atFrame: AVAudioFramePosition = 0 )
     {
-        if players.count == 0 { return; }
+        if tracks.count == 0 { return; }
         
         lastPlayStart = atFrame;
         
         self.stop();
 
-        let scheduleTime = ( players[0].lastRenderTime?.sampleTime ?? 0 ) + Int64( 44100.0 * safeStart );
+        let scheduleOffset = AVAudioFramePosition( audioFormat.sampleRate * safeStart );
+        let scheduleTime = ( tracks[0].player.lastRenderTime?.sampleTime ?? 0 ) + scheduleOffset;
 
-        for i in 0..<files.count
+        for file in files
         {
-            // TODO: Rewrite so we just have one array of states
+            let track = trackFor( file: file )!;
             
-            let file = files[ i ];
-            let player = players[ i ];
-            let state = states[ i ];
-                        
             var startFrame = atFrame;
             
-            // If we're not looping, we're past the end so have nothing to do
+            // If we're not looping and we're past the end, we have nothing to do.
             if file.length <= startFrame
             {
-                if state.loop
+                if track.loop
                 {
                     startFrame = startFrame % file.length;
                 }
@@ -129,25 +139,25 @@ class MultiPlayer : NSObject {
             func rescheduler( _ : AVAudioPlayerNodeCompletionCallbackType )
             {
                 // Check nothing has changed since we started
-                if !playing || !state.loop { return; }
+                if !playing || !track.loop { return; }
                 
-                player.scheduleFile(
+                track.player.scheduleFile(
                     file, at: nil,
                     completionCallbackType: .dataConsumed, completionHandler: rescheduler
                 );
             };
 
-            player.scheduleSegment(
+            track.player.scheduleSegment(
                 file, startingFrame: startFrame, frameCount: remainingSamples, at: nil,
-                completionCallbackType: .dataConsumed, completionHandler: states[ i ].loop ? rescheduler : nil
+                completionCallbackType: .dataConsumed, completionHandler: track.loop ? rescheduler : nil
             )
             
-            player.prepare( withFrameCount: 44100 );
+            track.player.prepare( withFrameCount: AVAudioFrameCount( audioFormat.sampleRate) );
         }
         
-        for player in players
+        for track in tracks
         {
-            player.play( at: AVAudioTime( sampleTime: scheduleTime, atRate: 44100 ) );
+            track.player.play( at: AVAudioTime( sampleTime: scheduleTime, atRate: audioFormat.sampleRate ) );
         }
         playing = true;
     }
@@ -155,68 +165,73 @@ class MultiPlayer : NSObject {
     func stop()
     {
         playing = false;
-        for player in players
+        for track in tracks
         {
-            player.stop();
+            track.player.stop();
         }
     }
     
-    // MARK: - Player Management
+    // MARK: - Track Management
 
-    func setupFrom( files: [ AVAudioFile ] )
+    private func setupFrom( files: [ AVAudioFile ] )
     {
-        while players.count > files.count
+        ensureTracks( count: files.count );
+        
+        length = 0;
+        keyPlayer = nil;
+
+        for ( index, file ) in files.enumerated()
         {
-            let player = players.popLast()!;
-            player.stop();
-            engine.disconnectNodeOutput( player );
-            engine.detach( player );
-            let muteMixer = muteMixers.popLast()!;
-            engine.disconnectNodeOutput( muteMixer );
-            engine.detach( muteMixer );
-            let state = states.popLast()!;
-            removeStateObservers( state: state );
-        }
-             
-        while players.count < files.count
-        {
-            let player = AVAudioPlayerNode();
-            players.append( player );
-            engine.attach( player );
-            let index = players.firstIndex( of: player )!;
-            let muteMixer = AVAudioMixerNode();
-            muteMixers.append( muteMixer );
-            engine.attach( muteMixer );
-            engine.connect( player, to: muteMixer, fromBus: 0, toBus: 0, format: audioFormat );
-            engine.connect( muteMixer, to: mixer, fromBus: 0, toBus: index, format: audioFormat );
-            let state = TrackState()
-            state.player = player;
-            state.muteMixer = muteMixer;
-            addStateObservers( state: state );
-            states.append( state );
+            tracks[ index ].file = file;
+            if file.length > length
+            {
+                length = file.length;
+                keyPlayer = tracks[ index ].player;
+            }
         }
         
-        maxLength = 0;
-        keyPlayer = nil;
-        for i in 0..<files.count
+        for track in tracks
         {
-            let file = files[ i ];
-            states[ i ].file = file;
-            if file.length > maxLength
+            // Automaticlly turn on loop for relatively short files
+            if track.file.length < ( length / 2 )
             {
-                maxLength = file.length;
-                keyPlayer = players[ i ];
+                track.loop = true;
             }
         }
-        for state in states
+    }
+    
+    private func ensureTracks( count: Int )
+    {
+        while tracks.count > count
         {
-            state.projectLength = maxLength;
+            let track = tracks.popLast()!;
+
+            track.player.stop();
+            engine.disconnectNodeOutput( track.player );
+            engine.detach( track.player );
+
+            engine.disconnectNodeOutput( track.muteMixer );
+            engine.detach( track.muteMixer );
+
+            removeObservers( track: track );
+        }
             
-            // Automaticlly turn on loop for relatively short files
-            if state.file.length < ( maxLength / 2 )
-            {
-                state.loop = true;
-            }
+        while tracks.count < count
+        {
+            let track = Track();
+            track.parent = self;
+
+            track.player = AVAudioPlayerNode();
+            engine.attach( track.player );
+
+            track.muteMixer = AVAudioMixerNode();
+            engine.attach( track.muteMixer );
+
+            addObservers( track: track );
+            tracks.append( track );
+
+            engine.connect( track.player, to: track.muteMixer, fromBus: 0, toBus: 0, format: audioFormat );
+            engine.connect( track.muteMixer, to: mixer, fromBus: 0, toBus: tracks.count - 1, format: audioFormat );
         }
     }
     
@@ -224,56 +239,55 @@ class MultiPlayer : NSObject {
     
     func clearMutes()
     {
-        for s in states {
-            s.mute = false;
+        for track in tracks {
+            track.mute = false;
         }
     }
     
     func clearSolos()
     {
-        for s in states {
-            s.solo = false;
+        for track in tracks {
+            track.solo = false;
         }
     }
     
     private func applyMuteState()
     {
-        let haveSolo = states.reduce( false ) { (prev, state) in return prev || state.solo };
-
+        let haveSolo = tracks.reduce( false ) { ( prev, track ) in return prev || track.solo };
         if haveSolo
         {
-            for state in states
+            for track in tracks
             {
-                state.muteMixer.outputVolume = state.solo ? 1.0 : 0.0;
+                track.muteMixer.outputVolume = track.solo ? 1.0 : 0.0;
             }
         }
         else
         {
-            for state in states
+            for track in tracks
             {
-                state.muteMixer.outputVolume = state.mute ? 0.0 : 1.0;
+                track.muteMixer.outputVolume = track.mute ? 0.0 : 1.0;
             }
         }
     }
     
-    private func addStateObservers( state: TrackState )
+    private func addObservers( track: Track )
     {
-        state.addObserver( self, forKeyPath: "mute", options: .new, context: nil );
-        state.addObserver( self, forKeyPath: "solo", options: .new, context: nil );
+        track.addObserver( self, forKeyPath: "mute", options: .new, context: nil );
+        track.addObserver( self, forKeyPath: "solo", options: .new, context: nil );
     }
     
-    private func removeStateObservers( state: TrackState )
+    private func removeObservers( track: Track )
     {
-        state.removeObserver( self, forKeyPath: "mute" );
-        state.removeObserver( self, forKeyPath: "solo" );
+        track.removeObserver( self, forKeyPath: "mute" );
+        track.removeObserver( self, forKeyPath: "solo" );
     }
     
     override func observeValue(
         forKeyPath keyPath: String?, of object: Any?,
-        change: [NSKeyValueChangeKey : Any]?,
-        context: UnsafeMutableRawPointer?)
-    {
-        if object as? TrackState != nil {
+        change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?
+    ) {
+        if object as? Track != nil
+        {
             applyMuteState();
         }
     }
