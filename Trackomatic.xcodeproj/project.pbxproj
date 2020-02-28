@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */; };
+		E20F3901240993F20010C1D6 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F3900240993F20010C1D6 /* Project.swift */; };
+		E20F39042409963B0010C1D6 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F39032409963B0010C1D6 /* JSON.swift */; };
 		E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7FB24051287000936EB /* TrackWaveformCellView.swift */; };
 		E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */; };
 		E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268BC71240446CE00C56DC6 /* MultiPlayer.swift */; };
@@ -47,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		E20F3900240993F20010C1D6 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		E20F39032409963B0010C1D6 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		E212C7FB24051287000936EB /* TrackWaveformCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackWaveformCellView.swift; sourceTree = "<group>"; };
 		E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		E268BC71240446CE00C56DC6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
@@ -87,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E20F39022409962E0010C1D6 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				E20F39032409963B0010C1D6 /* JSON.swift */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
 		E212C7F224050ED1000936EB /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +122,7 @@
 			children = (
 				E2D0466B2405D8140061E2E3 /* WaveformCache.swift */,
 				E268BC71240446CE00C56DC6 /* MultiPlayer.swift */,
+				E20F3900240993F20010C1D6 /* Project.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -147,6 +160,7 @@
 		E2FEC4FB2404433200C3D009 /* Trackomatic */ = {
 			isa = PBXGroup;
 			children = (
+				E20F39022409962E0010C1D6 /* IO */,
 				E2D046412405D1490061E2E3 /* TCAudioKit */,
 				E212C7F224050ED1000936EB /* Views */,
 				E268BC70240446CE00C56DC6 /* Objects */,
@@ -275,10 +289,12 @@
 				E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */,
 				E2AF75152409100F00618022 /* TrackTableCellView.swift in Sources */,
 				E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */,
+				E20F39042409963B0010C1D6 /* JSON.swift in Sources */,
 				E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */,
 				E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */,
 				E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */,
 				E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */,
+				E20F3901240993F20010C1D6 /* Project.swift in Sources */,
 				E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */,
 				E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */,
 				E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */,

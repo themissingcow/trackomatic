@@ -22,6 +22,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     @IBOutlet weak var trackPlayheadView: TimelineView!
     
     @objc dynamic var player = MultiPlayer();
+    @objc dynamic var project: Project?;
     
     fileprivate var rows: [ Any ] = [];
     
@@ -46,6 +47,11 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         }
     }
     
+    @IBAction func saveProject(_ sender: Any)
+    {
+        project?.save();
+    }
+    
     @IBAction func playPressed(_ sender: Any)
     {
         player.play( atFrame: timelineView.position );
@@ -56,8 +62,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         player.stop();
     }
     
-    override func viewDidLoad() {
-        
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         timelineView.delegate = self;
@@ -65,6 +71,11 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         player.addObserver( self, forKeyPath: "playing", options: [.initial, .new] , context: nil );
     }
     
+    override func viewWillDisappear()
+    {
+        super.viewWillDisappear();
+    }
+        
     // MARK: - Updates
         
     func setPlaybackTimers( playing: Bool )
@@ -90,95 +101,41 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     {
         player.stop();
         setPlaybackTimers( playing: false );
-        
+
         player.files = [];
         trackTableView.reloadData();
-        
-        do {
-            
-            var rows: [ Any ] = [];
-            var files: [ AVAudioFile ] = [];
-            
-            let topLevelFiles = filesFrom( directory: dir, recursive: false );
-            rows.append( contentsOf: topLevelFiles );
-            files.append( contentsOf: topLevelFiles );
-            
-            let dirContents = try FileManager.default.contentsOfDirectory(
-                at: dir,
-                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
-                options: [ .skipsSubdirectoryDescendants, .skipsHiddenFiles ]
-            );
-            
-            // Load subdirectories as groups
-            for url in dirContents
-            {
-                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
-                if !info.isDirectory! { continue; }
-                
-                rows.append( url );
 
-                let dirFiles = filesFrom( directory: url, recursive: true );
-                files.append( contentsOf: dirFiles );
-                rows.append( contentsOf: dirFiles );
-            }
-            
-            self.player.files = files;
-            self.rows = rows;
-            
-            self.timelineView.length = self.player.length;
-            self.trackPlayheadView.length = self.player.length;
-            self.timelineView.position = 0;
-            self.trackPlayheadView.position = 0;
-        }
-        catch
-        {
-            print( "\(error)" );
-        }
+        project = Project( baseDirectory: dir );
         
-        self.trackTableView.reloadData();
+        player.files = project!.audioFiles;
+        rows = rowsFrom( groups: project!.audioFileGroups, baseDirectory: dir );
+
+        timelineView.length = player.length;
+        trackPlayheadView.length = player.length;
+        timelineView.position = 0;
+        trackPlayheadView.position = 0;
+
+        trackTableView.reloadData();
     }
     
-    func filesFrom( directory: URL, recursive: Bool = true ) -> [ AVAudioFile ]
+    func rowsFrom( groups: [ URL: [ AVAudioFile ] ], baseDirectory dir: URL ) -> [ Any ]
     {
-        var files: [ AVAudioFile ] = [];
-
-        // TODO: Move to FileManager.enumerate as contentsOfDirectory is shallow so recursive is broken
+        var rows: [ Any ] = [];
         
-        do {
-            let contents = try FileManager.default.contentsOfDirectory(
-                at: directory,
-                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
-                options: recursive ? [ .skipsHiddenFiles ] : [ .skipsHiddenFiles, .skipsSubdirectoryDescendants ]
-            );
-            
-            let suppportedExtensions = Set( [ "aif", "wav", "mp3", "m4a" ] );
-
-            for url in contents
-            {
-                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
-                
-                if info.isDirectory! { continue; }
-                if !suppportedExtensions.contains( url.pathExtension ) { continue; }
-                
-                do {
-                    let file = try AVAudioFile(forReading: url );
-                    files.append( file );
-                }
-                catch
-                {
-                    print( "Unable to load audio file \(url)" );
-                }
-            }
-        }
-        catch
+        if let rootFiles = groups[ dir ]
         {
-            print( "Unable to list directory \(directory)" );
-
+            rows.append( contentsOf: rootFiles );
         }
         
-        files.sort { (a, b) in a.url.lastPathComponent < b.url.lastPathComponent; }
+        for ( url, files ) in groups
+        {
+            if url == dir { continue; }
+            
+            rows.append( url );
+            rows.append( contentsOf: files );
+        }
         
-        return files;
+        return rows;
     }
     
     // MARK: NSTableView

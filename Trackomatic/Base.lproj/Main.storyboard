@@ -814,18 +814,18 @@
                 <customObject id="mcL-Ri-PpC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="gRB-sR-5oc"/>
             </objects>
-            <point key="canvasLocation" x="510" y="683"/>
+            <point key="canvasLocation" x="510" y="500"/>
         </scene>
         <!--Trackomatic-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController title="Trackomatic" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="744" height="410"/>
+                        <rect key="frame" x="0.0" y="0.0" width="980" height="422"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e10-CS-RPD">
-                                <rect key="frame" x="20" y="332" width="62" height="62"/>
+                                <rect key="frame" x="20" y="344" width="62" height="62"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="62" id="Kbk-CD-BWp"/>
                                     <constraint firstAttribute="height" constant="62" id="alw-in-PEU"/>
@@ -839,7 +839,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDz-gR-z1V">
-                                <rect key="frame" x="98" y="334" width="60" height="60"/>
+                                <rect key="frame" x="98" y="346" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="mtg-mc-GZh"/>
                                     <constraint firstAttribute="height" constant="60" id="zwt-Fc-4M0"/>
@@ -854,7 +854,7 @@
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbz-wd-VIH">
-                                <rect key="frame" x="0.0" y="0.0" width="744" height="316"/>
+                                <rect key="frame" x="12" y="12" width="744" height="316"/>
                                 <clipView key="contentView" id="bgx-z3-E04">
                                     <rect key="frame" x="1" y="1" width="742" height="314"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1061,7 +1061,7 @@
                                 </scroller>
                             </scrollView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="sou-Vk-srP" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
-                                <rect key="frame" x="275" y="316" width="469" height="50"/>
+                                <rect key="frame" x="287" y="328" width="469" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Y9S-bC-0bl"/>
                                 </constraints>
@@ -1079,7 +1079,7 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-DP-aH8">
-                                <rect key="frame" x="98" y="334" width="60" height="60"/>
+                                <rect key="frame" x="98" y="346" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Cet-JO-oo2"/>
                                     <constraint firstAttribute="width" constant="60" id="bfg-qz-Qaj"/>
@@ -1098,7 +1098,7 @@
                                 </connections>
                             </button>
                             <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="i9y-Ua-GoW" userLabel="Lower Playhead" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
-                                <rect key="frame" x="275" y="0.0" width="469" height="316"/>
+                                <rect key="frame" x="275" y="12" width="481" height="316"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="playheadColor">
                                         <color key="value" red="0.46168729167517431" green="0.54765336906617179" blue="0.80102412564766845" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1109,25 +1109,102 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="drawBorder" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </customView>
+                            <tabView type="noTabsLineBorder" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-7L-X1O">
+                                <rect key="frame" x="768" y="12" width="200" height="366"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="J4G-5b-hiY"/>
+                                </constraints>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="Info" identifier="info" id="pYh-vI-9Ld">
+                                        <view key="view" id="017-Qv-66i">
+                                            <rect key="frame" x="1" y="1" width="198" height="364"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufd-8A-zSB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="198" height="364"/>
+                                                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AL0-sL-wVr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="198" height="364"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="Xxh-Zq-Ame">
+                                                                <rect key="frame" x="0.0" y="0.0" width="198" height="364"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                <size key="minSize" width="198" height="364"/>
+                                                                <size key="maxSize" width="240" height="10000000"/>
+                                                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <connections>
+                                                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="project" id="E7Y-Xa-Zdf">
+                                                                        <dictionary key="options">
+                                                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="project.notes" id="9VO-BH-pJi">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                </connections>
+                                                            </textView>
+                                                        </subviews>
+                                                    </clipView>
+                                                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="hCK-4Y-4rw">
+                                                        <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CeF-g0-Tn7">
+                                                        <rect key="frame" x="182" y="0.0" width="16" height="364"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                </scrollView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ufd-8A-zSB" secondAttribute="bottom" id="79q-le-Vyq"/>
+                                                <constraint firstAttribute="trailing" secondItem="ufd-8A-zSB" secondAttribute="trailing" id="NAw-ox-P55"/>
+                                                <constraint firstItem="ufd-8A-zSB" firstAttribute="leading" secondItem="017-Qv-66i" secondAttribute="leading" id="Xnc-dp-ORd"/>
+                                                <constraint firstItem="ufd-8A-zSB" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" id="pq9-gP-1VX"/>
+                                            </constraints>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                            </tabView>
+                            <button verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fhp-Jn-CoU">
+                                <rect key="frame" x="904" y="378" width="70" height="32"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ilR-2j-X8Z">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveProject:" target="XfG-lQ-9wD" id="iee-fu-DUu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="i9y-Ua-GoW" secondAttribute="trailing" id="0D2-br-sdG"/>
+                            <constraint firstAttribute="trailing" secondItem="Fhp-Jn-CoU" secondAttribute="trailing" constant="12" id="0Pq-uP-gAE"/>
+                            <constraint firstItem="aZ1-7L-X1O" firstAttribute="leading" secondItem="sou-Vk-srP" secondAttribute="trailing" constant="12" id="3hm-7B-9gB"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="sou-Vk-srP" secondAttribute="bottom" id="7UI-qB-oXG"/>
-                            <constraint firstAttribute="trailing" secondItem="sou-Vk-srP" secondAttribute="trailing" id="7s2-pH-u3p"/>
-                            <constraint firstItem="wbz-wd-VIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="EEC-or-Y4F"/>
+                            <constraint firstItem="aZ1-7L-X1O" firstAttribute="leading" secondItem="wbz-wd-VIH" secondAttribute="trailing" constant="12" id="9hT-Qv-Wmh"/>
+                            <constraint firstItem="aZ1-7L-X1O" firstAttribute="leading" secondItem="i9y-Ua-GoW" secondAttribute="trailing" constant="12" id="CSW-EN-lB5"/>
+                            <constraint firstItem="wbz-wd-VIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="12" id="EEC-or-Y4F"/>
                             <constraint firstItem="hhh-DP-aH8" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="Kdf-FH-MCi"/>
                             <constraint firstItem="i9y-Ua-GoW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="275" id="N8G-5i-xrl"/>
-                            <constraint firstAttribute="trailing" secondItem="wbz-wd-VIH" secondAttribute="trailing" id="O8I-PK-JdV"/>
-                            <constraint firstAttribute="bottom" secondItem="wbz-wd-VIH" secondAttribute="bottom" id="QiO-ik-B0D"/>
-                            <constraint firstAttribute="bottom" secondItem="i9y-Ua-GoW" secondAttribute="bottom" id="Sgk-sT-DJP"/>
+                            <constraint firstAttribute="bottom" secondItem="wbz-wd-VIH" secondAttribute="bottom" constant="12" id="QiO-ik-B0D"/>
+                            <constraint firstItem="Fhp-Jn-CoU" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="16" id="SRA-nC-wpx"/>
+                            <constraint firstAttribute="bottom" secondItem="i9y-Ua-GoW" secondAttribute="bottom" constant="12" id="Sgk-sT-DJP"/>
                             <constraint firstItem="i9y-Ua-GoW" firstAttribute="top" secondItem="sou-Vk-srP" secondAttribute="bottom" id="UJ1-9J-3o7"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="bottom" constant="16" id="aAR-Vq-Huk"/>
                             <constraint firstItem="QDz-gR-z1V" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="aFf-Am-CV6"/>
                             <constraint firstItem="e10-CS-RPD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="hq6-hj-caC"/>
                             <constraint firstItem="hhh-DP-aH8" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="top" id="hui-CB-qQi"/>
                             <constraint firstItem="QDz-gR-z1V" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="top" id="kGn-kn-CHt"/>
-                            <constraint firstItem="sou-Vk-srP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="275" id="lEA-3O-EKx"/>
+                            <constraint firstItem="sou-Vk-srP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="287" id="lEA-3O-EKx"/>
+                            <constraint firstAttribute="trailing" secondItem="aZ1-7L-X1O" secondAttribute="trailing" constant="12" id="uhn-Xn-7GG"/>
                             <constraint firstItem="e10-CS-RPD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="16" id="xEK-OF-NWx"/>
+                            <constraint firstItem="aZ1-7L-X1O" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="44" id="xP3-GL-gAh"/>
+                            <constraint firstAttribute="bottom" secondItem="aZ1-7L-X1O" secondAttribute="bottom" constant="12" id="yPg-8W-oHp"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1139,7 +1216,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="Dbt-yp-lY8"/>
             </objects>
-            <point key="canvasLocation" x="-160" y="804"/>
+            <point key="canvasLocation" x="-60" y="960"/>
         </scene>
     </scenes>
     <resources>
