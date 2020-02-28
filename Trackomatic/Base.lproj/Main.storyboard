@@ -1098,7 +1098,7 @@
                                 </connections>
                             </button>
                             <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="i9y-Ua-GoW" userLabel="Lower Playhead" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
-                                <rect key="frame" x="275" y="12" width="481" height="316"/>
+                                <rect key="frame" x="287" y="12" width="469" height="316"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="playheadColor">
                                         <color key="value" red="0.46168729167517431" green="0.54765336906617179" blue="0.80102412564766845" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1190,7 +1190,7 @@
                             <constraint firstItem="aZ1-7L-X1O" firstAttribute="leading" secondItem="i9y-Ua-GoW" secondAttribute="trailing" constant="12" id="CSW-EN-lB5"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="12" id="EEC-or-Y4F"/>
                             <constraint firstItem="hhh-DP-aH8" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="Kdf-FH-MCi"/>
-                            <constraint firstItem="i9y-Ua-GoW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="275" id="N8G-5i-xrl"/>
+                            <constraint firstItem="i9y-Ua-GoW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="287" id="N8G-5i-xrl"/>
                             <constraint firstAttribute="bottom" secondItem="wbz-wd-VIH" secondAttribute="bottom" constant="12" id="QiO-ik-B0D"/>
                             <constraint firstItem="Fhp-Jn-CoU" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="16" id="SRA-nC-wpx"/>
                             <constraint firstAttribute="bottom" secondItem="i9y-Ua-GoW" secondAttribute="bottom" constant="12" id="Sgk-sT-DJP"/>
