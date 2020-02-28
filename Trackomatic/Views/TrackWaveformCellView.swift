@@ -8,11 +8,11 @@
 
 import Cocoa
 
-class TrackWaveformCellView: NSTableCellView {
+class TrackWaveformCellView: TrackTableCellView {
 
     @IBOutlet weak var waveformView: TCWaveformView!
     
-    weak var state: MultiPlayer.Track! {
+    override var track: MultiPlayer.Track! {
         didSet {
             updateWaveform();
         }
@@ -20,13 +20,18 @@ class TrackWaveformCellView: NSTableCellView {
     
     private func updateWaveform()
     {
+        if( track == nil )
+        {
+            return;
+        }
+                
         let width = UInt32(NSWidth( self.frame ));
-        let scale = Float( self.state.file.length ) / Float( self.state.parent.length );
+        let scale = Float( track.file.length ) / Float( track.parent.length );
         
         let defaultQueue = DispatchQueue.global(qos: .default)
         defaultQueue.async {
             
-            let fileURL = self.state.file.url;
+            let fileURL = self.track.file.url;
             
             let dataSource = WaveformCache.Shared.global.sourceFor( fileURL );
             dataSource.preDecimate( 256 );
@@ -46,7 +51,7 @@ class TrackWaveformCellView: NSTableCellView {
                 DispatchQueue.main.async {
                
                     // Ensure that we're still supposed to be displaying the right track
-                    if self.state.file.url == fileURL
+                    if self.track.file.url == fileURL
                     {
                         self.waveformView.setSampleData( data, numSamples: numPoints, scale: scale );
                     }

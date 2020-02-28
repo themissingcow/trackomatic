@@ -766,7 +766,7 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="MixerCell" id="SZT-BL-96O" customClass="TrackMixerCellView" customModule="Trackomatic" customModuleProvider="target">
+                                                        <tableCellView identifier="MixerCell" id="SZT-BL-96O" userLabel="Mixer Cell" customClass="TrackTableCellView" customModule="Trackomatic" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="1" width="275" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -781,7 +781,7 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.solo" id="eCr-rU-KDD"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.solo" id="aMQ-t5-LT4"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Mv-bt-fHj" userLabel="Mute Button">
@@ -795,7 +795,7 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.mute" id="Dev-d2-Rbc"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.mute" id="peC-Jq-ZtQ"/>
                                                                     </connections>
                                                                 </button>
                                                                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a4R-Cd-vwd" userLabel="Pan Slider">
@@ -805,7 +805,7 @@
                                                                     </constraints>
                                                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="-1" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Edc-9e-cbb"/>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.player.pan" id="u1C-9f-THs"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.player.pan" id="xXW-FM-DsE"/>
                                                                     </connections>
                                                                 </slider>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3fg-SO-nS9">
@@ -816,14 +816,14 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.file.url.lastPathComponent" id="cD1-QU-iiB"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.file.url.lastPathComponent" id="eAV-fF-uJi"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YlU-uM-rvK" userLabel="Volume Slider">
                                                                     <rect key="frame" x="38" y="5" width="113" height="19"/>
                                                                     <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="cLy-Qp-IOS"/>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.player.volume" id="fJh-Ax-32S"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.player.volume" id="gn3-bj-xlE"/>
                                                                     </connections>
                                                                 </slider>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-NH-grp" userLabel="Loop Button">
@@ -837,7 +837,7 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="state.loop" id="DG0-24-jRd"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.loop" id="Q29-GC-KT3"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -858,7 +858,7 @@
                                                                 <constraint firstItem="YlU-uM-rvK" firstAttribute="leading" secondItem="Eap-NH-grp" secondAttribute="trailing" constant="4" id="zoT-Cb-uy1"/>
                                                             </constraints>
                                                         </tableCellView>
-                                                        <tableCellView identifier="GroupCell" id="Is8-yb-DUF">
+                                                        <tableCellView identifier="GroupRow" id="Is8-yb-DUF" userLabel="Group Row">
                                                             <rect key="frame" x="0.0" y="53" width="275" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>

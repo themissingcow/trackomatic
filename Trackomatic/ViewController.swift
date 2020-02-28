@@ -10,7 +10,7 @@ import Cocoa
 import AVFoundation
 
 fileprivate enum Cells {
-    static let Group = NSUserInterfaceItemIdentifier( rawValue: "GroupCell" )
+    static let Group = NSUserInterfaceItemIdentifier( rawValue: "GroupRow" )
     static let Mixer = NSUserInterfaceItemIdentifier( rawValue: "MixerCell" )
     static let Waveform = NSUserInterfaceItemIdentifier( rawValue: "WaveformCell" )
 }
@@ -200,39 +200,24 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
-        var cell: NSView?;
+        var view: NSTableCellView?;
+        
+        // Groups are URLs in the row list, Tracks are AVAudioFiles
         
         if let groupUrl = rows[ row ] as? URL
         {
-            if let c = tableView.makeView( withIdentifier: Cells.Group, owner: nil ) as? NSTableCellView
-            {
-                c.textField?.stringValue = groupUrl.lastPathComponent;
-                cell = c;
-            }
+            view = tableView.makeView( withIdentifier: Cells.Group, owner: nil ) as? NSTableCellView;
+            view?.textField?.stringValue = groupUrl.lastPathComponent;
         }
         else if let file = rows[ row ] as? AVAudioFile
         {
-            if tableColumn == trackTableView.tableColumns[ 0 ]
-            {
-                // Mixer
-                if let c = tableView.makeView( withIdentifier: Cells.Mixer, owner: nil ) as? TrackMixerCellView
-                {
-                    c.state = player.trackFor( file: file );
-                    cell = c;
-                }
-            }
-            else
-            {
-                // Waveform
-                if let c = tableView.makeView( withIdentifier: Cells.Waveform, owner: nil ) as? TrackWaveformCellView
-                {
-                    c.state = player.trackFor( file: file );
-                    cell = c;
-                }
-            }
+            let identifier = ( tableColumn == trackTableView.tableColumns[ 1 ]) ? Cells.Waveform : Cells.Mixer;
+            let trackView = tableView.makeView( withIdentifier: identifier, owner: nil ) as? TrackTableCellView
+            trackView?.track = player.trackFor( file: file );
+            view = trackView;
         }
         
-        return cell;
+        return view;
     }
     
     // MARK: - TimelineViewDelegate
@@ -242,7 +227,6 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         self.timelineView.position = position;
         self.player.play( atFrame: position );
     }
-    
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
     {
