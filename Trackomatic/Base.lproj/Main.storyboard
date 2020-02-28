@@ -23,7 +23,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="GU9-dq-uOA" kind="show" id="77q-ol-49e"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -679,16 +683,16 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="-288" y="-332"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Trackomatic" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="400"/>
+                        <rect key="contentRect" x="196" y="240" width="744" height="410"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="480" height="200"/>
                         <connections>
@@ -701,12 +705,121 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="-160" y="273"/>
         </scene>
-        <!--View Controller-->
+        <!--Window Controller-->
+        <scene sceneID="5cN-8e-VX8">
+            <objects>
+                <windowController id="GU9-dq-uOA" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="wNH-tD-ysj">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="362" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+                        <connections>
+                            <outlet property="delegate" destination="GU9-dq-uOA" id="K3v-3Z-M44"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="3FA-Qg-hOG" kind="relationship" relationship="window.shadowedContentViewController" id="KoU-Rx-jZk"/>
+                    </connections>
+                </windowController>
+                <customObject id="d7L-D2-o91" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="510" y="203"/>
+        </scene>
+        <!--Preferences-->
+        <scene sceneID="aGs-1h-ETW">
+            <objects>
+                <viewController title="Preferences" showSeguePresentationStyle="single" id="3FA-Qg-hOG" customClass="PreferencesViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ccj-Xb-eiQ">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="168"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qM9-y4-e0L">
+                                <rect key="frame" x="67" y="110" width="77" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Short Name" id="JQs-2b-x6L">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8r-Gl-Lcg">
+                                <rect key="frame" x="150" y="107" width="292" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="No punctuation, ideally no spaces." drawsBackground="YES" usesSingleLineMode="YES" id="f7H-Po-S83">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.shortName" id="4ST-K3-PCh"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-AN-dk6">
+                                <rect key="frame" x="148" y="91" width="296" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="This is used by Trackomatic for settings files." id="K9r-ns-cEV">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-FB-GAo">
+                                <rect key="frame" x="150" y="58" width="292" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="This can be anyting you like" drawsBackground="YES" usesSingleLineMode="YES" id="FKc-wa-pBs">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.displayName" id="kqX-vc-asN"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pb4-Ym-EyF">
+                                <rect key="frame" x="57" y="61" width="87" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Display Name" id="3JD-nr-ay1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEK-r1-hrR">
+                                <rect key="frame" x="148" y="42" width="296" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="This is shown in the app with your comments" id="q91-qv-e6S">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="p8r-Gl-Lcg" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="0gj-qS-lw9"/>
+                            <constraint firstAttribute="trailing" secondItem="p8r-Gl-Lcg" secondAttribute="trailing" constant="38" id="3kn-p4-LjT"/>
+                            <constraint firstItem="w9K-FB-GAo" firstAttribute="firstBaseline" secondItem="Pb4-Ym-EyF" secondAttribute="firstBaseline" id="40S-b2-aE1"/>
+                            <constraint firstItem="p8r-Gl-Lcg" firstAttribute="leading" secondItem="qM9-y4-e0L" secondAttribute="trailing" constant="8" id="78z-du-fz5"/>
+                            <constraint firstAttribute="trailing" secondItem="w9K-FB-GAo" secondAttribute="trailing" constant="38" id="8QE-g4-vWK"/>
+                            <constraint firstItem="aEK-r1-hrR" firstAttribute="top" secondItem="w9K-FB-GAo" secondAttribute="bottom" constant="2" id="GfM-42-j0v"/>
+                            <constraint firstItem="aEK-r1-hrR" firstAttribute="trailing" secondItem="w9K-FB-GAo" secondAttribute="trailing" id="KTv-IK-lyO"/>
+                            <constraint firstItem="w9K-FB-GAo" firstAttribute="leading" secondItem="Pb4-Ym-EyF" secondAttribute="trailing" constant="8" id="Q6d-zl-ErO"/>
+                            <constraint firstItem="JQ5-AN-dk6" firstAttribute="trailing" secondItem="p8r-Gl-Lcg" secondAttribute="trailing" id="SNn-SV-qQr"/>
+                            <constraint firstItem="aEK-r1-hrR" firstAttribute="leading" secondItem="w9K-FB-GAo" secondAttribute="leading" id="WoM-wM-SrE"/>
+                            <constraint firstItem="JQ5-AN-dk6" firstAttribute="leading" secondItem="p8r-Gl-Lcg" secondAttribute="leading" id="b16-5w-yxv"/>
+                            <constraint firstItem="p8r-Gl-Lcg" firstAttribute="top" secondItem="ccj-Xb-eiQ" secondAttribute="top" constant="40" id="bdX-DV-NC2"/>
+                            <constraint firstItem="w9K-FB-GAo" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="gGb-EU-nx2"/>
+                            <constraint firstItem="p8r-Gl-Lcg" firstAttribute="firstBaseline" secondItem="qM9-y4-e0L" secondAttribute="firstBaseline" id="hEl-Mr-uBF"/>
+                            <constraint firstItem="JQ5-AN-dk6" firstAttribute="top" secondItem="p8r-Gl-Lcg" secondAttribute="bottom" constant="2" id="uGY-br-MOH"/>
+                            <constraint firstItem="w9K-FB-GAo" firstAttribute="top" secondItem="JQ5-AN-dk6" secondAttribute="bottom" constant="12" id="w9g-d7-X8u"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="mcL-Ri-PpC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="gRB-sR-5oc"/>
+            </objects>
+            <point key="canvasLocation" x="510" y="683"/>
+        </scene>
+        <!--Trackomatic-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Trackomatic" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="744" height="410"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1026,7 +1139,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="Dbt-yp-lY8"/>
             </objects>
-            <point key="canvasLocation" x="75" y="909"/>
+            <point key="canvasLocation" x="-160" y="804"/>
         </scene>
     </scenes>
     <resources>

@@ -14,13 +14,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
+        initPrefs();
+    }
+
+    // MARK: - Prefs
+    
+    private func initPrefs()
+    {
+        let shortName = NSUserName();
+        let displayName = NSFullUserName();
         
+        UserDefaults.standard.register( defaults: [ "shortName" : shortName, "displayName" : displayName ] );
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
 
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */; };
 		E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7FB24051287000936EB /* TrackWaveformCellView.swift */; };
 		E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */; };
 		E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268BC71240446CE00C56DC6 /* MultiPlayer.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		E212C7FB24051287000936EB /* TrackWaveformCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackWaveformCellView.swift; sourceTree = "<group>"; };
 		E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		E268BC71240446CE00C56DC6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		E268BC6F240446CE00C56DC6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */,
 				E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */,
 				E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */,
+				E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */,
 				E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */,
 				E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */,
 				E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */,
