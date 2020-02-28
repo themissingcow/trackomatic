@@ -49,7 +49,11 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     @IBAction func saveProject(_ sender: Any)
     {
+        guard let p = project
+            else { return; }
+
         project?.save();
+        player.save( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
     }
     
     @IBAction func playPressed(_ sender: Any)
@@ -108,6 +112,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         project = Project( baseDirectory: dir );
         
         player.files = project!.audioFiles;
+        player.load( url: project!.userJsonURL( tag: "mix" ), baseDirectory: project!.baseDirectory! );
+        
         rows = rowsFrom( groups: project!.audioFileGroups, baseDirectory: dir );
 
         timelineView.length = player.length;

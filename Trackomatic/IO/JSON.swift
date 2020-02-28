@@ -53,10 +53,13 @@ extension Project {
     func load()
     {
         if baseDirectory == nil { return; }
-
+        
+        let url = jsonURL();
+        if !FileManager.default.fileExists( atPath: url.path ) { return; }
+        
         do
         {
-            if let json: JSONDict = try LoadJSON( url: jsonURL() )
+            if let json: JSONDict = try LoadJSON( url: url )
             {
                 loadFromDict( json );
             }
@@ -111,5 +114,93 @@ extension Project {
         projectFile.appendPathComponent( "project.json" );
         return projectFile;
     }
+    
+    func userJsonURL( tag: String, user : String? = nil ) -> URL
+    {
+        let u = user ?? UserDefaults.standard.string( forKey: "shortName" ) ?? NSUserName();
+        var url = sidecarDirectory();
+        url.appendPathComponent( "\(tag).\(u).json" );
+        return url;
+    }
+    
+}
+
+// MARK: - MultiPlayer
+
+extension MultiPlayer {
+    
+    func load( url: URL, baseDirectory: URL )
+    {
+        if !FileManager.default.fileExists( atPath: url.path ) { return; }
+
+        do
+        {
+            if let json: JSONDict = try LoadJSON( url: url )
+            {
+                loadFromDict( json, baseDirectory: baseDirectory );
+            }
+        }
+        catch
+        {
+            print( "JSON load error: \(error)" );
+        }
+    }
+    
+    func save( url: URL, baseDirectory: URL )
+    {
+        do
+        {
+            let json = saveToDict( baseDirectory: baseDirectory );
+            try SaveJSON( json: json, url: url );
+        }
+        catch
+        {
+            print( "JSON save error: \(error)" );
+        }
+    }
+
+    func loadFromDict( _ json: JSONDict, baseDirectory: URL )
+    {
+        for ( relPath, data ) in json
+        {
+            guard let dict = data as? JSONDict
+                else { continue; }
+            
+            let trackURL = URL.init( fileURLWithPath: "\(baseDirectory.path)/\(relPath)" );
+            if let track = trackFor( url: trackURL )
+            {
+                if let l = dict[ "loop" ] as? Bool { track.loop = l; }
+                if let m = dict[ "mute" ] as? Bool { track.mute = m; }
+                if let s = dict[ "solo" ] as? Bool { track.solo = s; }
+                if let v = dict[ "volume" ] as? Float { track.player.volume = v; }
+                if let p = dict[ "pan" ] as? Float { track.player.pan = p; }
+            }
+        }
+    }
+
+    private func saveToDict( baseDirectory: URL ) -> JSONDict
+    {
+        let basePathLength = baseDirectory.path.count;
+        
+        var result = JSONDict();
+        
+        for track in tracks
+        {
+            let path = track.file.url.path;
+            let pathStart = path.index( path.startIndex, offsetBy: basePathLength + 1 );
+            let relPath = String( track.file.url.path[ pathStart... ] );
+            
+            result[ relPath ] = [
+                "loop" : track.loop,
+                "mute" : track.mute,
+                "solo" : track.solo,
+                "volume" : track.player.volume,
+                "pan" : track.player.pan
+            ]
+        }
+        
+        return result;
+    }
 
 }
+    

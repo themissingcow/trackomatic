@@ -52,6 +52,13 @@ class MultiPlayer : NSObject {
         }
     }
     
+    func trackFor( url: URL ) -> Track?
+    {
+        return tracks.first { track in
+            return track.file.url == url;
+        }
+    }
+    
     // MARK: - Internal vars
 
     fileprivate var audioFormat: AVAudioFormat;
