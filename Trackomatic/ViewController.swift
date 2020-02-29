@@ -27,7 +27,24 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     fileprivate var rows: [ Any ] = [];
     
     fileprivate var updateTimer: Timer?;
-                
+    
+    private var debouncedSaveMix: Debounce!;
+    private var debouncedSaveProject: Debounce!;
+
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init( nibName: nibNameOrNil, bundle: nibBundleOrNil );
+        debouncedSaveMix = Debounce( delay: 5.0, object: self, selector: #selector( saveMix ) );
+        debouncedSaveProject = Debounce( delay: 5.0, object: self, selector: #selector( saveProject ) );
+    }
+    
+    required init?(coder: NSCoder)
+    {
+        super.init( coder: coder );
+        debouncedSaveMix = Debounce( delay: 5.0, object: self, selector: #selector( saveMix ) );
+        debouncedSaveProject = Debounce( delay: 5.0, object: self, selector: #selector( saveProject ) );
+    }
+    
     @IBAction func openFolder(_ sender: Any)
     {
         let openPanel = NSOpenPanel();
@@ -45,15 +62,6 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
                 }
             }
         }
-    }
-    
-    @IBAction func saveProject(_ sender: Any)
-    {
-        guard let p = project
-            else { return; }
-
-        project?.save();
-        player.save( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
     }
     
     @IBAction func playPressed(_ sender: Any)
@@ -110,6 +118,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         trackTableView.reloadData();
 
         project = Project( baseDirectory: dir );
+        project?.addObserver( self, forKeyPath: "notes", options: [ .new ], context: nil );
         
         player.files = project!.audioFiles;
         player.load( url: project!.userJsonURL( tag: "mix" ), baseDirectory: project!.baseDirectory! );
@@ -191,11 +200,39 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         self.player.play( atFrame: position );
     }
     
+    // MARK: - Save
+    
+    @objc private func saveMix()
+    {
+        print( "Saving mix" )
+        if let p = project
+        {
+            player.save( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
+        }
+    }
+    
+    @objc private func saveProject()
+    {
+        print( "Saving project" )
+        project?.save();
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
     {
         if let player = object as? MultiPlayer
         {
-            setPlaybackTimers( playing: player.playing );
+            if keyPath == "playing"
+            {
+                setPlaybackTimers( playing: player.playing );
+            }
+            else if keyPath == "mixDirty"
+            {
+                debouncedSaveMix.call();
+            }
+        }
+        else if object as? Project != nil
+        {
+            debouncedSaveProject.call();
         }
     }
 }
