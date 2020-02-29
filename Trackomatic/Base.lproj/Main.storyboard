@@ -918,7 +918,7 @@
                                                                     </constraints>
                                                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="-1" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Edc-9e-cbb"/>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.player.pan" id="xXW-FM-DsE"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.pan" id="LgZ-pq-Z8B"/>
                                                                     </connections>
                                                                 </slider>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3fg-SO-nS9">
@@ -934,9 +934,9 @@
                                                                 </textField>
                                                                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YlU-uM-rvK" userLabel="Volume Slider">
                                                                     <rect key="frame" x="38" y="5" width="113" height="19"/>
-                                                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="cLy-Qp-IOS"/>
+                                                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.41011379076086957" tickMarkPosition="above" sliderType="linear" id="cLy-Qp-IOS"/>
                                                                     <connections>
-                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.player.volume" id="gn3-bj-xlE"/>
+                                                                        <binding destination="SZT-BL-96O" name="value" keyPath="track.volume" id="eof-Yy-4Hg"/>
                                                                     </connections>
                                                                 </slider>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-NH-grp" userLabel="Loop Button">

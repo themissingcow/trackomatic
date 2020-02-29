@@ -172,8 +172,8 @@ extension MultiPlayer {
                 if let l = dict[ "loop" ] as? Bool { track.loop = l; }
                 if let m = dict[ "mute" ] as? Bool { track.mute = m; }
                 if let s = dict[ "solo" ] as? Bool { track.solo = s; }
-                if let v = dict[ "volume" ] as? Float { track.player.volume = v; }
-                if let p = dict[ "pan" ] as? Float { track.player.pan = p; }
+                if let v = dict[ "volume" ] as? Float { track.volume = v; }
+                if let p = dict[ "pan" ] as? Float { track.pan = p; }
             }
         }
     }
@@ -194,8 +194,8 @@ extension MultiPlayer {
                 "loop" : track.loop,
                 "mute" : track.mute,
                 "solo" : track.solo,
-                "volume" : track.player.volume,
-                "pan" : track.player.pan
+                "volume" : track.volume,
+                "pan" : track.pan
             ]
         }
         

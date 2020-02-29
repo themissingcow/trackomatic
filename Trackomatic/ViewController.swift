@@ -34,8 +34,9 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?)
     {
         super.init( nibName: nibNameOrNil, bundle: nibBundleOrNil );
-        debouncedSaveMix = Debounce( delay: 5.0, object: self, selector: #selector( saveMix ) );
-        debouncedSaveProject = Debounce( delay: 5.0, object: self, selector: #selector( saveProject ) );
+        debouncedSaveMix = Debounce( delay: 2.0, object: self, selector: #selector( saveMix ) );
+        debouncedSaveProject = Debounce( delay: 2.0, object: self, selector: #selector( saveProject ) );
+        player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
     }
     
     required init?(coder: NSCoder)
@@ -43,6 +44,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         super.init( coder: coder );
         debouncedSaveMix = Debounce( delay: 5.0, object: self, selector: #selector( saveMix ) );
         debouncedSaveProject = Debounce( delay: 5.0, object: self, selector: #selector( saveProject ) );
+        player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
     }
     
     @IBAction func openFolder(_ sender: Any)
@@ -204,16 +206,16 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     @objc private func saveMix()
     {
-        print( "Saving mix" )
         if let p = project
         {
-            player.save( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
+            if player.mixDirty {
+                player.save( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
+            }
         }
     }
     
     @objc private func saveProject()
     {
-        print( "Saving project" )
         project?.save();
     }
     

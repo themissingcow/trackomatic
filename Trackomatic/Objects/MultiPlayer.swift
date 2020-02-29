@@ -15,24 +15,37 @@ class MultiPlayer : NSObject {
         
         // A muted track does not play unless it is solo'd.
         // Setting solo on one or more tracks overrides any existing mutes.
-        @objc dynamic var mute = false;
-        @objc dynamic var solo = false;
+        @objc dynamic var mute = false { didSet { parent.mixDirty = true; } }
+        @objc dynamic var solo = false { didSet { parent.mixDirty = true; } }
         
-        @objc dynamic var loop = false;
+        @objc dynamic var loop = false { didSet { parent.mixDirty = true; } }
+        
+        @objc dynamic var volume: Float = 1.0 {
+            didSet {
+                player.volume = volume;
+                parent.mixDirty = true;
+            }
+        }
+        
+        @objc dynamic var pan: Float = 0.0 {
+            didSet {
+                player.pan = pan;
+                parent.mixDirty = true;
+            }
+       }
 
         @objc dynamic public fileprivate(set) var file: AVAudioFile!;
-        @objc dynamic public fileprivate(set) var player: AVAudioPlayerNode!;
-
+        
         @objc dynamic weak public fileprivate(set) var parent: MultiPlayer!;
         
+        fileprivate var player: AVAudioPlayerNode!;
         fileprivate var muteMixer: AVAudioMixerNode!;
-        
     }
     
     // MARK: - Pubic properties
     
     var safeStart: TimeInterval = 0.1;
-    
+    @objc dynamic var mixDirty = false;
     
     // MARK: - Files
     
@@ -186,6 +199,7 @@ class MultiPlayer : NSObject {
         
         length = 0;
         keyPlayer = nil;
+        resetMix();
 
         for ( index, file ) in files.enumerated()
         {
@@ -243,6 +257,18 @@ class MultiPlayer : NSObject {
     }
     
     // MARK: - mute/solo
+    
+    func resetMix()
+    {
+        for track in tracks {
+            track.volume = 1.0;
+            track.pan = 0.0;
+            track.loop = false;
+            track.mute = false;
+            track.solo = false;
+        }
+        mixDirty = false;
+    }
     
     func clearMutes()
     {
