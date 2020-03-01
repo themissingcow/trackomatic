@@ -17,7 +17,6 @@
 		E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */; };
 		E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046672405D5B00061E2E3 /* TCWaveformView.m */; };
 		E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0466B2405D8140061E2E3 /* WaveformCache.swift */; };
-		E2FA16A0240B198B00199A3B /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FA169F240B198B00199A3B /* Debounce.swift */; };
 		E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FC2404433200C3D009 /* AppDelegate.swift */; };
 		E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FE2404433200C3D009 /* ViewController.swift */; };
 		E2FEC5012404433400C3D009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEC5002404433400C3D009 /* Assets.xcassets */; };
@@ -62,7 +61,6 @@
 		E2D046672405D5B00061E2E3 /* TCWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWaveformView.m; sourceTree = "<group>"; };
 		E2D0466A2405D6830061E2E3 /* Trackomatic-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trackomatic-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2D0466B2405D8140061E2E3 /* WaveformCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformCache.swift; sourceTree = "<group>"; };
-		E2FA169F240B198B00199A3B /* Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debounce.swift; sourceTree = "<group>"; };
 		E2FEC4F92404433200C3D009 /* Trackomatic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackomatic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FEC4FC2404433200C3D009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2FEC4FE2404433200C3D009 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 				E2D0466B2405D8140061E2E3 /* WaveformCache.swift */,
 				E268BC71240446CE00C56DC6 /* MultiPlayer.swift */,
 				E20F3900240993F20010C1D6 /* Project.swift */,
-				E2FA169F240B198B00199A3B /* Debounce.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -299,7 +296,6 @@
 				E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */,
 				E20F3901240993F20010C1D6 /* Project.swift in Sources */,
 				E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */,
-				E2FA16A0240B198B00199A3B /* Debounce.swift in Sources */,
 				E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */,
 				E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */,
 			);

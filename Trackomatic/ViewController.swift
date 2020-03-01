@@ -27,26 +27,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     fileprivate var rows: [ Any ] = [];
     
     fileprivate var updateTimer: Timer?;
-    
-    private var debouncedSaveMix: Debounce!;
-    private var debouncedSaveProject: Debounce!;
 
-    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?)
-    {
-        super.init( nibName: nibNameOrNil, bundle: nibBundleOrNil );
-        debouncedSaveMix = Debounce( delay: 2.0, object: self, selector: #selector( saveMix ) );
-        debouncedSaveProject = Debounce( delay: 2.0, object: self, selector: #selector( saveProject ) );
-        player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
-    }
-    
-    required init?(coder: NSCoder)
-    {
-        super.init( coder: coder );
-        debouncedSaveMix = Debounce( delay: 5.0, object: self, selector: #selector( saveMix ) );
-        debouncedSaveProject = Debounce( delay: 5.0, object: self, selector: #selector( saveProject ) );
-        player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
-    }
-    
     @IBAction func openFolder(_ sender: Any)
     {
         let openPanel = NSOpenPanel();
@@ -83,6 +64,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         timelineView.delegate = self;
 
         player.addObserver( self, forKeyPath: "playing", options: [.initial, .new] , context: nil );
+        player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
     }
     
     override func viewWillDisappear()
@@ -204,19 +186,41 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     // MARK: - Save
     
-    @objc private func saveMix()
+    private var saveMixDebounceTimer: Timer?;
+    @objc private func saveMix( debounceDelay: TimeInterval = 0.0 )
     {
-        if let p = project
+        if debounceDelay > 0.0
         {
-            if player.mixDirty {
-                player.save( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
+            saveMixDebounceTimer?.invalidate();
+            saveMixDebounceTimer = Timer.scheduledTimer( withTimeInterval: debounceDelay, repeats: false ) { _ in
+                self.saveMix();
+            }
+        }
+        else
+        {
+            if let p = project
+            {
+                if player.mixDirty {
+                    player.save( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
+                }
             }
         }
     }
     
-    @objc private func saveProject()
+    private var saveProjectDebounceTimer: Timer?;
+    @objc private func saveProject( debounceDelay: TimeInterval = 0.0 )
     {
-        project?.save();
+        if debounceDelay > 0.0
+        {
+            saveProjectDebounceTimer?.invalidate();
+            saveProjectDebounceTimer = Timer.scheduledTimer( withTimeInterval: debounceDelay, repeats: false ) { _ in
+                self.saveProject();
+            }
+        }
+        else
+        {
+            project?.save();
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
@@ -229,12 +233,12 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             }
             else if keyPath == "mixDirty"
             {
-                debouncedSaveMix.call();
+                saveMix( debounceDelay: 2.0 );
             }
         }
         else if object as? Project != nil
         {
-            debouncedSaveProject.call();
+            saveProject( debounceDelay: 2.0 );
         }
     }
 }
