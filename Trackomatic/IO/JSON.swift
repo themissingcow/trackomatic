@@ -41,7 +41,7 @@ func SaveJSON<T>( json: T, url: URL ) throws
 // MARK: - Project
 
 extension Project {
-    
+        
     convenience init( baseDirectory: URL )
     {
         self.init();
@@ -53,20 +53,29 @@ extension Project {
     func load()
     {
         if baseDirectory == nil { return; }
-        
+
         let url = jsonURL();
-        if !FileManager.default.fileExists( atPath: url.path ) { return; }
-        
-        do
-        {
-            if let json: JSONDict = try LoadJSON( url: url )
+
+        var error: NSError?;
+        fileCoordinator.coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
+            
+            if !FileManager.default.fileExists( atPath: readUrl.path ) { return; }
+            
+            do
             {
-                loadFromDict( json );
+                if let json: JSONDict = try LoadJSON( url: readUrl )
+                {
+                    loadFromDict( json );
+                }
+            }
+            catch
+            {
+                print( "JSON load error: \(error)" );
             }
         }
-        catch
-        {
-            print( "JSON load error: \(error)" );
+        
+        if let e = error {
+            print( "Coordination error: \(e)" );
         }
     }
     
@@ -74,14 +83,24 @@ extension Project {
     {
         if baseDirectory == nil { return; }
         
-        do
-        {
-            let json = saveToDict();
-            try SaveJSON( json: json, url: jsonURL() );
+        let url = jsonURL();
+        
+        var error: NSError?;
+        fileCoordinator.coordinate( writingItemAt: url, options: .forReplacing, error: &error ) { writeUrl in
+            
+            do
+            {
+                let json = saveToDict();
+                try SaveJSON( json: json, url: writeUrl );
+            }
+            catch
+            {
+                print( "JSON save error: \(error)" );
+            }
         }
-        catch
-        {
-            print( "JSON save error: \(error)" );
+        
+        if let e = error {
+            print( "Coordination error: \(e)" );
         }
     }
 

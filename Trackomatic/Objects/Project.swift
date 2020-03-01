@@ -19,6 +19,8 @@ class Project: NSObject {
     
     @objc dynamic var audioFiles: [ AVAudioFile ] = [];
     @objc dynamic var audioFileGroups: [ URL: [ AVAudioFile ] ] = [:];
+    
+    var fileCoordinator = NSFileCoordinator();
 
     // MARK: - Init
     
