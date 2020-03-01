@@ -176,6 +176,8 @@ extension MultiPlayer {
                 if let p = dict[ "pan" ] as? Float { track.pan = p; }
             }
         }
+        
+        mixDirty = false;
     }
 
     private func saveToDict( baseDirectory: URL ) -> JSONDict
