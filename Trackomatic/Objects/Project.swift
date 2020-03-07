@@ -13,15 +13,21 @@ import Foundation
 class Project: NSObject {
     
     var uuid: String;
-    @objc dynamic var notes: String = "";
+    @objc dynamic var notes: String = "" {
+        didSet {
+            if notes != oldValue {
+                dirty = true;
+            }
+        }
+    }
     
     @objc dynamic public private(set) var baseDirectory: URL?
     
     @objc dynamic var audioFiles: [ AVAudioFile ] = [];
     @objc dynamic var audioFileGroups: [ URL: [ AVAudioFile ] ] = [:];
     
-    var fileCoordinator = NSFileCoordinator();
-
+    @objc dynamic var dirty = false;
+    
     // MARK: - Init
     
     override init()

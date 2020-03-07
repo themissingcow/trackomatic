@@ -38,16 +38,51 @@ func SaveJSON<T>( json: T, url: URL ) throws
     FileManager.default.createFile( atPath: url.path, contents: data, attributes: [:] );
 }
 
+func LastModificationTime( url: URL ) -> Date?
+{
+    do {
+        let values = try url.resourceValues( forKeys: [ .contentModificationDateKey ] );
+        return values.contentModificationDate;
+    }
+    catch
+    {
+        print( "Error retrieving modification time: \(error)");
+    }
+    return nil;
+}
+
+private var modificationTimes: [ URL: Date ] = [:];
+// Returns whether the modification time has changed since it was last cached
+func CacheModificationTime( url: URL ) -> Bool
+{
+    if let currentModificationTime = LastModificationTime( url: url )
+    {
+        if let lastModificationTime = modificationTimes[ url ]
+        {
+            if currentModificationTime == lastModificationTime
+            {
+                return false;
+            }
+        }
+        modificationTimes[ url ] = currentModificationTime;
+    }
+    // Default to infering change unless we're sure of the contrary
+    return true;
+}
+
+
 // MARK: - Project
 
-extension Project {
-        
+extension Project : NSFilePresenter {
+   
     convenience init( baseDirectory: URL )
     {
         self.init();
        
         setBaseDirectory( directory: baseDirectory );
         load();
+        
+        NSFileCoordinator.addFilePresenter( self );
     }
     
     func load()
@@ -57,10 +92,13 @@ extension Project {
         let url = jsonURL();
 
         var error: NSError?;
-        fileCoordinator.coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
+        
+        let coordinator = NSFileCoordinator( filePresenter: self );
+        coordinator.coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
             
             if !FileManager.default.fileExists( atPath: readUrl.path ) { return; }
-            
+            if !CacheModificationTime( url: readUrl ) { return; }
+                        
             do
             {
                 if let json: JSONDict = try LoadJSON( url: readUrl )
@@ -84,9 +122,10 @@ extension Project {
         if baseDirectory == nil { return; }
         
         let url = jsonURL();
-        
+                
         var error: NSError?;
-        fileCoordinator.coordinate( writingItemAt: url, options: .forReplacing, error: &error ) { writeUrl in
+        let coordinator = NSFileCoordinator( filePresenter: self );
+        coordinator.coordinate( writingItemAt: url, options: [], error: &error ) { writeUrl in
             
             do
             {
@@ -103,6 +142,11 @@ extension Project {
             print( "Coordination error: \(e)" );
         }
     }
+    
+    func close()
+    {
+        NSFileCoordinator.removeFilePresenter( self );
+    }
 
     func loadFromDict( _ json: JSONDict )
     {
@@ -115,6 +159,8 @@ extension Project {
         {
             notes = n;
         }
+        
+        dirty = false;
     }
 
     private func saveToDict() -> JSONDict
@@ -123,6 +169,8 @@ extension Project {
         
         result["uuid"] = uuid;
         result["notes"] = notes;
+        
+        dirty = false;
         
         return result;
     }
@@ -142,6 +190,24 @@ extension Project {
         return url;
     }
     
+    // MARK: - File Presenter
+    
+    var presentedItemOperationQueue: OperationQueue {
+        return OperationQueue.main;
+    }
+    
+    var presentedItemURL: URL? {
+        if baseDirectory != nil
+        {
+            return jsonURL();
+        }
+        return nil;
+    }
+    
+    func presentedItemDidChange()
+    {
+        load();
+    }
 }
 
 // MARK: - MultiPlayer
@@ -219,6 +285,8 @@ extension MultiPlayer {
                 "pan" : track.pan
             ]
         }
+        
+        mixDirty = false;
         
         return result;
     }

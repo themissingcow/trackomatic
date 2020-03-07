@@ -66,11 +66,6 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         player.addObserver( self, forKeyPath: "playing", options: [.initial, .new] , context: nil );
         player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
     }
-    
-    override func viewWillDisappear()
-    {
-        super.viewWillDisappear();
-    }
         
     // MARK: - Updates
         
@@ -101,8 +96,9 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         player.files = [];
         trackTableView.reloadData();
 
+        project?.close();
         project = Project( baseDirectory: dir );
-        project?.addObserver( self, forKeyPath: "notes", options: [ .new ], context: nil );
+        project?.addObserver( self, forKeyPath: "dirty", options: [ .new ], context: nil );
         
         player.files = project!.audioFiles;
         player.load( url: project!.userJsonURL( tag: "mix" ), baseDirectory: project!.baseDirectory! );
@@ -219,7 +215,13 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         }
         else
         {
-            project?.save();
+            if let p = project
+            {
+                if p.dirty
+                {
+                    p.save();
+                }
+            }
         }
     }
     
@@ -238,8 +240,11 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         }
         else if object as? Project != nil
         {
-            saveProject( debounceDelay: 2.0 );
+            if keyPath == "dirty"
+            {
+                saveProject( debounceDelay: 2.0 );
+            }
         }
     }
-}
 
+}
