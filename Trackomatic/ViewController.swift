@@ -108,6 +108,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         trackPlayheadView.length = player.length;
         timelineView.position = 0;
         trackPlayheadView.position = 0;
+        
+        view.window?.setTitleWithRepresentedFilename( dir.path );
     }
     
     private func setupPlayer( project: Project? )
