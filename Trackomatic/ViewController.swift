@@ -69,7 +69,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         
     // MARK: - Updates
         
-    func setPlaybackTimers( playing: Bool )
+    private func setPlaybackTimers( playing: Bool )
     {
         if playing
         {
@@ -93,27 +93,51 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         player.stop();
         setPlaybackTimers( playing: false );
 
-        player.files = [];
-        trackTableView.reloadData();
+        setupPlayer( project: nil );
+        setupTracksView( project: nil );
 
         project?.close();
-        project = Project( baseDirectory: dir );
+        project = Project( baseDirectory: dir, watch: true );
         project?.addObserver( self, forKeyPath: "dirty", options: [ .new ], context: nil );
-        
-        player.files = project!.audioFiles;
-        player.load( url: project!.userJsonURL( tag: "mix" ), baseDirectory: project!.baseDirectory! );
-        
-        rows = rowsFrom( groups: project!.audioFileGroups, baseDirectory: dir );
+        project?.addObserver( self, forKeyPath: "audioFileGroups", options: [ .new ], context: nil );
 
+        setupPlayer( project: project );
+        setupTracksView( project: project );
+        
         timelineView.length = player.length;
         trackPlayheadView.length = player.length;
         timelineView.position = 0;
         trackPlayheadView.position = 0;
-
+    }
+    
+    private func setupPlayer( project: Project? )
+    {
+        if let p = project
+        {
+            player.files = p.audioFiles;
+            player.load( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
+        }
+        else
+        {
+            player.files = [];
+        }
+    }
+    
+    private func setupTracksView( project: Project? )
+    {
+        if let p = project, let dir = p.baseDirectory
+        {
+            rows = rowsFrom( groups: p.audioFileGroups, baseDirectory: dir );
+        }
+        else
+        {
+            rows = [];
+        }
+        
         trackTableView.reloadData();
     }
     
-    func rowsFrom( groups: [ URL: [ AVAudioFile ] ], baseDirectory dir: URL ) -> [ Any ]
+    private func rowsFrom( groups: [ URL: [ AVAudioFile ] ], baseDirectory dir: URL ) -> [ Any ]
     {
         var rows: [ Any ] = [];
         
@@ -238,11 +262,16 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
                 saveMix( debounceDelay: 2.0 );
             }
         }
-        else if object as? Project != nil
+        else if let p = object as? Project
         {
             if keyPath == "dirty"
             {
                 saveProject( debounceDelay: 2.0 );
+            }
+            else if keyPath == "audioFileGroups"
+            {
+                setupPlayer( project: p );
+                setupTracksView( project: p );
             }
         }
     }

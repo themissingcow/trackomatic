@@ -75,11 +75,11 @@ func CacheModificationTime( url: URL ) -> Bool
 
 extension Project : NSFilePresenter {
    
-    convenience init( baseDirectory: URL )
+    convenience init( baseDirectory: URL, watch: Bool )
     {
         self.init();
        
-        setBaseDirectory( directory: baseDirectory );
+        setBaseDirectory( directory: baseDirectory, watch: watch );
         load();
         
         NSFileCoordinator.addFilePresenter( self );

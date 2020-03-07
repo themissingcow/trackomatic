@@ -37,10 +37,26 @@ class Project: NSObject {
     
     // MARK: - Base Directory
     
-    func setBaseDirectory(directory: URL)
+    private var dirWatcher: Watcher?;
+    
+    func setBaseDirectory( directory: URL, watch: Bool )
     {
         loadAudioFiles( directory: directory );
         baseDirectory = directory;
+        
+        dirWatcher = nil;
+        if watch
+        {
+            dirWatcher = Watcher( url: directory ) { _, event in
+                if event == DispatchSource.FileSystemEvent.write
+                {
+                    if let dir = self.baseDirectory
+                    {
+                        self.loadAudioFiles( directory: dir, debounceDelay: 2.0 );
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Support files
@@ -51,45 +67,58 @@ class Project: NSObject {
     }
     
     // MARK: - Load Audio
-    
-    func loadAudioFiles( directory: URL )
+    // TODO: Not sure that debouncing should be here really
+    private var loadAudioFilesDebounceTimer: Timer?;
+    func loadAudioFiles( directory: URL, debounceDelay: Double = 0.0 )
     {
-        var files: [ AVAudioFile ] = [];
-        var groups: [ URL: [ AVAudioFile ] ] = [:];
-
-        do {
-            let topLevelFiles = audioFilesFrom( directory: directory, recursive: false );
-
-            files.append( contentsOf: topLevelFiles );
-            groups[ directory ] = topLevelFiles;
-           
-           let dirContents = try FileManager.default.contentsOfDirectory(
-               at: directory,
-               includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
-               options: [ .skipsSubdirectoryDescendants, .skipsHiddenFiles ]
-           );
-           
-           // Load subdirectories as groups
-           for url in dirContents
-           {
-                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
-                if !info.isDirectory! { continue; }
-               
-                let dirFiles = audioFilesFrom( directory: url, recursive: true );
-                if( dirFiles.count > 0 )
-                {
-                    files.append( contentsOf: dirFiles );
-                    groups[ url ] = dirFiles;
-                }
+        if debounceDelay > 0.0
+        {
+            loadAudioFilesDebounceTimer?.invalidate();
+            loadAudioFilesDebounceTimer = Timer.scheduledTimer(
+                withTimeInterval: debounceDelay, repeats: false
+            ) { _ in
+                self.loadAudioFiles( directory: directory );
             }
         }
-        catch
+        else
         {
-           print( "\(error)" );
+            var files: [ AVAudioFile ] = [];
+            var groups: [ URL: [ AVAudioFile ] ] = [:];
+
+            do {
+                let topLevelFiles = audioFilesFrom( directory: directory, recursive: false );
+
+                files.append( contentsOf: topLevelFiles );
+                groups[ directory ] = topLevelFiles;
+               
+               let dirContents = try FileManager.default.contentsOfDirectory(
+                   at: directory,
+                   includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
+                   options: [ .skipsSubdirectoryDescendants, .skipsHiddenFiles ]
+               );
+               
+               // Load subdirectories as groups
+               for url in dirContents
+               {
+                    let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
+                    if !info.isDirectory! { continue; }
+                   
+                    let dirFiles = audioFilesFrom( directory: url, recursive: true );
+                    if( dirFiles.count > 0 )
+                    {
+                        files.append( contentsOf: dirFiles );
+                        groups[ url ] = dirFiles;
+                    }
+                }
+            }
+            catch
+            {
+               print( "\(error)" );
+            }
+           
+            audioFiles = files;
+            audioFileGroups = groups;
         }
-       
-        audioFiles = files;
-        audioFileGroups = groups;
    }
    
    func audioFilesFrom( directory: URL, recursive: Bool = true ) -> [ AVAudioFile ]
