@@ -57,6 +57,24 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         player.stop();
     }
     
+    @IBAction func exportMix( _ sender: Any )
+    {
+        let savePanel = NSSavePanel();
+        savePanel.canCreateDirectories = true;
+        savePanel.allowedFileTypes = [ "aif" ];
+        
+        savePanel.beginSheetModal( for: view.window! ){ ( result ) in
+
+            if result == .OK
+            {
+                if let url = savePanel.url
+                {
+                    self.player.renderTo( output: url, settings: self.player.aiffSettings() );
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

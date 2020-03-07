@@ -74,11 +74,11 @@ class MultiPlayer : NSObject {
     
     // MARK: - Internal vars
 
-    fileprivate var audioFormat: AVAudioFormat;
-    fileprivate var engine: AVAudioEngine;
-    fileprivate var mixer: AVAudioMixerNode;
-    fileprivate var lastPlayStart: AVAudioFramePosition;
-    fileprivate var keyPlayer: AVAudioPlayerNode?;
+    internal var audioFormat: AVAudioFormat;
+    internal var engine: AVAudioEngine;
+    internal var mixer: AVAudioMixerNode;
+    internal var lastPlayStart: AVAudioFramePosition;
+    internal var keyPlayer: AVAudioPlayerNode?;
     
     // MARK: Init
     
@@ -124,7 +124,7 @@ class MultiPlayer : NSObject {
        return 0;
     }
     
-    func play( atFrame: AVAudioFramePosition = 0 )
+    func play( atFrame: AVAudioFramePosition = 0, offline: Bool = false )
     {
         if tracks.count == 0 { return; }
         
@@ -177,7 +177,14 @@ class MultiPlayer : NSObject {
         
         for track in tracks
         {
-            track.player.play( at: AVAudioTime( sampleTime: scheduleTime, atRate: audioFormat.sampleRate ) );
+            if offline
+            {
+                track.player.play();
+            }
+            else
+            {
+                track.player.play( at: AVAudioTime( sampleTime: scheduleTime, atRate: audioFormat.sampleRate ) );
+            }
         }
         playing = true;
     }
