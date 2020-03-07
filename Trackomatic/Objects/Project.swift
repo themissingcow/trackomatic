@@ -37,17 +37,26 @@ class Project: NSObject {
     
     // MARK: - Base Directory
     
-    private var dirWatcher: Watcher?;
+    private var dirWatchers: [ Watcher ] = [];
     
     func setBaseDirectory( directory: URL, watch: Bool )
     {
         loadAudioFiles( directory: directory );
         baseDirectory = directory;
         
-        dirWatcher = nil;
-        if watch
+        setupAudioFileWatchers( watch: watch );
+    }
+    
+    private func setupAudioFileWatchers( watch: Bool )
+    {
+        dirWatchers = [];
+        if watch, let directory = self.baseDirectory
         {
-            dirWatcher = Watcher( url: directory ) { _, event in
+            var allDirs: [ URL ] = [ directory ];
+            allDirs.append( contentsOf: audioFileGroups.keys );
+            
+            let callback: Watcher.Callback = { _, event in
+                
                 if event == DispatchSource.FileSystemEvent.write
                 {
                     if let dir = self.baseDirectory
@@ -55,6 +64,10 @@ class Project: NSObject {
                         self.loadAudioFiles( directory: dir, debounceDelay: 2.0 );
                     }
                 }
+            };
+            
+            dirWatchers = allDirs.map { dir in
+                return Watcher( url: dir, callback: callback );
             }
         }
     }
@@ -86,24 +99,26 @@ class Project: NSObject {
             var groups: [ URL: [ AVAudioFile ] ] = [:];
 
             do {
-                let topLevelFiles = audioFilesFrom( directory: directory, recursive: false );
+                let topLevelFiles = audioFilesFrom( directory: directory );
 
                 files.append( contentsOf: topLevelFiles );
                 groups[ directory ] = topLevelFiles;
                
-               let dirContents = try FileManager.default.contentsOfDirectory(
+               var dirContents = try FileManager.default.contentsOfDirectory(
                    at: directory,
                    includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
                    options: [ .skipsSubdirectoryDescendants, .skipsHiddenFiles ]
                );
-               
+                
+               dirContents.sort { (a, b) in a.lastPathComponent < b.lastPathComponent; }
+
                // Load subdirectories as groups
                for url in dirContents
                {
                     let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
                     if !info.isDirectory! { continue; }
                    
-                    let dirFiles = audioFilesFrom( directory: url, recursive: true );
+                    let dirFiles = audioFilesFrom( directory: url );
                     if( dirFiles.count > 0 )
                     {
                         files.append( contentsOf: dirFiles );
@@ -121,17 +136,17 @@ class Project: NSObject {
         }
    }
    
-   func audioFilesFrom( directory: URL, recursive: Bool = true ) -> [ AVAudioFile ]
+   func audioFilesFrom( directory: URL ) -> [ AVAudioFile ]
    {
        var files: [ AVAudioFile ] = [];
 
-       // TODO: Move to FileManager.enumerate as contentsOfDirectory is shallow so recursive is broken
+       // TODO: We may want to support recursive searches here, but this complicates watching
        
        do {
            let contents = try FileManager.default.contentsOfDirectory(
                at: directory,
                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
-               options: recursive ? [ .skipsHiddenFiles ] : [ .skipsHiddenFiles, .skipsSubdirectoryDescendants ]
+               options: [ .skipsHiddenFiles ]
            );
            
            let suppportedExtensions = Set( [ "aif", "wav", "mp3", "m4a" ] );
