@@ -40,6 +40,14 @@ class MultiPlayer : NSObject {
         
         fileprivate var player: AVAudioPlayerNode!;
         fileprivate var muteMixer: AVAudioMixerNode!;
+        
+        func anchor( baseDirectory: URL ) -> String
+        {
+            let basePathLength = baseDirectory.path.count;
+            let path = file.url.path;
+            let pathStart = path.index( path.startIndex, offsetBy: basePathLength + 1 );
+            return String( file.url.path[ pathStart... ] );
+        }
     }
     
     // MARK: - Pubic properties
@@ -70,6 +78,12 @@ class MultiPlayer : NSObject {
         return tracks.first { track in
             return track.file.url == url;
         }
+    }
+    
+    func trackFor( anchor: String, baseDirectory: URL ) -> Track?
+    {
+        let trackURL = URL.init( fileURLWithPath: "\(baseDirectory.path)/\(anchor)" );
+        return trackFor( url: trackURL );
     }
     
     // MARK: - Internal vars

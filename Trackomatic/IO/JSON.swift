@@ -246,13 +246,12 @@ extension MultiPlayer {
 
     func loadFromDict( _ json: JSONDict, baseDirectory: URL )
     {
-        for ( relPath, data ) in json
+        for ( anchor, data ) in json
         {
             guard let dict = data as? JSONDict
                 else { continue; }
             
-            let trackURL = URL.init( fileURLWithPath: "\(baseDirectory.path)/\(relPath)" );
-            if let track = trackFor( url: trackURL )
+            if let track = trackFor( anchor: anchor, baseDirectory: baseDirectory )
             {
                 if let l = dict[ "loop" ] as? Bool { track.loop = l; }
                 if let m = dict[ "mute" ] as? Bool { track.mute = m; }
@@ -267,17 +266,12 @@ extension MultiPlayer {
 
     private func saveToDict( baseDirectory: URL ) -> JSONDict
     {
-        let basePathLength = baseDirectory.path.count;
-        
         var result = JSONDict();
         
         for track in tracks
         {
-            let path = track.file.url.path;
-            let pathStart = path.index( path.startIndex, offsetBy: basePathLength + 1 );
-            let relPath = String( track.file.url.path[ pathStart... ] );
-            
-            result[ relPath ] = [
+            let anchor = track.anchor( baseDirectory: baseDirectory );
+            result[ anchor ] = [
                 "loop" : track.loop,
                 "mute" : track.mute,
                 "solo" : track.solo,
