@@ -76,9 +76,16 @@ class TimelineView: NSView {
     
     override func mouseDown(with event: NSEvent)
     {
-        let p = convert( event.locationInWindow, to: self );
-        let xx = p.x - frame.minX;
-        delegate?.timelineView( self, didRequestPositionChange: AVAudioFramePosition( ( ( xx ) / frame.width ) * CGFloat(length) ) );
+        if let d = delegate
+        {
+            let p = convert( event.locationInWindow, from: nil );
+            let pos = AVAudioFramePosition( ( p.x / frame.width ) * CGFloat(length) );
+            d.timelineView( self, didRequestPositionChange: pos );
+        }
+        else
+        {
+            super.mouseDown( with: event );
+        }
     }
         
 }
