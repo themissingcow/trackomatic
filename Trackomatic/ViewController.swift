@@ -204,6 +204,11 @@ class ViewController: NSViewController,
         return rows[ row ];
     }
     
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView?
+    {
+        return rows[ row ] as? URL != nil ? NSTableRowView() : TrackRowView();
+    }
+    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
         var view: NSTableCellView?;
