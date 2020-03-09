@@ -13,6 +13,7 @@ import Foundation
 class Project: NSObject {
     
     var uuid: String;
+    
     @objc dynamic var notes: String = "" {
         didSet {
             if notes != oldValue {
@@ -33,6 +34,7 @@ class Project: NSObject {
     override init()
     {
         uuid = UUID().uuidString;
+        super.init();
     }
     
     // MARK: - Base Directory
