@@ -82,12 +82,12 @@ extension Project : NSFilePresenter {
         self.init();
        
         setBaseDirectory( directory: baseDirectory, watch: watch );
-        load();
+        load( force: true );
         
         NSFileCoordinator.addFilePresenter( self );
     }
     
-    func load()
+    func load( force: Bool = false )
     {
         if baseDirectory == nil { return; }
 
@@ -99,7 +99,7 @@ extension Project : NSFilePresenter {
         coordinator.coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
             
             if !FileManager.default.fileExists( atPath: readUrl.path ) { return; }
-            if !CacheModificationTime( url: readUrl ) { return; }
+            if !force && !CacheModificationTime( url: readUrl ) { return; }
                         
             do
             {
