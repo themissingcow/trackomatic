@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import AVFoundation
 
 // MARK: Types
 
-typealias JSONDict = [String: Any];
+typealias JSONDict = [ String: Any ];
+typealias JSONArray = [ Any ];
 
 // MARK: Helpers
 
@@ -281,6 +283,134 @@ extension MultiPlayer {
         }
         
         mixDirty = false;
+        
+        return result;
+    }
+
+}
+    
+// MARK: - CommentManager
+
+extension CommentManager {
+    
+    func load( directory: URL, tag: String )
+    {
+        do
+        {
+            let dirContents = try FileManager.default.contentsOfDirectory(
+                at: directory,
+                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
+                options: [ .skipsHiddenFiles ]
+            );
+            
+            for url in dirContents
+            {
+                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
+                if info.isDirectory! || !info.name!.starts( with: tag ) { continue; }
+
+                load( url: url );
+            }
+        }
+        catch
+        {
+            print( "Directory load error: \(error)" );
+        }
+    }
+    
+    func load( url: URL )
+    {
+        if !FileManager.default.fileExists( atPath: url.path ) { return; }
+
+        do
+        {
+            if let json: JSONDict = try LoadJSON( url: url )
+            {
+                loadFromDict( json );
+            }
+        }
+        catch
+        {
+            print( "JSON load error: \(error)" );
+        }
+    }
+    
+    func save( url: URL )
+    {
+        do
+        {
+            let json = saveToDict();
+            try SaveJSON( json: json, url: url );
+        }
+        catch
+        {
+            print( "JSON save error: \(error)" );
+        }
+    }
+
+    func loadFromDict( _ json: JSONDict )
+    {
+        guard let shortName = json[ "shortName" ] as? String,
+              let displayName = json[ "displayName" ] as? String,
+              let comments = json[ "comments" ] as? JSONArray
+        else {
+            return;
+        }
+        
+        var objects: [ Comment ] = [];
+        
+        for data in comments
+        {
+            guard let dict = data as? JSONDict
+                else { continue; }
+            
+            let comment = Comment();
+            
+            guard let uuid = dict[ "uuid" ] as? String else { continue; }
+            comment.uuid = uuid;
+            comment.shortName = shortName;
+            comment.displayName = displayName;
+            
+            if let c = dict[ "comment" ] as? String { comment.comment = c; }
+            if let a = dict[ "anchor" ] as? String { comment.anchor = a; }
+            if let a = dict[ "at" ] as? AVAudioFramePosition { comment.at = a; }
+            if let l = dict[ "length" ] as? AVAudioFramePosition { comment.length = l; }
+            
+            objects.append( comment );
+        }
+        
+        add(comments: objects );
+        
+        if shortName == userShortName
+        {
+            userCommentsDirty = false;
+        }
+    }
+
+    private func saveToDict() -> JSONDict
+    {
+        var result = JSONDict();
+        
+        var commentData: JSONArray = [];
+        
+        for comment in commentsForUser()
+        {
+            var data: JSONDict = [
+                "uuid" : comment.uuid,
+                "comment" : comment.comment
+            ]
+            
+            if let a = comment.anchor { data[ "anchor" ] = a; }
+            if let a = comment.at { data[ "at" ] = a; }
+            if let l = comment.length { data[ "length" ] = l; }
+
+            commentData.append( data );
+        }
+        
+        result[ "comments" ] = commentData;
+        result[ "shortName" ] = userShortName;
+        result[ "displayName" ] = userDisplayName;
+        
+        userCommentsDirty = false;
         
         return result;
     }

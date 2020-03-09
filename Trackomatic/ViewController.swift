@@ -15,13 +15,18 @@ fileprivate enum Cells {
     static let Waveform = NSUserInterfaceItemIdentifier( rawValue: "WaveformCell" )
 }
 
-class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, TimelineViewDelegate {
+class ViewController: NSViewController,
+        NSTableViewDelegate, NSTableViewDataSource,
+        TimelineViewDelegate, TimelineCommentViewDelegate
+{
+
     
     @IBOutlet weak var trackTableView: NSTableView!
     @IBOutlet weak var timelineView: TimelineView!
     @IBOutlet weak var trackPlayheadView: TimelineView!
     
     @objc dynamic var player = MultiPlayer();
+    @objc dynamic var commentManager = CommentManager();
     @objc dynamic var project: Project?;
     
     fileprivate var rows: [ Any ] = [];
@@ -80,7 +85,12 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         super.viewDidLoad()
         
         timelineView.delegate = self;
-
+        
+        let defaults = UserDefaults.standard;
+        commentManager.userShortName = defaults.string( forKey: "shortName" ) ?? "";
+        commentManager.userDisplayName = defaults.string( forKey: "displayName" ) ?? "";
+        commentManager.addObserver( self, forKeyPath: "userCommentsDirty", options: [], context: nil );
+        
         player.addObserver( self, forKeyPath: "playing", options: [.initial, .new] , context: nil );
         player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
     }
@@ -113,7 +123,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
 
         setupPlayer( project: nil );
         setupTracksView( project: nil );
-
+        
         project?.close();
         project = Project( baseDirectory: dir, watch: true );
         project?.addObserver( self, forKeyPath: "dirty", options: [ .new ], context: nil );
@@ -145,13 +155,13 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     private func setupTracksView( project: Project? )
     {
+        commentManager.reset();
+        rows = [];
+
         if let p = project, let dir = p.baseDirectory
         {
             rows = rowsFrom( groups: p.audioFileGroups, baseDirectory: dir );
-        }
-        else
-        {
-            rows = [];
+            commentManager.load( directory: p.sidecarDirectory(), tag: "comments" );
         }
         
         trackTableView.reloadData();
@@ -207,9 +217,20 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         }
         else if let file = rows[ row ] as? AVAudioFile
         {
+            let track = player.trackFor( file: file );
+            
             let identifier = ( tableColumn == trackTableView.tableColumns[ 1 ]) ? Cells.Waveform : Cells.Mixer;
             let trackView = tableView.makeView( withIdentifier: identifier, owner: nil ) as? TrackTableCellView
-            trackView?.track = player.trackFor( file: file );
+            trackView?.track = track;
+            
+            if let waveformView = trackView as? TrackWaveformCellView
+            {
+                waveformView.commentView.anchor = track!.anchor( baseDirectory: project!.baseDirectory! );
+                waveformView.commentView.delegate = self;
+                waveformView.commentView.length = player.length;
+                waveformView.commentView.manager = commentManager;
+            }
+            
             view = trackView;
         }
         
@@ -222,6 +243,16 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     {
         self.timelineView.position = position;
         self.player.play( atFrame: position );
+    }
+    
+    // MARK: - CommentViewDelegate
+    
+    func timelineCommentView( _ view: TimelineCommentView,
+        requestedCommentAt position: AVAudioFramePosition, ofLength length: AVAudioFramePosition?
+    ) {
+        let comment = commentManager.newComment( anchor: view.anchor );
+        comment.at = position;
+        comment.length = length;
     }
     
     // MARK: - Save
@@ -269,6 +300,31 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         }
     }
     
+    private var saveCommentsDebounceTimer: Timer?;
+    @objc private func saveComments( debounceDelay: TimeInterval = 0.0 )
+    {
+        if debounceDelay > 0.0
+        {
+            saveCommentsDebounceTimer?.invalidate();
+            saveCommentsDebounceTimer = Timer.scheduledTimer( withTimeInterval: debounceDelay, repeats: false ) { _ in
+                self.saveComments();
+            }
+        }
+        else
+        {
+            if let p = project
+            {
+                if commentManager.userCommentsDirty
+                {
+                    let url = p.userJsonURL( tag: "comments" );
+                    commentManager.save( url: url );
+                }
+            }
+        }
+    }
+    
+    // MARK: - KVO
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
     {
         if let player = object as? MultiPlayer
@@ -292,6 +348,13 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             {
                 setupPlayer( project: p );
                 setupTracksView( project: p );
+            }
+        }
+        else if object as? CommentManager != nil
+        {
+            if keyPath == "userCommentsDirty"
+            {
+                saveComments( debounceDelay: 2.0 );
             }
         }
     }

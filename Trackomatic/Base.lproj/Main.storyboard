@@ -1030,14 +1030,22 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </customView>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="K3m-Wz-rPf" customClass="TimelineCommentView" customModule="Trackomatic" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="467" height="50"/>
+                                                                </customView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="VuA-cp-BCE" firstAttribute="leading" secondItem="DhO-CL-BaL" secondAttribute="leading" id="7FL-oW-8RQ"/>
                                                                 <constraint firstItem="VuA-cp-BCE" firstAttribute="top" secondItem="DhO-CL-BaL" secondAttribute="top" id="Mk5-pQ-aX2"/>
+                                                                <constraint firstItem="K3m-Wz-rPf" firstAttribute="leading" secondItem="DhO-CL-BaL" secondAttribute="leading" id="O34-jT-zqR"/>
+                                                                <constraint firstAttribute="bottom" secondItem="K3m-Wz-rPf" secondAttribute="bottom" id="ZSb-wr-VPb"/>
                                                                 <constraint firstAttribute="bottom" secondItem="VuA-cp-BCE" secondAttribute="bottom" id="agD-cS-2ef"/>
+                                                                <constraint firstAttribute="trailing" secondItem="K3m-Wz-rPf" secondAttribute="trailing" id="i39-3W-ng2"/>
                                                                 <constraint firstAttribute="trailing" secondItem="VuA-cp-BCE" secondAttribute="trailing" id="s2o-cH-9Kb"/>
+                                                                <constraint firstItem="K3m-Wz-rPf" firstAttribute="top" secondItem="DhO-CL-BaL" secondAttribute="top" id="y2A-8Z-JcK"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="commentView" destination="K3m-Wz-rPf" id="kpH-I4-rDT"/>
                                                                 <outlet property="waveformView" destination="VuA-cp-BCE" id="HcL-GT-uYw"/>
                                                             </connections>
                                                         </tableCellView>

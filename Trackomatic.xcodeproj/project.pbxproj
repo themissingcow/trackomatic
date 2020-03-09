@@ -15,6 +15,9 @@
 		E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268BC71240446CE00C56DC6 /* MultiPlayer.swift */; };
 		E2709A6424141633009B6AA9 /* Watcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6324141633009B6AA9 /* Watcher.swift */; };
 		E2709A6624143E69009B6AA9 /* MultiPlayer+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */; };
+		E2709A6824156835009B6AA9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6724156835009B6AA9 /* Comment.swift */; };
+		E2709A6A24156C8C009B6AA9 /* CommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6924156C8C009B6AA9 /* CommentManager.swift */; };
+		E2709A6C241575D8009B6AA9 /* TimelineCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6B241575D8009B6AA9 /* TimelineCommentView.swift */; };
 		E2AF75152409100F00618022 /* TrackTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF75142409100F00618022 /* TrackTableCellView.swift */; };
 		E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */; };
 		E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046672405D5B00061E2E3 /* TCWaveformView.m */; };
@@ -58,6 +61,9 @@
 		E268BC71240446CE00C56DC6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
 		E2709A6324141633009B6AA9 /* Watcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Watcher.swift; sourceTree = "<group>"; };
 		E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiPlayer+Export.swift"; sourceTree = "<group>"; };
+		E2709A6724156835009B6AA9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		E2709A6924156C8C009B6AA9 /* CommentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentManager.swift; sourceTree = "<group>"; };
+		E2709A6B241575D8009B6AA9 /* TimelineCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCommentView.swift; sourceTree = "<group>"; };
 		E2AF75142409100F00618022 /* TrackTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableCellView.swift; sourceTree = "<group>"; };
 		E2D046642405D5B00061E2E3 /* TCWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWaveformView.h; sourceTree = "<group>"; };
 		E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWaveformDataSource.m; sourceTree = "<group>"; };
@@ -110,6 +116,7 @@
 				E212C7FB24051287000936EB /* TrackWaveformCellView.swift */,
 				E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */,
 				E2AF75142409100F00618022 /* TrackTableCellView.swift */,
+				E2709A6B241575D8009B6AA9 /* TimelineCommentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -129,6 +136,8 @@
 				E268BC71240446CE00C56DC6 /* MultiPlayer.swift */,
 				E20F3900240993F20010C1D6 /* Project.swift */,
 				E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */,
+				E2709A6724156835009B6AA9 /* Comment.swift */,
+				E2709A6924156C8C009B6AA9 /* CommentManager.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -293,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */,
+				E2709A6C241575D8009B6AA9 /* TimelineCommentView.swift in Sources */,
 				E2AF75152409100F00618022 /* TrackTableCellView.swift in Sources */,
 				E2709A6424141633009B6AA9 /* Watcher.swift in Sources */,
 				E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */,
@@ -302,8 +312,10 @@
 				E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */,
 				E2709A6624143E69009B6AA9 /* MultiPlayer+Export.swift in Sources */,
 				E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */,
+				E2709A6824156835009B6AA9 /* Comment.swift in Sources */,
 				E20F3901240993F20010C1D6 /* Project.swift in Sources */,
 				E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */,
+				E2709A6A24156C8C009B6AA9 /* CommentManager.swift in Sources */,
 				E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */,
 				E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */,
 			);
