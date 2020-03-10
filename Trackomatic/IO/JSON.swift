@@ -368,7 +368,7 @@ extension CommentManager {
             guard let uuid = dict[ "uuid" ] as? String else { continue; }
             comment.uuid = uuid;
             comment.shortName = shortName;
-            comment.displayName = displayName;
+            comment.displayName = (shortName == userShortName) ? userDisplayName : displayName;
             
             if let c = dict[ "comment" ] as? String { comment.comment = c; }
             if let a = dict[ "anchor" ] as? String { comment.anchor = a; }
