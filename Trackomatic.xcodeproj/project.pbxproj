@@ -10,6 +10,9 @@
 		E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */; };
 		E20F3901240993F20010C1D6 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F3900240993F20010C1D6 /* Project.swift */; };
 		E20F39042409963B0010C1D6 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F39032409963B0010C1D6 /* JSON.swift */; };
+		E212597224168441001A9DD1 /* CommentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212597024168441001A9DD1 /* CommentCollectionViewItem.swift */; };
+		E212597324168441001A9DD1 /* CommentCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = E212597124168441001A9DD1 /* CommentCollectionViewItem.xib */; };
+		E2125975241689CE001A9DD1 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2125974241689CE001A9DD1 /* NewCommentViewController.swift */; };
 		E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7FB24051287000936EB /* TrackWaveformCellView.swift */; };
 		E2205DBA2415C2C3002A6F7B /* TrackRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2205DB92415C2C3002A6F7B /* TrackRowView.swift */; };
 		E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */; };
@@ -23,6 +26,7 @@
 		E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */; };
 		E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046672405D5B00061E2E3 /* TCWaveformView.m */; };
 		E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0466B2405D8140061E2E3 /* WaveformCache.swift */; };
+		E2E34EE724162C620021461B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E34EE624162C620021461B /* CommentsViewController.swift */; };
 		E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FC2404433200C3D009 /* AppDelegate.swift */; };
 		E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FE2404433200C3D009 /* ViewController.swift */; };
 		E2FEC5012404433400C3D009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEC5002404433400C3D009 /* Assets.xcassets */; };
@@ -57,6 +61,9 @@
 		E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		E20F3900240993F20010C1D6 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E20F39032409963B0010C1D6 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		E212597024168441001A9DD1 /* CommentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewItem.swift; sourceTree = "<group>"; };
+		E212597124168441001A9DD1 /* CommentCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCollectionViewItem.xib; sourceTree = "<group>"; };
+		E2125974241689CE001A9DD1 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		E212C7FB24051287000936EB /* TrackWaveformCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackWaveformCellView.swift; sourceTree = "<group>"; };
 		E2205DB92415C2C3002A6F7B /* TrackRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRowView.swift; sourceTree = "<group>"; };
 		E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
@@ -127,7 +134,10 @@
 		E268BC6F240446CE00C56DC6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E2125974241689CE001A9DD1 /* NewCommentViewController.swift */,
 				E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */,
+				E212597024168441001A9DD1 /* CommentCollectionViewItem.swift */,
+				E212597124168441001A9DD1 /* CommentCollectionViewItem.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -287,6 +297,7 @@
 			files = (
 				E2FEC5012404433400C3D009 /* Assets.xcassets in Resources */,
 				E2FEC5042404433400C3D009 /* Main.storyboard in Resources */,
+				E212597324168441001A9DD1 /* CommentCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +322,9 @@
 				E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */,
 				E20F39042409963B0010C1D6 /* JSON.swift in Sources */,
 				E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */,
+				E2125975241689CE001A9DD1 /* NewCommentViewController.swift in Sources */,
 				E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */,
+				E212597224168441001A9DD1 /* CommentCollectionViewItem.swift in Sources */,
 				E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */,
 				E2205DBA2415C2C3002A6F7B /* TrackRowView.swift in Sources */,
 				E2709A6624143E69009B6AA9 /* MultiPlayer+Export.swift in Sources */,

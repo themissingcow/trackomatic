@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CommentCollectionViewItem" customModule="Trackomatic" customModuleProvider="target">
+            <connections>
+                <outlet property="commentTextView" destination="N2C-51-qFj" id="lic-5H-ZdZ"/>
+                <outlet property="displayNameLabel" destination="Sj7-zy-08W" id="5Ak-Fb-V8M"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="345" height="263"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0U-sx-oA4">
+                    <rect key="frame" x="12" y="12" width="321" height="211"/>
+                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="h5J-JX-P3T">
+                        <rect key="frame" x="0.0" y="0.0" width="321" height="211"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" smartInsertDelete="YES" id="N2C-51-qFj">
+                                <rect key="frame" x="0.0" y="0.0" width="321" height="211"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <size key="minSize" width="321" height="211"/>
+                                <size key="maxSize" width="441" height="10000000"/>
+                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            </textView>
+                        </subviews>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gpR-2D-IRK">
+                        <rect key="frame" x="-100" y="-100" width="225" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="nmT-CX-F89">
+                        <rect key="frame" x="305" y="0.0" width="16" height="211"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sj7-zy-08W">
+                    <rect key="frame" x="10" y="235" width="42" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Name" id="WEH-9V-SMo">
+                        <font key="font" metaFont="systemBold"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="h0U-sx-oA4" secondAttribute="trailing" constant="12" id="6Qi-Ej-3QB"/>
+                <constraint firstItem="h0U-sx-oA4" firstAttribute="top" secondItem="Sj7-zy-08W" secondAttribute="bottom" constant="12" id="FAn-ep-OrO"/>
+                <constraint firstAttribute="bottom" secondItem="h0U-sx-oA4" secondAttribute="bottom" constant="12" id="RW5-u9-28R"/>
+                <constraint firstItem="Sj7-zy-08W" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="Z58-NH-xhs"/>
+                <constraint firstItem="h0U-sx-oA4" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="juR-Eq-4hm"/>
+                <constraint firstItem="Sj7-zy-08W" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="q2D-XJ-WCA"/>
+            </constraints>
+            <point key="canvasLocation" x="73.5" y="149.5"/>
+        </customView>
+        <userDefaultsController representsSharedInstance="YES" id="BUN-cS-JWx"/>
+        <collectionViewItem nibName="CommentCollectionViewItem" id="cwH-h5-pFU" customClass="CommentCollectionViewItem" customModule="Trackomatic" customModuleProvider="target">
+            <connections>
+                <outlet property="commentTextView" destination="N2C-51-qFj" id="9eX-6I-LtW"/>
+                <outlet property="displayNameLabel" destination="Sj7-zy-08W" id="JE0-gI-m0Z"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="9CS-2Y-Xsd"/>
+            </connections>
+        </collectionViewItem>
+    </objects>
+</document>

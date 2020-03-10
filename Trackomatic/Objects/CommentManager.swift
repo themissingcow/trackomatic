@@ -68,7 +68,7 @@ class CommentManager: NSObject
         didChangeValue( forKey: "comments" );
     }
     
-    func newComment( anchor: String ) -> Comment
+    func newComment( anchor: String, add: Bool ) -> Comment
     {
         let comment = Comment();
         
@@ -76,8 +76,11 @@ class CommentManager: NSObject
         comment.shortName = userShortName;
         comment.displayName = userDisplayName;
         
-        add( comments: [ comment ] );
-    
+        if add
+        {
+            self.add( comments: [ comment ] );
+        }
+        
         return comment;
     }
     

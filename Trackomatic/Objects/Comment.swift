@@ -13,15 +13,15 @@ class Comment: NSObject {
     
     dynamic var uuid: String;
 
-    dynamic var shortName: String { didSet { dirty = true; } };
-    dynamic var displayName: String { didSet { dirty = true; } };
+    @objc dynamic var shortName: String { didSet { dirty = true; } };
+    @objc dynamic var displayName: String { didSet { dirty = true; } };
     
-    dynamic var anchor: String? { didSet { dirty = true; } };
+    @objc dynamic var anchor: String? { didSet { dirty = true; } };
     
     dynamic var at: AVAudioFramePosition? { didSet { dirty = true; } };
     dynamic var length: AVAudioFramePosition? { didSet { dirty = true; } };
     
-    dynamic var comment: String { didSet { dirty = true; } };
+    @objc dynamic var comment: String { didSet { dirty = true; } };
         
     dynamic var dirty: Bool;
 

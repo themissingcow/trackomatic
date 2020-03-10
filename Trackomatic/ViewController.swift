@@ -255,9 +255,19 @@ class ViewController: NSViewController,
     func timelineCommentView( _ view: TimelineCommentView,
         requestedCommentAt position: AVAudioFramePosition, ofLength length: AVAudioFramePosition?
     ) {
-        let comment = commentManager.newComment( anchor: view.anchor );
+        guard let vc = storyboard?.instantiateController(
+            withIdentifier: NSStoryboard.SceneIdentifier( "newCommentController" )
+        ) as? NewCommentViewController
+            else { return; }
+        
+        let comment = commentManager.newComment( anchor: view.anchor, add: false );
         comment.at = position;
         comment.length = length;
+        
+        vc.comment = comment;
+        vc.commentManager = commentManager;
+        
+        presentAsSheet( vc );
     }
     
     // MARK: - Save

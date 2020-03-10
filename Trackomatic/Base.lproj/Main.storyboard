@@ -1332,12 +1332,67 @@
                         <outlet property="timelineView" destination="sou-Vk-srP" id="C8J-BK-4u6"/>
                         <outlet property="trackPlayheadView" destination="i9y-Ua-GoW" id="SyR-iQ-q5v"/>
                         <outlet property="trackTableView" destination="IaZ-KT-z2f" id="rOy-vs-R1k"/>
+                        <segue destination="hBo-o6-SKh" kind="sheet" identifier="newComment" id="4s8-EU-5dc"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="Dbt-yp-lY8"/>
             </objects>
-            <point key="canvasLocation" x="-60" y="960"/>
+            <point key="canvasLocation" x="-160" y="919"/>
+        </scene>
+        <!--New Comment View Controller-->
+        <scene sceneID="3nU-5A-GN4">
+            <objects>
+                <viewController storyboardIdentifier="newCommentController" id="hBo-o6-SKh" customClass="NewCommentViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Sa9-gd-X3V">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="363"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wnz-jh-tdw">
+                                <rect key="frame" x="337" y="13" width="99" height="32"/>
+                                <buttonCell key="cell" type="push" title="Comment" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H4P-Vf-gBK">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addComment:" target="hBo-o6-SKh" id="9HA-qy-BpP"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yc0-d1-3o7">
+                                <rect key="frame" x="14" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gLe-Mx-tNP">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancel:" target="hBo-o6-SKh" id="b5Q-Xe-dbC"/>
+                                </connections>
+                            </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="5WO-Ah-XAr">
+                                <rect key="frame" x="20" y="61" width="410" height="282"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="5WO-Ah-XAr" firstAttribute="leading" secondItem="Sa9-gd-X3V" secondAttribute="leading" constant="20" id="1iW-9G-Pc8"/>
+                            <constraint firstItem="Wnz-jh-tdw" firstAttribute="top" secondItem="5WO-Ah-XAr" secondAttribute="bottom" constant="20" id="Gzy-Ei-2cN"/>
+                            <constraint firstAttribute="bottom" secondItem="Wnz-jh-tdw" secondAttribute="bottom" constant="20" id="Slq-Nv-zyq"/>
+                            <constraint firstItem="5WO-Ah-XAr" firstAttribute="top" secondItem="Sa9-gd-X3V" secondAttribute="top" constant="20" id="WQQ-aH-VFa"/>
+                            <constraint firstItem="yc0-d1-3o7" firstAttribute="leading" secondItem="Sa9-gd-X3V" secondAttribute="leading" constant="20" id="Wgw-ie-ECR"/>
+                            <constraint firstItem="Wnz-jh-tdw" firstAttribute="firstBaseline" secondItem="yc0-d1-3o7" secondAttribute="firstBaseline" id="gMh-Cp-e2s"/>
+                            <constraint firstAttribute="trailing" secondItem="5WO-Ah-XAr" secondAttribute="trailing" constant="20" id="msE-gC-S5u"/>
+                            <constraint firstAttribute="trailing" secondItem="Wnz-jh-tdw" secondAttribute="trailing" constant="20" id="nL5-nE-Dz2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="placeholderView" destination="5WO-Ah-XAr" id="XNN-M0-Gtn"/>
+                    </connections>
+                </viewController>
+                <customObject id="RzU-vg-ODh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-160" y="1476"/>
         </scene>
     </scenes>
     <resources>
