@@ -10,7 +10,7 @@ import Cocoa
 
 class NewCommentViewController: NSViewController
 {
-    var commentViewController: CommentCollectionViewItem?;
+    var commentViewController: CommentViewController?;
     @IBOutlet weak var placeholderView: NSView!
 
     var comment: Comment? {
@@ -19,18 +19,25 @@ class NewCommentViewController: NSViewController
             commentViewController?.comment = comment;
         }
     }
-    var commentManager: CommentManager?;
+    var commentManager: CommentManager? {
+        didSet
+        {
+            commentViewController?.manager = commentManager;
+        }
+    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad();
         
-        let vc = CommentCollectionViewItem( nibName: "CommentCollectionViewItem", bundle: Bundle.main );
+        let vc = storyboard!.instantiateController( withIdentifier: "commentViewController" ) as! CommentViewController;
        
         addChild( vc );
         view.addSubview( vc.view );
         vc.view.frame = placeholderView.frame;
+        vc.mode = .new;
         vc.comment = comment;
+        vc.manager = commentManager;
 
         commentViewController = vc;
     }

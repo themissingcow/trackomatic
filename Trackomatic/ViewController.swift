@@ -25,6 +25,10 @@ class ViewController: NSViewController,
     @IBOutlet weak var timelineView: TimelineView!
     @IBOutlet weak var trackPlayheadView: TimelineView!
     
+    @objc dynamic var selectedAnchor: String? { didSet { commentsView?.anchor = selectedAnchor; } };
+    @IBOutlet weak var commentsPlaceholderView: NSView!
+    private var commentsView: CommentsViewController?
+    
     @objc dynamic var player = MultiPlayer();
     @objc dynamic var commentManager = CommentManager();
     @objc dynamic var project: Project?;
@@ -80,6 +84,28 @@ class ViewController: NSViewController,
         }
     }
     
+    @IBAction func newComment( _ sender: Any )
+    {
+        newComment( forAnchor: selectedAnchor ?? "" );
+    }
+    
+    func newComment( forAnchor anchor: String, at: AVAudioFramePosition? = nil, length: AVAudioFramePosition? = nil )
+    {
+        guard let vc = storyboard?.instantiateController(
+            withIdentifier: NSStoryboard.SceneIdentifier( "newCommentController" )
+        ) as? NewCommentViewController
+            else { return; }
+        
+        let comment = commentManager.newComment( anchor: anchor, add: false );
+        comment.at = at;
+        comment.length = length;
+        
+        vc.comment = comment;
+        vc.commentManager = commentManager;
+        
+        presentAsSheet( vc );
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -93,6 +119,21 @@ class ViewController: NSViewController,
         
         player.addObserver( self, forKeyPath: "playing", options: [.initial, .new] , context: nil );
         player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
+        
+        commentsView = storyboard!.instantiateController(
+            withIdentifier : NSStoryboard.SceneIdentifier( "commentsViewController" )
+        ) as? CommentsViewController;
+        
+        addChild( commentsView! );
+        commentsPlaceholderView.addSubview( commentsView!.view );
+        commentsView?.view.frame = commentsPlaceholderView.frame;
+        commentsView?.commentManager = commentManager;
+    }
+    
+    override func viewDidLayout()
+    {
+        super.viewDidLayout();
+        commentsView?.view.frame = commentsPlaceholderView.frame;
     }
         
     // MARK: - Updates
@@ -187,7 +228,7 @@ class ViewController: NSViewController,
         return rows;
     }
     
-    // MARK: NSTableView
+    // MARK: - NSTableView
     
     func tableView(_ tableView: NSTableView, isGroupRow row: Int) -> Bool
     {
@@ -242,6 +283,24 @@ class ViewController: NSViewController,
         return view;
     }
     
+    func tableViewSelectionDidChange( _ notification: Notification )
+    {
+        let row = trackTableView.selectedRow;
+        
+        if row > -1,
+            let file = rows[ row ] as? AVAudioFile,
+            let track = player.trackFor( file: file )
+        {
+            let anchor = track.anchor( baseDirectory: project!.baseDirectory! );
+            selectedAnchor = anchor;
+        }
+        else
+        {
+            // Project comments
+            selectedAnchor = nil;
+        }
+    }
+    
     // MARK: - TimelineViewDelegate
     
     func timelineView(_ view: TimelineView, didRequestPositionChange position: AVAudioFramePosition)
@@ -255,19 +314,7 @@ class ViewController: NSViewController,
     func timelineCommentView( _ view: TimelineCommentView,
         requestedCommentAt position: AVAudioFramePosition, ofLength length: AVAudioFramePosition?
     ) {
-        guard let vc = storyboard?.instantiateController(
-            withIdentifier: NSStoryboard.SceneIdentifier( "newCommentController" )
-        ) as? NewCommentViewController
-            else { return; }
-        
-        let comment = commentManager.newComment( anchor: view.anchor, add: false );
-        comment.at = position;
-        comment.length = length;
-        
-        vc.comment = comment;
-        vc.commentManager = commentManager;
-        
-        presentAsSheet( vc );
+        newComment( forAnchor: view.anchor, at: position, length: length );
     }
     
     // MARK: - Save
