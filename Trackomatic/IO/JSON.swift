@@ -356,6 +356,8 @@ extension CommentManager {
             return;
         }
         
+        let userComments = shortName == userShortName;
+        
         var objects: [ Comment ] = [];
         
         for data in comments
@@ -368,19 +370,20 @@ extension CommentManager {
             guard let uuid = dict[ "uuid" ] as? String else { continue; }
             comment.uuid = uuid;
             comment.shortName = shortName;
-            comment.displayName = (shortName == userShortName) ? userDisplayName : displayName;
+            comment.displayName = userComments ? userDisplayName : displayName;
             
             if let c = dict[ "comment" ] as? String { comment.comment = c; }
             if let a = dict[ "anchor" ] as? String { comment.anchor = a; }
             if let a = dict[ "at" ] as? AVAudioFramePosition { comment.at = a; }
             if let l = dict[ "length" ] as? AVAudioFramePosition { comment.length = l; }
             
+            comment.dirty = false;
             objects.append( comment );
         }
         
         add(comments: objects );
         
-        if shortName == userShortName
+        if userComments
         {
             userCommentsDirty = false;
         }
