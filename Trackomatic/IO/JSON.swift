@@ -220,29 +220,44 @@ extension MultiPlayer {
     {
         if !FileManager.default.fileExists( atPath: url.path ) { return; }
 
-        do
-        {
-            if let json: JSONDict = try LoadJSON( url: url )
+        var error: NSError?;
+        NSFileCoordinator().coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
+            
+            do
             {
-                loadFromDict( json, baseDirectory: baseDirectory );
+                if let json: JSONDict = try LoadJSON( url: readUrl )
+                {
+                    loadFromDict( json, baseDirectory: baseDirectory );
+                }
+            }
+            catch
+            {
+                print( "JSON load error: \(error)" );
             }
         }
-        catch
-        {
-            print( "JSON load error: \(error)" );
+        if let e = error {
+            print( "Coordination error: \(e)" );
         }
     }
     
     func save( url: URL, baseDirectory: URL )
     {
-        do
-        {
-            let json = saveToDict( baseDirectory: baseDirectory );
-            try SaveJSON( json: json, url: url );
+        var error: NSError?;
+        NSFileCoordinator().coordinate( writingItemAt: url, options: .forReplacing, error: &error ) { writeUrl in
+        
+            do
+            {
+                let json = saveToDict( baseDirectory: baseDirectory );
+                try SaveJSON( json: json, url: writeUrl );
+            }
+            catch
+            {
+                print( "JSON save error: \(error)" );
+            }
         }
-        catch
-        {
-            print( "JSON save error: \(error)" );
+        
+        if let e = error {
+            print( "Coordination error: \(e)" );
         }
     }
 
@@ -321,29 +336,43 @@ extension CommentManager {
     {
         if !FileManager.default.fileExists( atPath: url.path ) { return; }
 
-        do
-        {
-            if let json: JSONDict = try LoadJSON( url: url )
+        var error: NSError?;
+        NSFileCoordinator().coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
+                
+            do
             {
-                loadFromDict( json );
+                if let json: JSONDict = try LoadJSON( url: readUrl )
+                {
+                    loadFromDict( json );
+                }
+            }
+            catch
+            {
+                print( "JSON load error: \(error)" );
             }
         }
-        catch
-        {
-            print( "JSON load error: \(error)" );
+        if let e = error {
+            print( "Coordination error: \(e)" );
         }
     }
     
     func save( url: URL )
     {
-        do
-        {
-            let json = saveToDict();
-            try SaveJSON( json: json, url: url );
+        var error: NSError?;
+        NSFileCoordinator().coordinate( writingItemAt: url, options: .forReplacing, error: &error ) { writeUrl in
+        
+            do
+            {
+                let json = saveToDict();
+                try SaveJSON( json: json, url: writeUrl );
+            }
+            catch
+            {
+                print( "JSON save error: \(error)" );
+            }
         }
-        catch
-        {
-            print( "JSON save error: \(error)" );
+        if let e = error {
+            print( "Coordination error: \(e)" );
         }
     }
 
