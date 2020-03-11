@@ -1334,7 +1334,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusPartiallyAvailable" id="HyM-y0-26f"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="25S-cj-qLM" id="DYM-El-zTd">
+                                    <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="eYE-xb-scp" id="HsU-Np-enj">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -1343,7 +1343,7 @@
                                             <string key="NSValueTransformerName">NSIsNil</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="project.dirty" id="25S-cj-qLM">
+                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.useCommentsDirty" id="eYE-xb-scp">
                                         <dictionary key="options">
                                             <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -1361,7 +1361,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="xSe-bs-0FM"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="MHM-Z1-PCZ" id="qaE-HJ-8Wr">
+                                    <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="BmB-wY-ayo" id="Z9H-Le-gIG">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -1370,7 +1370,7 @@
                                             <string key="NSValueTransformerName">NSIsNil</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="project.dirty" id="MHM-Z1-PCZ">
+                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="BmB-wY-ayo">
                                         <dictionary key="options">
                                             <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                         </dictionary>
