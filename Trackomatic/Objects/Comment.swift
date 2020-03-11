@@ -23,7 +23,7 @@ class Comment: NSObject {
     
     @objc dynamic var comment: String { didSet { dirty = true; } };
         
-    dynamic var dirty: Bool;
+    @objc dynamic var dirty: Bool;
 
     override init()
     {
