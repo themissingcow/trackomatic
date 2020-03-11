@@ -12,6 +12,8 @@ import AVFoundation
 class Comment: NSObject {
     
     dynamic var uuid: String;
+    
+    @objc dynamic var lastEdit: Date { didSet { dirty = true; } }
 
     @objc dynamic var shortName: String { didSet { dirty = true; } };
     @objc dynamic var displayName: String { didSet { dirty = true; } };
@@ -21,13 +23,18 @@ class Comment: NSObject {
     dynamic var at: AVAudioFramePosition? { didSet { dirty = true; } };
     dynamic var length: AVAudioFramePosition? { didSet { dirty = true; } };
     
-    @objc dynamic var comment: String { didSet { dirty = true; } };
+    @objc dynamic var comment: String { didSet {
+        dirty = true;
+        lastEdit = Date();
+    } };
         
     @objc dynamic var dirty: Bool;
 
     override init()
     {
         uuid = UUID().uuidString;
+        
+        lastEdit = Date();
         
         shortName = "";
         displayName = "";

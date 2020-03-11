@@ -50,6 +50,10 @@ class CommentManager: NSObject
         {
             if let index = self.comments.firstIndex( of: comment )
             {
+                if comment.shortName == userShortName
+                {
+                    userCommentsDirty = true;
+                }
                 removeObservers( comment );
                 self.comments.remove( at: index );
             }
@@ -66,6 +70,7 @@ class CommentManager: NSObject
         willChangeValue( forKey: "comments" );
         comments = [];
         didChangeValue( forKey: "comments" );
+        userCommentsDirty = false;
     }
     
     func newComment( anchor: String, add: Bool ) -> Comment

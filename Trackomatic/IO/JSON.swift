@@ -376,8 +376,9 @@ extension CommentManager {
             if let a = dict[ "anchor" ] as? String { comment.anchor = a; }
             if let a = dict[ "at" ] as? AVAudioFramePosition { comment.at = a; }
             if let l = dict[ "length" ] as? AVAudioFramePosition { comment.length = l; }
-            
+            if let d = dict[ "lastEdit" ] as? Double { comment.lastEdit = Date( timeIntervalSince1970: d ); }
             comment.dirty = false;
+
             objects.append( comment );
         }
         
@@ -402,6 +403,7 @@ extension CommentManager {
                 "comment" : comment.comment
             ]
             
+            data[ "lastEdit" ] = comment.lastEdit.timeIntervalSince1970;
             if let a = comment.anchor { data[ "anchor" ] = a; }
             if let a = comment.at { data[ "at" ] = a; }
             if let l = comment.length { data[ "length" ] = l; }
