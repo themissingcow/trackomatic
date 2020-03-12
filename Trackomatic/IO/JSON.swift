@@ -40,38 +40,6 @@ func SaveJSON<T>( json: T, url: URL ) throws
     FileManager.default.createFile( atPath: url.path, contents: data, attributes: [:] );
 }
 
-func LastModificationTime( url: URL ) -> Date?
-{
-    do {
-        let values = try url.resourceValues( forKeys: [ .contentModificationDateKey ] );
-        return values.contentModificationDate;
-    }
-    catch
-    {
-        print( "Error retrieving modification time: \(error)");
-    }
-    return nil;
-}
-
-private var modificationTimes: [ URL: Date ] = [:];
-// Returns whether the modification time has changed since it was last cached
-func CacheModificationTime( url: URL ) -> Bool
-{
-    if let currentModificationTime = LastModificationTime( url: url )
-    {
-        if let lastModificationTime = modificationTimes[ url ]
-        {
-            if currentModificationTime == lastModificationTime
-            {
-                return false;
-            }
-        }
-        modificationTimes[ url ] = currentModificationTime;
-    }
-    // Default to infering change unless we're sure of the contrary
-    return true;
-}
-
 
 // MARK: - Project
 
@@ -99,7 +67,7 @@ extension Project : NSFilePresenter {
         coordinator.coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
             
             if !FileManager.default.fileExists( atPath: readUrl.path ) { return; }
-            if !force && !CacheModificationTime( url: readUrl ) { return; }
+            if !force && !CheckCachedModificationTime( url: readUrl ) { return; }
                         
             do
             {
@@ -308,83 +276,43 @@ extension MultiPlayer {
 
 extension CommentManager {
     
-    func load( directory: URL, tag: String )
+    func loadComments( url: URL, force: Bool = false ) -> ( [ Comment ], String )?
     {
+        if !FileManager.default.fileExists( atPath: url.path ) { return nil; }
+
+        var comments: [ Comment ]?;
+        var shortName: String?
+    
         do
         {
-            let dirContents = try FileManager.default.contentsOfDirectory(
-                at: directory,
-                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
-                options: [ .skipsHiddenFiles ]
-            );
-            
-            for url in dirContents
+            if let json: JSONDict = try LoadJSON( url: url )
             {
-                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
-                if info.isDirectory! || !info.name!.starts( with: tag ) { continue; }
-
-                load( url: url );
+                ( comments, shortName ) = loadFromDict( json );
             }
         }
         catch
         {
-            print( "Directory load error: \(error)" );
+            print( "JSON load error: \(error)" );
         }
-    }
     
-    func load( url: URL )
-    {
-        if !FileManager.default.fileExists( atPath: url.path ) { return; }
-
-        var error: NSError?;
-        NSFileCoordinator().coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
-                
-            do
-            {
-                if let json: JSONDict = try LoadJSON( url: readUrl )
-                {
-                    loadFromDict( json );
-                }
-            }
-            catch
-            {
-                print( "JSON load error: \(error)" );
-            }
-        }
-        if let e = error {
-            print( "Coordination error: \(e)" );
-        }
-    }
-    
-    func save( url: URL )
-    {
-        var error: NSError?;
-        NSFileCoordinator().coordinate( writingItemAt: url, options: .forReplacing, error: &error ) { writeUrl in
         
-            do
-            {
-                let json = saveToDict();
-                try SaveJSON( json: json, url: writeUrl );
-            }
-            catch
-            {
-                print( "JSON save error: \(error)" );
-            }
+        if let c = comments, let s = shortName
+        {
+            return ( c, s );
         }
-        if let e = error {
-            print( "Coordination error: \(e)" );
-        }
+        
+        return nil;
     }
 
-    func loadFromDict( _ json: JSONDict )
+    func loadFromDict( _ json: JSONDict ) -> ( [ Comment ]?, String? )
     {
         guard let shortName = json[ "shortName" ] as? String,
               let displayName = json[ "displayName" ] as? String,
               let comments = json[ "comments" ] as? JSONArray
         else {
-            return;
+            return ( nil, nil );
         }
-        
+    
         let userComments = shortName == userShortName;
         
         var objects: [ Comment ] = [];
@@ -411,13 +339,28 @@ extension CommentManager {
             objects.append( comment );
         }
         
-        add(comments: objects );
-        
-        if userComments
-        {
-            userCommentsDirty = false;
-        }
+        return ( objects, shortName );
     }
+    
+    func save( url: URL )
+     {
+         var error: NSError?;
+         NSFileCoordinator().coordinate( writingItemAt: url, options: .forReplacing, error: &error ) { writeUrl in
+         
+             do
+             {
+                 let json = saveToDict();
+                 try SaveJSON( json: json, url: writeUrl );
+             }
+             catch
+             {
+                 print( "JSON save error: \(error)" );
+             }
+         }
+         if let e = error {
+             print( "Coordination error: \(e)" );
+         }
+     }
 
     private func saveToDict() -> JSONDict
     {

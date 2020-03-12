@@ -21,6 +21,7 @@
 		E2709A6824156835009B6AA9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6724156835009B6AA9 /* Comment.swift */; };
 		E2709A6A24156C8C009B6AA9 /* CommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6924156C8C009B6AA9 /* CommentManager.swift */; };
 		E2709A6C241575D8009B6AA9 /* TimelineCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6B241575D8009B6AA9 /* TimelineCommentView.swift */; };
+		E27FF9D1241A34F9001C7904 /* FileAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27FF9D0241A34F9001C7904 /* FileAttributes.swift */; };
 		E2AF75152409100F00618022 /* TrackTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF75142409100F00618022 /* TrackTableCellView.swift */; };
 		E2D046682405D5B00061E2E3 /* TCWaveformDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */; };
 		E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046672405D5B00061E2E3 /* TCWaveformView.m */; };
@@ -71,6 +72,7 @@
 		E2709A6724156835009B6AA9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		E2709A6924156C8C009B6AA9 /* CommentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentManager.swift; sourceTree = "<group>"; };
 		E2709A6B241575D8009B6AA9 /* TimelineCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCommentView.swift; sourceTree = "<group>"; };
+		E27FF9D0241A34F9001C7904 /* FileAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAttributes.swift; sourceTree = "<group>"; };
 		E2AF75142409100F00618022 /* TrackTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableCellView.swift; sourceTree = "<group>"; };
 		E2D046642405D5B00061E2E3 /* TCWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWaveformView.h; sourceTree = "<group>"; };
 		E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWaveformDataSource.m; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				E2709A6324141633009B6AA9 /* Watcher.swift */,
 				E20F39032409963B0010C1D6 /* JSON.swift */,
+				E27FF9D0241A34F9001C7904 /* FileAttributes.swift */,
 			);
 			path = IO;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				E2709A6424141633009B6AA9 /* Watcher.swift in Sources */,
 				E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */,
 				E20F39042409963B0010C1D6 /* JSON.swift in Sources */,
+				E27FF9D1241A34F9001C7904 /* FileAttributes.swift in Sources */,
 				E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */,
 				E2E34EE724162C620021461B /* CommentsViewController.swift in Sources */,
 				E2125975241689CE001A9DD1 /* NewCommentViewController.swift in Sources */,

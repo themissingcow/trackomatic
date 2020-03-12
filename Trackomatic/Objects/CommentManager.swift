@@ -18,6 +18,8 @@ class CommentManager: NSObject
     
     var player: MultiPlayer?;
     
+    fileprivate var presenters: [ URL: CommentPresenter ] = [:];
+    
     override init()
     {
         userShortName = "";
@@ -138,4 +140,115 @@ class CommentManager: NSObject
             userCommentsDirty = true;
         }
     }
+    
+    func load( directory: URL, tag: String )
+    {
+        do
+        {
+            let dirContents = try FileManager.default.contentsOfDirectory(
+                at: directory,
+                includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
+                options: [ .skipsHiddenFiles ]
+            );
+            
+            for url in dirContents
+            {
+                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
+                if info.isDirectory! || !info.name!.starts( with: tag ) { continue; }
+
+                var error: NSError?;
+                NSFileCoordinator().coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
+                          
+                    CheckCachedModificationTime( url: readUrl );
+                
+                    guard let ( comments, name ) = loadComments( url: url ) else { return; }
+                    
+                    add( comments: comments );
+                    
+                    if name == userShortName
+                    {
+                        userCommentsDirty = false;
+                    }
+                    else
+                    {
+                        presenters[ url ] = CommentPresenter( commentFile: url, shortName: name, commentManager: self );
+                    }
+                }
+                if let e = error {
+                    print( "Coordination error: \(e)" );
+                }
+            }
+        }
+        catch
+        {
+            print( "Directory load error: \(error)" );
+        }
+    }
 }
+
+fileprivate class CommentPresenter : NSObject, NSFilePresenter
+{
+    var presentedItemURL: URL?;
+    
+    private weak var manager: CommentManager?;
+    private var name = "";
+    
+    override init()
+    {
+        super.init();
+        NSFileCoordinator.addFilePresenter( self );
+    }
+    
+    deinit
+    {
+        NSFileCoordinator.removeFilePresenter( self );
+    }
+    
+    convenience init( commentFile url: URL, shortName: String, commentManager: CommentManager )
+    {
+        self.init();
+        
+        name = shortName;
+        manager  = commentManager;
+        presentedItemURL = url;
+    }
+    
+    var presentedItemOperationQueue: OperationQueue {
+        return OperationQueue.main;
+    }
+    
+    func presentedItemDidChange()
+    {
+        guard let m = manager else { return; }
+        
+        var error: NSError?;
+        NSFileCoordinator().coordinate( readingItemAt: presentedItemURL!, options: [], error: &error ) { readUrl in
+                 
+            if !CheckCachedModificationTime( url: readUrl ) { return; }
+            
+            guard let ( comments, name ) = m.loadComments( url: readUrl ) else { return; }
+
+            if name != self.name { return; }
+            
+            let oldComments = m.commentsForUser( user: name );
+            if !oldComments.isEmpty
+            {
+                m.remove( comments: oldComments );
+            }
+            
+            m.add( comments: comments );
+        }
+    }
+    
+    func accommodatePresentedItemDeletion( completionHandler: @escaping (Error?) -> Void )
+    {
+        guard let m = manager else { return; }
+        
+        let comments = m.commentsForUser( user: name );
+        if !comments.isEmpty
+        {
+            m.remove( comments: comments );
+        }
+    }
+}
+
