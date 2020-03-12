@@ -20,7 +20,7 @@ protocol TimelineCommentViewDelegate: class
 class TimelineCommentView: NSView {
     
     @IBInspectable var backgroundColor: NSColor = NSColor.clear;
-    @IBInspectable var anchor: String = "";
+    @IBInspectable var anchor: String?;
 
     @IBOutlet var manager: CommentManager? {
         didSet {
@@ -62,7 +62,14 @@ class TimelineCommentView: NSView {
     
     private func updateDisplayComments()
     {
-        self.displayComments = manager?.commentsFor( anchor: anchor ) ?? [];
+        if let a = anchor
+        {
+            self.displayComments = manager?.commentsFor( anchor: a ) ?? [];
+        }
+        else
+        {
+            self.displayComments = []
+        }
         self.setNeedsDisplay( bounds );
     }
     

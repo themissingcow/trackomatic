@@ -185,12 +185,14 @@ class ViewController: NSViewController,
     {
         if let p = project
         {
+            player.baseDirectory = p.baseDirectory;
             player.files = p.audioFiles;
-            player.load( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
+            player.load( url: p.userJsonURL( tag: "mix" ) );
         }
         else
         {
             player.files = [];
+            player.baseDirectory = nil;
         }
     }
     
@@ -271,7 +273,7 @@ class ViewController: NSViewController,
             
             if let waveformView = trackView as? TrackWaveformCellView
             {
-                waveformView.commentView.anchor = track!.anchor( baseDirectory: project!.baseDirectory! );
+                waveformView.commentView.anchor = track!.anchor();
                 waveformView.commentView.delegate = self;
                 waveformView.commentView.length = player.length;
                 waveformView.commentView.manager = commentManager;
@@ -291,7 +293,7 @@ class ViewController: NSViewController,
             let file = rows[ row ] as? AVAudioFile,
             let track = player.trackFor( file: file )
         {
-            let anchor = track.anchor( baseDirectory: project!.baseDirectory! );
+            let anchor = track.anchor();
             selectedAnchor = anchor;
         }
         else
@@ -314,7 +316,10 @@ class ViewController: NSViewController,
     func timelineCommentView( _ view: TimelineCommentView,
         requestedCommentAt position: AVAudioFramePosition, ofLength length: AVAudioFramePosition?
     ) {
-        newComment( forAnchor: view.anchor, at: position, length: length );
+        if let anchor = view.anchor
+        {
+            newComment( forAnchor: anchor, at: position, length: length );
+        }
     }
     
     // MARK: - Save
@@ -334,7 +339,7 @@ class ViewController: NSViewController,
             if let p = project
             {
                 if player.mixDirty {
-                    player.save( url: p.userJsonURL( tag: "mix" ), baseDirectory: p.baseDirectory! );
+                    player.save( url: p.userJsonURL( tag: "mix" ) );
                 }
             }
         }

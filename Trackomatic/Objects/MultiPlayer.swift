@@ -41,9 +41,11 @@ class MultiPlayer : NSObject {
         fileprivate var player: AVAudioPlayerNode!;
         fileprivate var muteMixer: AVAudioMixerNode!;
         
-        func anchor( baseDirectory: URL ) -> String
+        func anchor() -> String?
         {
-            let basePathLength = baseDirectory.path.count;
+            guard let base = parent.baseDirectory else { return nil; }
+            
+            let basePathLength = base.path.count;
             let path = file.url.path;
             let pathStart = path.index( path.startIndex, offsetBy: basePathLength + 1 );
             return String( file.url.path[ pathStart... ] );
@@ -56,6 +58,8 @@ class MultiPlayer : NSObject {
     @objc dynamic var mixDirty = false;
     
     // MARK: - Files
+    
+    var baseDirectory: URL?;
     
     var files: [ AVAudioFile ] = []
     {
@@ -80,9 +84,10 @@ class MultiPlayer : NSObject {
         }
     }
     
-    func trackFor( anchor: String, baseDirectory: URL ) -> Track?
+    func trackFor( anchor: String ) -> Track?
     {
-        let trackURL = URL.init( fileURLWithPath: "\(baseDirectory.path)/\(anchor)" );
+        guard let base = baseDirectory else { return nil; }
+        let trackURL = URL.init( fileURLWithPath: "\(base.path)/\(anchor)" );
         return trackFor( url: trackURL );
     }
     
