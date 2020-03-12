@@ -102,7 +102,7 @@ class CommentManager: NSObject
         return comment;
     }
     
-    func commentsFor( anchor: String ) -> [ Comment ]
+    func commentsFor( anchor: String? ) -> [ Comment ]
     {
         return comments.filter { comment in
             return comment.anchor == anchor;

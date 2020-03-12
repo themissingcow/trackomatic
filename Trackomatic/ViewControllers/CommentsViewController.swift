@@ -67,7 +67,7 @@ class CommentsViewController: NSViewController
         
         guard let sb = storyboard else { return; }
         
-        for comment in manager.commentsFor( anchor: anchor ?? "" )
+        for comment in manager.commentsFor( anchor: anchor )
         {
             let vc = sb.instantiateController( withIdentifier: "commentViewController" ) as! CommentViewController;
             vc.manager = commentManager;
