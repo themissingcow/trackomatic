@@ -86,10 +86,10 @@ class ViewController: NSViewController,
     
     @IBAction func newComment( _ sender: Any )
     {
-        newComment( forAnchor: selectedAnchor ?? "" );
+        newComment( forAnchor: selectedAnchor );
     }
     
-    func newComment( forAnchor anchor: String, at: AVAudioFramePosition? = nil, length: AVAudioFramePosition? = nil )
+    func newComment( forAnchor anchor: String?, at: AVAudioFramePosition? = nil, length: AVAudioFramePosition? = nil )
     {
         guard let vc = storyboard?.instantiateController(
             withIdentifier: NSStoryboard.SceneIdentifier( "newCommentController" )
@@ -115,6 +115,7 @@ class ViewController: NSViewController,
         let defaults = UserDefaults.standard;
         commentManager.userShortName = defaults.string( forKey: "shortName" ) ?? "";
         commentManager.userDisplayName = defaults.string( forKey: "displayName" ) ?? "";
+        commentManager.player = player;
         commentManager.addObserver( self, forKeyPath: "userCommentsDirty", options: [], context: nil );
         
         player.addObserver( self, forKeyPath: "playing", options: [.initial, .new] , context: nil );

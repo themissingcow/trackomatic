@@ -27,6 +27,8 @@ class Comment: NSObject {
         dirty = true;
         lastEdit = Date();
     } };
+    
+    var track: MultiPlayer.Track?;
         
     @objc dynamic var dirty: Bool;
 
