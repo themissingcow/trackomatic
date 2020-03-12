@@ -67,7 +67,13 @@ class CommentsViewController: NSViewController
         
         guard let sb = storyboard else { return; }
         
-        for comment in manager.commentsFor( anchor: anchor )
+        var comments = manager.commentsFor( anchor: anchor );
+        
+        comments.sort { ( a, b ) -> Bool in
+            return a.lastEdit > b.lastEdit;
+        }
+        
+        for comment in comments
         {
             let vc = sb.instantiateController( withIdentifier: "commentViewController" ) as! CommentViewController;
             vc.manager = commentManager;
