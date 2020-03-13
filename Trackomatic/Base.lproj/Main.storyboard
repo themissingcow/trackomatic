@@ -1499,18 +1499,18 @@ Gw
         <scene sceneID="tbC-QB-ZqH">
             <objects>
                 <viewController storyboardIdentifier="commentViewController" id="c7b-0g-AfL" customClass="CommentViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="Xhs-qh-qKR">
+                    <view key="view" id="Xhs-qh-qKR">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="100"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="twH-L9-UaI">
-                                <rect key="frame" x="9" y="2" width="432" height="108"/>
+                                <rect key="frame" x="9" y="2" width="432" height="94"/>
                                 <view key="contentView" id="dFa-kR-2PM">
-                                    <rect key="frame" x="3" y="3" width="426" height="102"/>
+                                    <rect key="frame" x="3" y="3" width="426" height="88"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5bz-J2-cme">
-                                            <rect key="frame" x="6" y="78" width="40" height="16"/>
+                                            <rect key="frame" x="6" y="64" width="40" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="e1k-dR-Zp5">
                                                 <font key="font" metaFont="systemBold"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1520,47 +1520,8 @@ Gw
                                                 <binding destination="c7b-0g-AfL" name="value" keyPath="comment.displayName" id="wQL-4J-2ZF"/>
                                             </connections>
                                         </textField>
-                                        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="Bz9-cr-qoB">
-                                            <rect key="frame" x="8" y="8" width="410" height="40"/>
-                                            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Btv-qt-xsm">
-                                                <rect key="frame" x="0.0" y="0.0" width="410" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" linkDetection="YES" dataDetection="YES" smartInsertDelete="YES" id="S7p-VM-W5q">
-                                                        <rect key="frame" x="0.0" y="0.0" width="410" height="40"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <size key="minSize" width="410" height="40"/>
-                                                        <size key="maxSize" width="410" height="10000000"/>
-                                                        <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <connections>
-                                                            <binding destination="c7b-0g-AfL" name="value" keyPath="comment.comment" id="3qR-uW-kla">
-                                                                <dictionary key="options">
-                                                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="c7b-0g-AfL" name="editable" keyPath="editable" id="0UK-H9-SSN"/>
-                                                            <outlet property="delegate" destination="c7b-0g-AfL" id="XlL-YU-iAI"/>
-                                                        </connections>
-                                                    </textView>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.9941860465116279" green="0.98837209302325579" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                                            </clipView>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ib6-PX-7gT"/>
-                                            </constraints>
-                                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="d39-wW-CiT">
-                                                <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="6Th-T1-8Fn">
-                                                <rect key="frame" x="-100" y="-100" width="16" height="40"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </scroller>
-                                        </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-CV-SaR">
-                                            <rect key="frame" x="393" y="64" width="25" height="30"/>
+                                            <rect key="frame" x="393" y="50" width="25" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="fyW-5K-Yw0"/>
                                             </constraints>
@@ -1578,7 +1539,7 @@ Gw
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-ih-2I4">
-                                            <rect key="frame" x="6" y="60" width="33" height="14"/>
+                                            <rect key="frame" x="6" y="46" width="33" height="14"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KMg-F8-adN">
                                                 <dateFormatter key="formatter" dateStyle="short" timeStyle="short" doesRelativeDateFormatting="YES" id="Xeh-oo-ryO"/>
                                                 <font key="font" metaFont="smallSystem"/>
@@ -1592,11 +1553,7 @@ Gw
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="8Ma-ih-2I4" firstAttribute="leading" secondItem="5bz-J2-cme" secondAttribute="leading" id="F6C-1a-KQw"/>
-                                        <constraint firstItem="Bz9-cr-qoB" firstAttribute="leading" secondItem="dFa-kR-2PM" secondAttribute="leading" constant="8" id="O3W-TE-Fzq"/>
                                         <constraint firstItem="8Ma-ih-2I4" firstAttribute="top" secondItem="5bz-J2-cme" secondAttribute="bottom" constant="4" id="TQL-8B-ili"/>
-                                        <constraint firstAttribute="bottom" secondItem="Bz9-cr-qoB" secondAttribute="bottom" constant="8" id="aQl-Qq-I5z"/>
-                                        <constraint firstItem="Bz9-cr-qoB" firstAttribute="top" secondItem="8Ma-ih-2I4" secondAttribute="bottom" constant="12" id="dfF-gy-9wM"/>
-                                        <constraint firstAttribute="trailing" secondItem="Bz9-cr-qoB" secondAttribute="trailing" constant="8" id="jfV-JE-qcB"/>
                                         <constraint firstItem="5bz-J2-cme" firstAttribute="top" secondItem="dFa-kR-2PM" secondAttribute="top" constant="8" id="m4A-ER-gyl"/>
                                         <constraint firstItem="yV7-CV-SaR" firstAttribute="top" secondItem="dFa-kR-2PM" secondAttribute="top" constant="8" id="mwb-KO-RVR"/>
                                         <constraint firstAttribute="trailing" secondItem="yV7-CV-SaR" secondAttribute="trailing" constant="8" id="pNx-6L-ciY"/>
@@ -1613,9 +1570,8 @@ Gw
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="Bz9-cr-qoB" id="we5-BJ-zDL"/>
-                        <outlet property="textView" destination="S7p-VM-W5q" id="gn1-od-xgF"/>
-                        <outlet property="textViewHeightContstraint" destination="ib6-PX-7gT" id="f5M-qD-RrV"/>
+                        <outlet property="boxView" destination="twH-L9-UaI" id="Iid-Au-M6F"/>
+                        <outlet property="topAnchorItem" destination="8Ma-ih-2I4" id="CfS-nA-JqK"/>
                     </connections>
                 </viewController>
                 <customObject id="25r-q4-g8W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
