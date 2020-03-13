@@ -25,6 +25,10 @@ class ViewController: NSViewController,
     @IBOutlet weak var timelineView: TimelineView!
     @IBOutlet weak var trackPlayheadView: TimelineView!
     
+    @IBOutlet weak var commentsTab: NSView!
+    
+    @IBOutlet weak var exportButton: NSButton!;
+    
     @objc dynamic var selectedAnchor: String? { didSet { commentsView?.anchor = selectedAnchor; } };
     @IBOutlet weak var commentsPlaceholderView: NSView!
     private var commentsView: CommentsViewController?
@@ -109,7 +113,7 @@ class ViewController: NSViewController,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+                
         timelineView.delegate = self;
         
         let defaults = UserDefaults.standard;
@@ -121,20 +125,26 @@ class ViewController: NSViewController,
         player.addObserver( self, forKeyPath: "playing", options: [.initial, .new] , context: nil );
         player.addObserver( self, forKeyPath: "mixDirty", options: [ .new ], context: nil );
         
-        commentsView = storyboard!.instantiateController(
+        if let comments = storyboard!.instantiateController(
             withIdentifier : NSStoryboard.SceneIdentifier( "commentsViewController" )
-        ) as? CommentsViewController;
+            ) as? CommentsViewController
+        {
+            commentsView = comments;
         
-        addChild( commentsView! );
-        commentsPlaceholderView.addSubview( commentsView!.view );
-        commentsView?.view.frame = commentsPlaceholderView.frame;
-        commentsView?.commentManager = commentManager;
-    }
-    
-    override func viewDidLayout()
-    {
-        super.viewDidLayout();
-        commentsView?.view.frame = commentsPlaceholderView.frame;
+            addChild( comments );
+            comments.commentManager = commentManager;
+            
+            commentsTab.addSubview( comments.view );
+            comments.view.translatesAutoresizingMaskIntoConstraints = false;
+            comments.view.topAnchor.constraint( equalTo: commentsTab.topAnchor, constant: 40 ).isActive = true;
+            comments.view.bottomAnchor.constraint( equalTo: commentsTab.bottomAnchor ).isActive = true;
+            comments.view.leadingAnchor.constraint( equalTo: commentsTab.leadingAnchor ).isActive = true;
+            comments.view.trailingAnchor.constraint( equalTo: commentsTab.trailingAnchor ).isActive = true;
+            comments.view.widthAnchor.constraint( greaterThanOrEqualToConstant: 250 ).isActive = true;
+            comments.view.heightAnchor.constraint( greaterThanOrEqualToConstant: 250 ).isActive = true;
+
+        }
+        
     }
         
     // MARK: - Updates

@@ -1180,17 +1180,17 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufd-8A-zSB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="337"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="305"/>
                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AL0-sL-wVr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="337"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="305"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="Xxh-Zq-Ame">
-                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="337"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="305"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="minSize" width="200" height="337"/>
+                                                                <size key="minSize" width="200" height="305"/>
                                                                 <size key="maxSize" width="240" height="10000000"/>
                                                                 <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <connections>
@@ -1214,16 +1214,73 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CeF-g0-Tn7">
-                                                        <rect key="frame" x="184" y="0.0" width="16" height="337"/>
+                                                        <rect key="frame" x="184" y="0.0" width="16" height="305"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmZ-G8-a0X" userLabel="Project Unsaved">
+                                                    <rect key="frame" x="176" y="313" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="a1L-PX-NJG"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="fbV-nH-WGc"/>
+                                                        <constraint firstAttribute="width" constant="16" id="iXk-wP-d5I"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="vo4-PQ-F8o"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusPartiallyAvailable" id="HyM-y0-26f"/>
+                                                    <connections>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.useCommentsDirty" id="eYE-xb-scp">
+                                                            <dictionary key="options">
+                                                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="eYE-xb-scp" id="HsU-Np-enj">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSIsNil</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </imageView>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g2b-1c-R3w" userLabel="Project Saved">
+                                                    <rect key="frame" x="176" y="313" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="En3-r2-CVG"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="XCx-NO-nXP"/>
+                                                        <constraint firstAttribute="width" constant="16" id="aZZ-qt-OR1"/>
+                                                        <constraint firstAttribute="height" constant="16" id="oAm-Ob-OSF"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="xSe-bs-0FM"/>
+                                                    <connections>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="BmB-wY-ayo">
+                                                            <dictionary key="options">
+                                                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="BmB-wY-ayo" id="Z9H-Le-gIG">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSIsNil</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="mmZ-G8-a0X" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="8" id="0X3-b5-gjR"/>
                                                 <constraint firstAttribute="bottom" secondItem="ufd-8A-zSB" secondAttribute="bottom" id="79q-le-Vyq"/>
                                                 <constraint firstAttribute="trailing" secondItem="ufd-8A-zSB" secondAttribute="trailing" id="NAw-ox-P55"/>
+                                                <constraint firstItem="ufd-8A-zSB" firstAttribute="top" secondItem="mmZ-G8-a0X" secondAttribute="bottom" constant="8" id="SqN-rP-VPe"/>
+                                                <constraint firstAttribute="trailing" secondItem="mmZ-G8-a0X" secondAttribute="trailing" constant="8" id="UOC-ib-9zJ"/>
                                                 <constraint firstItem="ufd-8A-zSB" firstAttribute="leading" secondItem="017-Qv-66i" secondAttribute="leading" id="Xnc-dp-ORd"/>
-                                                <constraint firstItem="ufd-8A-zSB" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" id="pq9-gP-1VX"/>
+                                                <constraint firstAttribute="trailing" secondItem="g2b-1c-R3w" secondAttribute="trailing" constant="8" id="fOK-Qb-vqr"/>
+                                                <constraint firstItem="g2b-1c-R3w" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="8" id="rh8-Gw-k6n"/>
                                             </constraints>
                                         </view>
                                     </tabViewItem>
@@ -1233,7 +1290,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FSI-ze-SFJ">
-                                                    <rect key="frame" x="170" y="310" width="24" height="26"/>
+                                                    <rect key="frame" x="168" y="304" width="24" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="CjS-DN-RCy"/>
                                                         <constraint firstAttribute="width" constant="24" id="FYa-dU-pm9"/>
@@ -1247,7 +1304,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mEK-4A-KPg">
-                                                    <rect key="frame" x="0.0" y="315" width="166" height="16"/>
+                                                    <rect key="frame" x="6" y="309" width="158" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingHead" title="Label" id="21W-v2-HgM">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1261,122 +1318,70 @@
                                                         </binding>
                                                     </connections>
                                                 </textField>
-                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="b2B-yS-ACV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="303"/>
-                                                </customView>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gg8-nj-ySV" userLabel="Mix Saved">
+                                                    <rect key="frame" x="144" y="309" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="6Gn-nL-UeJ"/>
+                                                        <constraint firstAttribute="height" constant="16" id="vLA-3z-OOl"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="03R-jA-agc"/>
+                                                    <connections>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="player.mixDirty" id="KbW-Kw-5tx"/>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="KbW-Kw-5tx" id="EMI-OR-ljf">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSIsNil</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </imageView>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uk2-F3-j5i" userLabel="Mix Unsaved">
+                                                    <rect key="frame" x="144" y="309" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="8rJ-MX-UZs"/>
+                                                        <constraint firstAttribute="width" constant="16" id="eOh-Xg-IS7"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusPartiallyAvailable" id="3NX-9t-9zH"/>
+                                                    <connections>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="player.mixDirty" id="3PP-eO-PlU">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="3PP-eO-PlU" id="K5Z-Kz-uI0">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSIsNil</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="FSI-ze-SFJ" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="0xT-PD-hx7"/>
+                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="leading" secondItem="gg8-nj-ySV" secondAttribute="trailing" constant="8" id="2sv-yH-iPr"/>
+                                                <constraint firstItem="gg8-nj-ySV" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="4DL-XA-zig"/>
+                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="leading" secondItem="Uk2-F3-j5i" secondAttribute="trailing" constant="8" id="53c-DS-bCG"/>
+                                                <constraint firstItem="Uk2-F3-j5i" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="5EV-hA-1ZR"/>
                                                 <constraint firstItem="FSI-ze-SFJ" firstAttribute="leading" secondItem="mEK-4A-KPg" secondAttribute="trailing" constant="6" id="6nu-ul-zOZ"/>
-                                                <constraint firstItem="mEK-4A-KPg" firstAttribute="top" secondItem="9YP-LO-VjF" secondAttribute="top" constant="6" id="NNa-3u-A2c"/>
-                                                <constraint firstItem="mEK-4A-KPg" firstAttribute="leading" secondItem="9YP-LO-VjF" secondAttribute="leading" constant="2" id="Svc-XD-T0e"/>
-                                                <constraint firstItem="b2B-yS-ACV" firstAttribute="top" secondItem="FSI-ze-SFJ" secondAttribute="bottom" constant="8" id="UnH-MD-3J7"/>
-                                                <constraint firstItem="b2B-yS-ACV" firstAttribute="leading" secondItem="9YP-LO-VjF" secondAttribute="leading" id="fil-tC-99K"/>
-                                                <constraint firstAttribute="trailing" secondItem="FSI-ze-SFJ" secondAttribute="trailing" constant="6" id="lXu-hO-5YH"/>
-                                                <constraint firstAttribute="trailing" secondItem="b2B-yS-ACV" secondAttribute="trailing" id="mpd-iH-mA5"/>
-                                                <constraint firstAttribute="bottom" secondItem="b2B-yS-ACV" secondAttribute="bottom" id="uZL-XB-6lr"/>
+                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="PBL-s5-BFk"/>
+                                                <constraint firstItem="gg8-nj-ySV" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="Y1t-Vk-pk0"/>
+                                                <constraint firstItem="mEK-4A-KPg" firstAttribute="leading" secondItem="9YP-LO-VjF" secondAttribute="leading" constant="8" id="bvo-N3-4oh"/>
+                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="gPq-4r-BWX"/>
+                                                <constraint firstItem="Uk2-F3-j5i" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="jEe-Um-lzX"/>
+                                                <constraint firstAttribute="trailing" secondItem="FSI-ze-SFJ" secondAttribute="trailing" constant="8" id="lXu-hO-5YH"/>
+                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="top" secondItem="9YP-LO-VjF" secondAttribute="top" constant="8" id="mOr-il-L8t"/>
                                             </constraints>
                                         </view>
                                     </tabViewItem>
                                 </tabViewItems>
                             </tabView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gg8-nj-ySV" userLabel="Mix Saved">
-                                <rect key="frame" x="267" y="332" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="16" id="6Gn-nL-UeJ"/>
-                                    <constraint firstAttribute="height" constant="16" id="vLA-3z-OOl"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="03R-jA-agc"/>
-                                <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="player.mixDirty" id="KbW-Kw-5tx"/>
-                                    <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="KbW-Kw-5tx" id="EMI-OR-ljf">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uk2-F3-j5i" userLabel="Mix Unsaved">
-                                <rect key="frame" x="267" y="332" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="8rJ-MX-UZs"/>
-                                    <constraint firstAttribute="width" constant="16" id="eOh-Xg-IS7"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusPartiallyAvailable" id="3NX-9t-9zH"/>
-                                <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="player.mixDirty" id="3PP-eO-PlU">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="3PP-eO-PlU" id="K5Z-Kz-uI0">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmZ-G8-a0X" userLabel="Project Unsaved">
-                                <rect key="frame" x="952" y="384" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="a1L-PX-NJG"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="fbV-nH-WGc"/>
-                                    <constraint firstAttribute="width" constant="16" id="iXk-wP-d5I"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="vo4-PQ-F8o"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusPartiallyAvailable" id="HyM-y0-26f"/>
-                                <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.useCommentsDirty" id="eYE-xb-scp">
-                                        <dictionary key="options">
-                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="eYE-xb-scp" id="HsU-Np-enj">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g2b-1c-R3w" userLabel="Project Saved">
-                                <rect key="frame" x="952" y="384" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="En3-r2-CVG"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="XCx-NO-nXP"/>
-                                    <constraint firstAttribute="width" constant="16" id="aZZ-qt-OR1"/>
-                                    <constraint firstAttribute="height" constant="16" id="oAm-Ob-OSF"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="xSe-bs-0FM"/>
-                                <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="BmB-wY-ayo">
-                                        <dictionary key="options">
-                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="BmB-wY-ayo" id="Z9H-Le-gIG">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEv-Ws-bZO">
                                 <rect key="frame" x="762" y="5" width="212" height="32"/>
                                 <buttonCell key="cell" type="push" title="Export Mix..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9dI-5Y-gUA">
@@ -1400,36 +1405,28 @@
                             <constraint firstItem="aZ1-7L-X1O" firstAttribute="leading" secondItem="wbz-wd-VIH" secondAttribute="trailing" constant="12" id="9hT-Qv-Wmh"/>
                             <constraint firstItem="aZ1-7L-X1O" firstAttribute="leading" secondItem="i9y-Ua-GoW" secondAttribute="trailing" constant="12" id="CSW-EN-lB5"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="12" id="EEC-or-Y4F"/>
-                            <constraint firstItem="aZ1-7L-X1O" firstAttribute="top" secondItem="mmZ-G8-a0X" secondAttribute="bottom" constant="6" id="J5Q-Hv-3J3"/>
                             <constraint firstItem="hhh-DP-aH8" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="Kdf-FH-MCi"/>
-                            <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="gg8-nj-ySV" secondAttribute="bottom" constant="4" id="MWE-Gj-1Ko"/>
                             <constraint firstItem="i9y-Ua-GoW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="287" id="N8G-5i-xrl"/>
                             <constraint firstItem="aEv-Ws-bZO" firstAttribute="width" secondItem="aZ1-7L-X1O" secondAttribute="width" id="NRF-SV-gqG"/>
-                            <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="Uk2-F3-j5i" secondAttribute="bottom" constant="4" id="OU2-PK-1LH"/>
                             <constraint firstAttribute="bottom" secondItem="wbz-wd-VIH" secondAttribute="bottom" constant="12" id="QiO-ik-B0D"/>
                             <constraint firstAttribute="bottom" secondItem="i9y-Ua-GoW" secondAttribute="bottom" constant="12" id="Sgk-sT-DJP"/>
                             <constraint firstItem="i9y-Ua-GoW" firstAttribute="top" secondItem="sou-Vk-srP" secondAttribute="bottom" id="UJ1-9J-3o7"/>
                             <constraint firstItem="aEv-Ws-bZO" firstAttribute="top" secondItem="aZ1-7L-X1O" secondAttribute="bottom" constant="8" id="YVn-0z-mfE"/>
                             <constraint firstItem="wbz-wd-VIH" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="bottom" constant="16" id="aAR-Vq-Huk"/>
                             <constraint firstItem="QDz-gR-z1V" firstAttribute="leading" secondItem="e10-CS-RPD" secondAttribute="trailing" constant="16" id="aFf-Am-CV6"/>
-                            <constraint firstItem="sou-Vk-srP" firstAttribute="leading" secondItem="gg8-nj-ySV" secondAttribute="trailing" constant="4" id="cwc-FH-c3H"/>
                             <constraint firstItem="e10-CS-RPD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="hq6-hj-caC"/>
                             <constraint firstItem="hhh-DP-aH8" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="top" id="hui-CB-qQi"/>
                             <constraint firstItem="aEv-Ws-bZO" firstAttribute="leading" secondItem="aZ1-7L-X1O" secondAttribute="leading" id="iO1-7E-BgU"/>
                             <constraint firstItem="aEv-Ws-bZO" firstAttribute="bottom" secondItem="i9y-Ua-GoW" secondAttribute="bottom" id="jJ4-AH-Cyv"/>
-                            <constraint firstItem="g2b-1c-R3w" firstAttribute="trailing" secondItem="aZ1-7L-X1O" secondAttribute="trailing" id="jc9-a5-Cjp"/>
                             <constraint firstItem="QDz-gR-z1V" firstAttribute="top" secondItem="e10-CS-RPD" secondAttribute="top" id="kGn-kn-CHt"/>
-                            <constraint firstItem="mmZ-G8-a0X" firstAttribute="trailing" secondItem="aZ1-7L-X1O" secondAttribute="trailing" id="kY3-AD-jD1"/>
                             <constraint firstItem="sou-Vk-srP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="287" id="lEA-3O-EKx"/>
-                            <constraint firstItem="aZ1-7L-X1O" firstAttribute="top" secondItem="g2b-1c-R3w" secondAttribute="bottom" constant="6" id="lhj-kl-5Xx"/>
-                            <constraint firstItem="sou-Vk-srP" firstAttribute="leading" secondItem="Uk2-F3-j5i" secondAttribute="trailing" constant="4" id="tZw-AA-71q"/>
                             <constraint firstAttribute="trailing" secondItem="aZ1-7L-X1O" secondAttribute="trailing" constant="12" id="uhn-Xn-7GG"/>
                             <constraint firstItem="e10-CS-RPD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="16" id="xEK-OF-NWx"/>
                             <constraint firstItem="aZ1-7L-X1O" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="44" id="xP3-GL-gAh"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="commentsPlaceholderView" destination="b2B-yS-ACV" id="4gO-ot-zKx"/>
+                        <outlet property="commentsTab" destination="9YP-LO-VjF" id="1Gc-T4-c6Z"/>
                         <outlet property="timelineView" destination="sou-Vk-srP" id="C8J-BK-4u6"/>
                         <outlet property="trackPlayheadView" destination="i9y-Ua-GoW" id="SyR-iQ-q5v"/>
                         <outlet property="trackTableView" destination="IaZ-KT-z2f" id="rOy-vs-R1k"/>
