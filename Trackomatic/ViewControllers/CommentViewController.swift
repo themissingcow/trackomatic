@@ -79,6 +79,12 @@ class CommentViewController: NSViewController, NSTextViewDelegate
         updateHeight();
     }
     
+    override func viewDidLayout()
+    {
+        super.viewDidLayout();
+        updateHeight();
+    }
+    
     @IBAction func delete( _ sender: Any )
     {
         guard let c = comment else { return };
