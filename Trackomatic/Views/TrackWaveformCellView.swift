@@ -21,6 +21,8 @@ class TrackWaveformCellView: TrackTableCellView {
     
     private func updateWaveform()
     {
+        self.waveformView.setSampleData( nil, numSamples: 0, scale: 1 );
+
         if( track == nil )
         {
             return;
