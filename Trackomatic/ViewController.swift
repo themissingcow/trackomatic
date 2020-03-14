@@ -197,7 +197,7 @@ class ViewController: NSViewController,
         if let p = project
         {
             player.baseDirectory = p.baseDirectory;
-            player.files = p.audioFiles;
+            player.files = p.allAudioFiles();
             player.load( url: p.userJsonURL( tag: "mix" ) );
         }
         else
@@ -230,12 +230,14 @@ class ViewController: NSViewController,
             rows.append( contentsOf: rootFiles );
         }
         
-        for ( url, files ) in groups
+        let urls = groups.keys.sorted { (a, b) in return a.path < b.path };
+        
+        for url in urls
         {
             if url == dir { continue; }
             
             rows.append( url );
-            rows.append( contentsOf: files );
+            rows.append( contentsOf: groups[url]! );
         }
         
         return rows;
@@ -284,7 +286,7 @@ class ViewController: NSViewController,
             
             if let waveformView = trackView as? TrackWaveformCellView
             {
-                waveformView.commentView.anchor = track!.anchor();
+                waveformView.commentView.anchor = track?.anchor() ?? "";
                 waveformView.commentView.delegate = self;
                 waveformView.commentView.length = player.length;
                 waveformView.commentView.manager = commentManager;

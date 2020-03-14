@@ -67,7 +67,7 @@ extension Project : NSFilePresenter {
         coordinator.coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
             
             if !FileManager.default.fileExists( atPath: readUrl.path ) { return; }
-            if !force && !CheckCachedModificationTime( url: readUrl ) { return; }
+            if !force && !HasBeenModified( url: readUrl ) { return; }
                         
             do
             {

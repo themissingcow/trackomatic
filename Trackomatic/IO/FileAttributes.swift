@@ -23,7 +23,7 @@ func LastModificationTime( url: URL ) -> Date?
 
 private var modificationTimes: [ URL: Date ] = [:];
 // Returns whether the modification time has changed since it was last cached
-@discardableResult func CheckCachedModificationTime( url: URL ) -> Bool
+@discardableResult func HasBeenModified( url: URL ) -> Bool
 {
     if let currentModificationTime = LastModificationTime( url: url )
     {

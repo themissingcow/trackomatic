@@ -159,7 +159,7 @@ class CommentManager: NSObject
                 var error: NSError?;
                 NSFileCoordinator().coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
                           
-                    CheckCachedModificationTime( url: readUrl );
+                    HasBeenModified( url: readUrl );
                 
                     guard let ( comments, name ) = loadComments( url: url ) else { return; }
                     
@@ -224,7 +224,7 @@ fileprivate class CommentPresenter : NSObject, NSFilePresenter
         var error: NSError?;
         NSFileCoordinator().coordinate( readingItemAt: presentedItemURL!, options: [], error: &error ) { readUrl in
                  
-            if !CheckCachedModificationTime( url: readUrl ) { return; }
+            if !HasBeenModified( url: readUrl ) { return; }
             
             guard let ( comments, name ) = m.loadComments( url: readUrl ) else { return; }
 
