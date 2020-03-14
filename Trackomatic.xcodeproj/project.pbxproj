@@ -16,7 +16,6 @@
 		E2205DBA2415C2C3002A6F7B /* TrackRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2205DB92415C2C3002A6F7B /* TrackRowView.swift */; };
 		E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */; };
 		E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268BC71240446CE00C56DC6 /* MultiPlayer.swift */; };
-		E2709A6424141633009B6AA9 /* Watcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6324141633009B6AA9 /* Watcher.swift */; };
 		E2709A6624143E69009B6AA9 /* MultiPlayer+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */; };
 		E2709A6824156835009B6AA9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6724156835009B6AA9 /* Comment.swift */; };
 		E2709A6A24156C8C009B6AA9 /* CommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6924156C8C009B6AA9 /* CommentManager.swift */; };
@@ -67,7 +66,6 @@
 		E2205DB92415C2C3002A6F7B /* TrackRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRowView.swift; sourceTree = "<group>"; };
 		E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		E268BC71240446CE00C56DC6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
-		E2709A6324141633009B6AA9 /* Watcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Watcher.swift; sourceTree = "<group>"; };
 		E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiPlayer+Export.swift"; sourceTree = "<group>"; };
 		E2709A6724156835009B6AA9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		E2709A6924156C8C009B6AA9 /* CommentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentManager.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 		E20F39022409962E0010C1D6 /* IO */ = {
 			isa = PBXGroup;
 			children = (
-				E2709A6324141633009B6AA9 /* Watcher.swift */,
 				E20F39032409963B0010C1D6 /* JSON.swift */,
 				E27FF9D0241A34F9001C7904 /* FileAttributes.swift */,
 			);
@@ -319,7 +316,6 @@
 				E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */,
 				E2709A6C241575D8009B6AA9 /* TimelineCommentView.swift in Sources */,
 				E2AF75152409100F00618022 /* TrackTableCellView.swift in Sources */,
-				E2709A6424141633009B6AA9 /* Watcher.swift in Sources */,
 				E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */,
 				E20F39042409963B0010C1D6 /* JSON.swift in Sources */,
 				E27FF9D1241A34F9001C7904 /* FileAttributes.swift in Sources */,
