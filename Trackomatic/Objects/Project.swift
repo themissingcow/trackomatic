@@ -302,8 +302,13 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
     
     func presentedItemDidMove(to newURL: URL)
     {
-        project?.removeGroup( url: presentedItemURL!, keepWatcher: false );
-        project?.addGroup( url: newURL );
+        guard let p = project else { return; };
+        
+        p.removeGroup( url: presentedItemURL!, keepWatcher: false );
+        if newURL.path.starts( with: p.baseDirectory!.path )
+        {
+            p.addGroup( url: newURL );
+        }
     }
     
     private func updateFiles( force: Bool = false )
