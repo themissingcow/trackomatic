@@ -31,6 +31,7 @@ class Comment: NSObject {
     var track: MultiPlayer.Track?;
 
     @objc dynamic var dirty: Bool;
+    @objc dynamic var highlighted: Bool = false;
     
     weak var manager: CommentManager?;
 

@@ -10,6 +10,9 @@ import Cocoa
 
 class CommentViewController: NSViewController, NSTextViewDelegate
 {
+    @IBInspectable var color: NSColor = NSColor( white: 0.0, alpha: 0.05 );
+    @IBInspectable var highlighedColor: NSColor = NSColor.selectedControlColor;
+    
     enum Mode {
         case new;
         case existing;
@@ -36,9 +39,19 @@ class CommentViewController: NSViewController, NSTextViewDelegate
         return editable && mode != .new;
     }
     
+    @objc dynamic var commentHighted: Bool = false {
+        didSet {
+            if let c = comment
+            {
+                box.fillColor = c.highlighted ? highlighedColor : color;
+            }
+        }
+    }
+    
     var textView: NSTextView?
     var textViewHeightContstraint: NSLayoutConstraint?;
     
+    @IBOutlet weak var box: NSBox!
     @IBOutlet weak var boxView: NSView!;
     @IBOutlet weak var topAnchorItem: NSTextField!
     
@@ -71,6 +84,9 @@ class CommentViewController: NSViewController, NSTextViewDelegate
 
         t.bind( .editable, to: self, withKeyPath: "editable" );
         t.bind( .value, to: self, withKeyPath: "comment.comment", options: [ NSBindingOption.continuouslyUpdatesValue : true ] );
+        
+        // For some reason KVO on "highlighted" causes crashes in assignment
+        bind( NSBindingName("commentHighted"), to: self, withKeyPath: "comment.highlighted", options: [:] );
         
         updateHeight();
     }

@@ -869,8 +869,8 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController title="Trackomatic" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="980" height="422"/>
+                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="997" height="674"/>
                         <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDz-gR-z1V">
@@ -1154,7 +1154,7 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <tabView type="noTabsNoBorder" initialItem="1Hy-1p-4Gg" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-7L-X1O">
-                                <rect key="frame" x="768" y="41" width="200" height="337"/>
+                                <rect key="frame" x="768" y="41" width="217" height="337"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Project" identifier="project" id="pYh-vI-9Ld">
@@ -1269,11 +1269,11 @@
                                     </tabViewItem>
                                     <tabViewItem label="Comments" identifier="comments" id="1Hy-1p-4Gg">
                                         <view key="view" id="9YP-LO-VjF">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="337"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="217" height="337"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FSI-ze-SFJ">
-                                                    <rect key="frame" x="168" y="304" width="24" height="26"/>
+                                                    <rect key="frame" x="185" y="304" width="24" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="CjS-DN-RCy"/>
                                                         <constraint firstAttribute="width" constant="24" id="FYa-dU-pm9"/>
@@ -1287,7 +1287,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mEK-4A-KPg">
-                                                    <rect key="frame" x="6" y="309" width="132" height="16"/>
+                                                    <rect key="frame" x="6" y="309" width="149" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingHead" title="Label" id="21W-v2-HgM">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1302,7 +1302,7 @@
                                                     </connections>
                                                 </textField>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KPP-im-iDl" userLabel="Comments Saved">
-                                                    <rect key="frame" x="144" y="309" width="16" height="16"/>
+                                                    <rect key="frame" x="161" y="309" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="svm-LP-AOQ"/>
                                                         <constraint firstAttribute="width" constant="16" id="xDg-JF-6UF"/>
@@ -1322,7 +1322,7 @@
                                                     </connections>
                                                 </imageView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-hq-jY4" userLabel="Comments Unsaved">
-                                                    <rect key="frame" x="144" y="309" width="16" height="16"/>
+                                                    <rect key="frame" x="161" y="309" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="5d3-Ir-q7o"/>
                                                         <constraint firstAttribute="width" constant="16" id="gPu-Bd-W0X"/>
@@ -1365,7 +1365,7 @@
                                 </tabViewItems>
                             </tabView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEv-Ws-bZO">
-                                <rect key="frame" x="762" y="5" width="212" height="32"/>
+                                <rect key="frame" x="762" y="5" width="229" height="32"/>
                                 <buttonCell key="cell" type="push" title="Export Mix..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9dI-5Y-gUA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1464,7 +1464,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="Dbt-yp-lY8"/>
             </objects>
-            <point key="canvasLocation" x="-160" y="960"/>
+            <point key="canvasLocation" x="-160" y="1086"/>
         </scene>
         <!--New Comment View Controller-->
         <scene sceneID="3nU-5A-GN4">
@@ -1518,7 +1518,7 @@ Gw
                 </viewController>
                 <customObject id="RzU-vg-ODh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-160" y="1675"/>
+            <point key="canvasLocation" x="-160" y="1742"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="tbC-QB-ZqH">
@@ -1528,14 +1528,14 @@ Gw
                         <rect key="frame" x="0.0" y="0.0" width="450" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="twH-L9-UaI">
-                                <rect key="frame" x="9" y="2" width="432" height="90"/>
+                            <box boxType="custom" borderType="bezel" cornerRadius="4" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="twH-L9-UaI">
+                                <rect key="frame" x="12" y="6" width="426" height="84"/>
                                 <view key="contentView" id="dFa-kR-2PM">
-                                    <rect key="frame" x="3" y="3" width="426" height="84"/>
+                                    <rect key="frame" x="1" y="1" width="424" height="82"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5bz-J2-cme">
-                                            <rect key="frame" x="6" y="60" width="40" height="16"/>
+                                            <rect key="frame" x="6" y="58" width="40" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="e1k-dR-Zp5">
                                                 <font key="font" metaFont="systemBold"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1546,7 +1546,7 @@ Gw
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-CV-SaR">
-                                            <rect key="frame" x="393" y="46" width="25" height="30"/>
+                                            <rect key="frame" x="391" y="44" width="25" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="fyW-5K-Yw0"/>
                                             </constraints>
@@ -1564,7 +1564,7 @@ Gw
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-ih-2I4">
-                                            <rect key="frame" x="6" y="42" width="33" height="14"/>
+                                            <rect key="frame" x="6" y="40" width="33" height="14"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KMg-F8-adN">
                                                 <dateFormatter key="formatter" dateStyle="short" timeStyle="short" doesRelativeDateFormatting="YES" id="Xeh-oo-ryO"/>
                                                 <font key="font" metaFont="smallSystem"/>
@@ -1585,6 +1585,8 @@ Gw
                                         <constraint firstItem="5bz-J2-cme" firstAttribute="leading" secondItem="dFa-kR-2PM" secondAttribute="leading" constant="8" id="tf7-l5-M6c"/>
                                     </constraints>
                                 </view>
+                                <color key="borderColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </box>
                         </subviews>
                         <constraints>
@@ -1595,13 +1597,13 @@ Gw
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="box" destination="twH-L9-UaI" id="drN-KB-ZmW"/>
                         <outlet property="boxView" destination="twH-L9-UaI" id="Iid-Au-M6F"/>
                         <outlet property="topAnchorItem" destination="8Ma-ih-2I4" id="RTC-Ps-1Cl"/>
                     </connections>
                 </viewController>
                 <customObject id="25r-q4-g8W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="0em-OD-8zV"/>
-                <userDefaultsController id="zmQ-DW-p2r"/>
+                <userDefaultsController id="Sj4-6N-hvn"/>
             </objects>
             <point key="canvasLocation" x="1368" y="86"/>
         </scene>

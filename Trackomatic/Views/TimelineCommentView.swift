@@ -24,6 +24,74 @@ class TimelineCommentView: NSView {
         }
     }
     
+    var highlightOnHover: Bool = false {
+        didSet { setupTrackingArea(); }
+    }
+    
+    // MARK: - Mouse Tracking
+    
+    private func setupTrackingArea()
+    {
+        if highlightOnHover
+        {
+            if highlightTrackingArea == nil
+            {
+                highlightTrackingArea = NSTrackingArea( rect: bounds, options: [ .activeInKeyWindow, .inVisibleRect, .mouseEnteredAndExited, .mouseMoved ], owner: self );
+                addTrackingArea( highlightTrackingArea! );
+            }
+        }
+        else
+        {
+            if let a = highlightTrackingArea
+            {
+                removeTrackingArea( a );
+            }
+        }
+    }
+    
+    private var highlightTrackingArea: NSTrackingArea?;
+    
+    override func mouseMoved( with event: NSEvent )
+    {
+        let x = convert( event.locationInWindow, from: nil ).x;
+        let position = AVAudioFramePosition( ( x / bounds.width ) * CGFloat(length) );
+        let padding = AVAudioFramePosition( CGFloat( length ) * 0.02 );
+        
+        for comment in comments
+        {
+            let highlighted: Bool = {
+                if let at = comment.at,
+                   let l = comment.length
+                {
+                    return at <= position  && position <= ( at + l );
+                }
+                else if let at = comment.at
+                {
+                    return ( (max(at, padding) - padding) <= position ) && ( position <= (at + padding) );
+                }
+                return false;
+            }();
+            
+            if highlighted != comment.highlighted
+            {
+                comment.highlighted = highlighted;
+            }
+        }
+    }
+    
+    override func mouseExited(with event: NSEvent)
+    {
+        for comment in comments
+        {
+            if comment.highlighted
+            {
+                comment.highlighted = false;
+            }
+        }
+    }
+    
+    // MARK: - Drawing
+    
     override func draw(_ dirtyRect: NSRect) {
                         
         super.draw( dirtyRect );

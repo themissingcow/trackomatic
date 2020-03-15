@@ -271,6 +271,7 @@ class ViewController: NSViewController,
                 waveformView.commentView.delegate = self;
                 waveformView.commentView.length = player.length;
                 waveformView.commentView.manager = commentManager;
+                waveformView.commentView.highlightOnHover = true;
             }
             
             view = trackView;
