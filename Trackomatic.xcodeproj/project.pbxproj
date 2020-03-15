@@ -26,6 +26,7 @@
 		E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D046672405D5B00061E2E3 /* TCWaveformView.m */; };
 		E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0466B2405D8140061E2E3 /* WaveformCache.swift */; };
 		E2E34EE724162C620021461B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E34EE624162C620021461B /* CommentsViewController.swift */; };
+		E2FC78E0241E55C200B617B5 /* TrackCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC78DF241E55C200B617B5 /* TrackCommentsView.swift */; };
 		E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FC2404433200C3D009 /* AppDelegate.swift */; };
 		E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FE2404433200C3D009 /* ViewController.swift */; };
 		E2FEC5012404433400C3D009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEC5002404433400C3D009 /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 		E2D0466A2405D6830061E2E3 /* Trackomatic-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trackomatic-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2D0466B2405D8140061E2E3 /* WaveformCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformCache.swift; sourceTree = "<group>"; };
 		E2E34EE624162C620021461B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		E2FC78DF241E55C200B617B5 /* TrackCommentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackCommentsView.swift; sourceTree = "<group>"; };
 		E2FEC4F92404433200C3D009 /* Trackomatic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackomatic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FEC4FC2404433200C3D009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2FEC4FE2404433200C3D009 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */,
 				E2AF75142409100F00618022 /* TrackTableCellView.swift */,
 				E2709A6B241575D8009B6AA9 /* TimelineCommentView.swift */,
+				E2FC78DF241E55C200B617B5 /* TrackCommentsView.swift */,
 				E2205DB92415C2C3002A6F7B /* TrackRowView.swift */,
 			);
 			path = Views;
@@ -327,6 +330,7 @@
 				E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */,
 				E2205DBA2415C2C3002A6F7B /* TrackRowView.swift in Sources */,
 				E2709A6624143E69009B6AA9 /* MultiPlayer+Export.swift in Sources */,
+				E2FC78E0241E55C200B617B5 /* TrackCommentsView.swift in Sources */,
 				E2D0466C2405D8140061E2E3 /* WaveformCache.swift in Sources */,
 				E2709A6824156835009B6AA9 /* Comment.swift in Sources */,
 				E20F3901240993F20010C1D6 /* Project.swift in Sources */,

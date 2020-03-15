@@ -11,7 +11,7 @@ import Cocoa
 class TrackWaveformCellView: TrackTableCellView {
 
     @IBOutlet weak var waveformView: TCWaveformView!
-    @IBOutlet weak var commentView: TimelineCommentView!
+    @IBOutlet weak var commentView: TrackCommentsView!
     
     override var track: MultiPlayer.Track! {
         didSet {

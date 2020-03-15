@@ -17,7 +17,7 @@ fileprivate enum Cells {
 
 class ViewController: NSViewController,
         NSTableViewDelegate, NSTableViewDataSource,
-        TimelineViewDelegate, TimelineCommentViewDelegate
+        TimelineViewDelegate, TrackCommentsViewDelegate
 {
 
     
@@ -307,7 +307,7 @@ class ViewController: NSViewController,
     
     // MARK: - CommentViewDelegate
     
-    func timelineCommentView( _ view: TimelineCommentView,
+    func trackCommentsView( _ view: TrackCommentsView,
         requestedCommentAt position: AVAudioFramePosition, ofLength length: AVAudioFramePosition?
     ) {
         if let anchor = view.anchor
