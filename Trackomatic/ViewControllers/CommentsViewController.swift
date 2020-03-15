@@ -76,8 +76,8 @@ class CommentsViewController: NSViewController
         for comment in comments
         {
             let vc = sb.instantiateController( withIdentifier: "commentViewController" ) as! CommentViewController;
-            vc.manager = commentManager;
             vc.comment = comment;
+            vc.editable = comment.shortName == commentManager?.userShortName;
             commentViewControllers.append( vc );
             stackView.addArrangedSubview( vc.view );
         }

@@ -36,6 +36,7 @@ class CommentManager: NSObject
     {
         for comment in comments
         {
+            comment.manager = self;
             if let a = comment.anchor
             {
                 comment.track = player?.trackFor( anchor: a );
@@ -57,6 +58,7 @@ class CommentManager: NSObject
         willChangeValue( forKey: "comments" );
         for comment in comments
         {
+            comment.manager = nil;
             comment.track = nil;
             if let index = self.comments.firstIndex( of: comment )
             {

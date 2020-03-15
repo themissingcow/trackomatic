@@ -15,25 +15,21 @@ class CommentViewController: NSViewController, NSTextViewDelegate
         case existing;
     }
     
-    var mode: Mode = .existing;
+    var mode: Mode = .existing {
+        willSet { willChangeValue( forKey: "deletable" ); }
+        didSet { didChangeValue( forKey: "deletable" ); }
+    }
     
     @objc dynamic var comment: Comment? {
-        willSet { willChangeValue(forKey: "editable"); willChangeValue( forKey: "deletable" ); }
         didSet {
-            didChangeValue( forKey: "editable");
-            didChangeValue( forKey: "deletable" );
             textView?.drawsBackground = editable;
             updateHeight();
         }
     };
     
-    @objc dynamic var manager: CommentManager? {
-           willSet { willChangeValue(forKey: "editable"); willChangeValue( forKey: "deletable" ); }
-           didSet { didChangeValue( forKey: "editable"); didChangeValue( forKey: "deletable" ); }
-    };
-    
-    @objc dynamic var editable: Bool {
-        return comment != nil && ( comment?.shortName == manager?.userShortName );
+    @objc dynamic var editable: Bool = false {
+        willSet { willChangeValue( forKey: "deletable" ); }
+        didSet { didChangeValue( forKey: "deletable" ); }
     }
     
     @objc dynamic var deletable: Bool {
@@ -89,7 +85,7 @@ class CommentViewController: NSViewController, NSTextViewDelegate
     {
         guard let c = comment else { return };
         comment = nil;
-        manager?.remove(comments: [ c ] );
+        c.delete();
     }
     
     private func updateHeight()

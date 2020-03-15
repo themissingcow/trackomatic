@@ -29,8 +29,15 @@ class Comment: NSObject {
     } };
     
     var track: MultiPlayer.Track?;
-        
+
     @objc dynamic var dirty: Bool;
+    
+    weak var manager: CommentManager?;
+
+    func delete()
+    {
+        manager?.remove( comments: [ self ] );
+    }
 
     override init()
     {

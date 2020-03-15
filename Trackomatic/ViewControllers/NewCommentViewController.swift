@@ -19,12 +19,7 @@ class NewCommentViewController: NSViewController
             commentViewController?.comment = comment;
         }
     }
-    var commentManager: CommentManager? {
-        didSet
-        {
-            commentViewController?.manager = commentManager;
-        }
-    }
+    var commentManager: CommentManager?;
     
     override func viewDidLoad()
     {
@@ -36,9 +31,8 @@ class NewCommentViewController: NSViewController
         view.addSubview( vc.view );
         vc.view.frame = placeholderView.frame;
         vc.mode = .new;
+        vc.editable = true;
         vc.comment = comment;
-        vc.manager = commentManager;
-
         commentViewController = vc;
     }
 
