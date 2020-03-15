@@ -40,25 +40,6 @@ class ViewController: NSViewController,
     fileprivate var rows: [ Any ] = [];
     
     fileprivate var updateTimer: Timer?;
-
-    @IBAction func openFolder(_ sender: Any)
-    {
-        let openPanel = NSOpenPanel();
-        openPanel.canChooseFiles = false;
-        openPanel.canChooseDirectories = true;
-        openPanel.allowsMultipleSelection = false;
-        
-        openPanel.beginSheetModal( for: view.window! ){ ( result ) in
-
-            if result == .OK
-            {
-                if let url = openPanel.url
-                {
-                    self.loadFromDirectory( dir: url );
-                }
-            }
-        }
-    }
     
     @IBAction func playPressed(_ sender: Any)
     {
