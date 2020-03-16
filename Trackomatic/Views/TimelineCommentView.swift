@@ -106,9 +106,14 @@ class TimelineCommentView: NSView {
             return;
         }
         
+        var haveNonTemporalComments = false;
+        
         for comment in comments
         {
-            guard let position = comment.at else { continue; }
+            guard let position = comment.at else {
+                haveNonTemporalComments = true;
+                continue;
+            }
          
             let isFocused = focusComments?.firstIndex( of: comment ) != nil;
             let x = CGFloat( Double(position) / Double(length) ) * bounds.width;
@@ -128,6 +133,14 @@ class TimelineCommentView: NSView {
                 context.addLine(to: CGPoint( x: x, y: frame.height ));
                 context.strokePath();
             }
+        }
+        
+        if haveNonTemporalComments
+        {
+            context.setFillColor( commentColor.cgColor );
+            context.fill( CGRect( x: 0.0, y: 0.0, width: 5, height: bounds.height ) );
+            context.fill( CGRect( x: bounds.width - 5.0, y: 0.0, width: 5, height: bounds.height ) );
+
         }
     }
 }
