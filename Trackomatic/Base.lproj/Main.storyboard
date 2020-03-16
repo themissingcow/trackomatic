@@ -743,7 +743,8 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView identifier="commentsView" distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAl-ob-ihX" customClass="CommentsStackView" customModule="Trackomatic" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="298" width="313" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="286" width="313" height="12"/>
+                                            <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="0.0" bottom="12"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -752,6 +753,7 @@
                                         <constraint firstAttribute="trailing" secondItem="aAl-ob-ihX" secondAttribute="trailing" id="Jdx-dp-rhe"/>
                                     </constraints>
                                 </clipView>
+                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1D2-sT-GdY">
                                     <rect key="frame" x="1" y="283" width="313" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -870,7 +872,7 @@
             <objects>
                 <viewController title="Trackomatic" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="997" height="674"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1032" height="674"/>
                         <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDz-gR-z1V">
@@ -1154,27 +1156,30 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <tabView type="noTabsNoBorder" initialItem="1Hy-1p-4Gg" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-7L-X1O">
-                                <rect key="frame" x="768" y="41" width="217" height="337"/>
+                                <rect key="frame" x="768" y="41" width="250" height="337"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="dnW-gk-A5P"/>
+                                </constraints>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Project" identifier="project" id="pYh-vI-9Ld">
                                         <view key="view" id="017-Qv-66i">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="337"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="337"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufd-8A-zSB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="305"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="305"/>
                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AL0-sL-wVr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="305"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="305"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="Xxh-Zq-Ame">
-                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="305"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="250" height="305"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="minSize" width="200" height="305"/>
-                                                                <size key="maxSize" width="240" height="10000000"/>
+                                                                <size key="minSize" width="250" height="305"/>
+                                                                <size key="maxSize" width="250" height="10000000"/>
                                                                 <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <connections>
                                                                     <binding destination="XfG-lQ-9wD" name="hidden" keyPath="project" id="E7Y-Xa-Zdf">
@@ -1197,12 +1202,12 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CeF-g0-Tn7">
-                                                        <rect key="frame" x="184" y="0.0" width="16" height="305"/>
+                                                        <rect key="frame" x="234" y="0.0" width="16" height="305"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmZ-G8-a0X" userLabel="Project Unsaved">
-                                                    <rect key="frame" x="176" y="313" width="16" height="16"/>
+                                                    <rect key="frame" x="226" y="313" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="a1L-PX-NJG"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="fbV-nH-WGc"/>
@@ -1229,7 +1234,7 @@
                                                     </connections>
                                                 </imageView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g2b-1c-R3w" userLabel="Project Saved">
-                                                    <rect key="frame" x="176" y="313" width="16" height="16"/>
+                                                    <rect key="frame" x="226" y="313" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="En3-r2-CVG"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="XCx-NO-nXP"/>
@@ -1309,6 +1314,7 @@
                                                     </constraints>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="W9D-W8-u16"/>
                                                     <connections>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="j2o-of-rfE"/>
                                                         <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="j2o-of-rfE" id="8Q7-Xa-m5L">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -1318,7 +1324,6 @@
                                                                 <string key="NSValueTransformerName">NSIsNil</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="j2o-of-rfE"/>
                                                     </connections>
                                                 </imageView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-hq-jY4" userLabel="Comments Unsaved">
@@ -1329,6 +1334,11 @@
                                                     </constraints>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusPartiallyAvailable" id="cCQ-53-d8a"/>
                                                     <connections>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="2DY-ph-8uC">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                         <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="2DY-ph-8uC" id="FM8-hY-pln">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -1336,11 +1346,6 @@
                                                                 <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                 <integer key="NSNullPlaceholder" value="-1"/>
                                                                 <string key="NSValueTransformerName">NSIsNil</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="2DY-ph-8uC">
-                                                            <dictionary key="options">
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -1365,7 +1370,7 @@
                                 </tabViewItems>
                             </tabView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEv-Ws-bZO">
-                                <rect key="frame" x="762" y="5" width="229" height="32"/>
+                                <rect key="frame" x="762" y="5" width="262" height="32"/>
                                 <buttonCell key="cell" type="push" title="Export Mix..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9dI-5Y-gUA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1464,7 +1469,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="Dbt-yp-lY8"/>
             </objects>
-            <point key="canvasLocation" x="-160" y="1086"/>
+            <point key="canvasLocation" x="-143" y="1086"/>
         </scene>
         <!--New Comment View Controller-->
         <scene sceneID="3nU-5A-GN4">
@@ -1529,7 +1534,7 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box boxType="custom" borderType="bezel" cornerRadius="4" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="twH-L9-UaI">
-                                <rect key="frame" x="12" y="6" width="426" height="84"/>
+                                <rect key="frame" x="12" y="0.0" width="426" height="84"/>
                                 <view key="contentView" id="dFa-kR-2PM">
                                     <rect key="frame" x="1" y="1" width="424" height="82"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1592,8 +1597,8 @@ Gw
                         <constraints>
                             <constraint firstItem="twH-L9-UaI" firstAttribute="leading" secondItem="Xhs-qh-qKR" secondAttribute="leading" constant="12" id="NKs-L3-JXV"/>
                             <constraint firstAttribute="trailing" secondItem="twH-L9-UaI" secondAttribute="trailing" constant="12" id="oQ2-p6-GXe"/>
-                            <constraint firstAttribute="bottom" secondItem="twH-L9-UaI" secondAttribute="bottom" constant="6" id="rsl-dB-tUj"/>
-                            <constraint firstItem="twH-L9-UaI" firstAttribute="top" secondItem="Xhs-qh-qKR" secondAttribute="top" constant="6" id="u6j-iB-FI9"/>
+                            <constraint firstAttribute="bottom" secondItem="twH-L9-UaI" secondAttribute="bottom" id="rsl-dB-tUj"/>
+                            <constraint firstItem="twH-L9-UaI" firstAttribute="top" secondItem="Xhs-qh-qKR" secondAttribute="top" constant="12" id="u6j-iB-FI9"/>
                         </constraints>
                     </view>
                     <connections>
