@@ -8,6 +8,7 @@
 
 import Cocoa
 import AVFoundation
+import WebKit
 
 fileprivate enum Cells {
     static let Group = NSUserInterfaceItemIdentifier( rawValue: "GroupRow" )
@@ -19,13 +20,13 @@ class ViewController: NSViewController,
         NSTableViewDelegate, NSTableViewDataSource,
         TimelineViewDelegate, TrackCommentsViewDelegate
 {
-
-    
     @IBOutlet weak var trackTableView: NSTableView!
     @IBOutlet weak var timelineView: TimelineView!
     @IBOutlet weak var trackPlayheadView: TimelineView!
     
     @IBOutlet weak var commentsTab: NSView!
+    
+    @IBOutlet weak var chatWebView: WKWebView!
     
     @IBOutlet weak var exportButton: NSButton!;
     
@@ -121,9 +122,7 @@ class ViewController: NSViewController,
             comments.view.bottomAnchor.constraint( equalTo: commentsTab.bottomAnchor ).isActive = true;
             comments.view.leadingAnchor.constraint( equalTo: commentsTab.leadingAnchor ).isActive = true;
             comments.view.trailingAnchor.constraint( equalTo: commentsTab.trailingAnchor ).isActive = true;
-            comments.view.widthAnchor.constraint( greaterThanOrEqualToConstant: 250 ).isActive = true;
             comments.view.heightAnchor.constraint( greaterThanOrEqualToConstant: 250 ).isActive = true;
-
         }
         
     }
@@ -171,6 +170,8 @@ class ViewController: NSViewController,
         trackPlayheadView.position = 0;
         
         view.window?.setTitleWithRepresentedFilename( dir.path );
+        
+        updateChat( project: project );
     }
     
     private func setupPlayer( project: Project? )
@@ -222,6 +223,33 @@ class ViewController: NSViewController,
         }
         
         return rows;
+    }
+    
+    // MARK: - Chat
+    
+    func updateChat( project: Project? )
+    {
+        var urlString = "about:blank";
+        
+        if let uuid = project?.uuid,
+           let chatTemplateURL = UserDefaults.standard.string( forKey: "chatURL" )
+        {
+        
+            let name = commentManager.userDisplayName;
+            let encodedName = name.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed )
+                  ?? commentManager.userShortName;
+        
+            urlString = chatTemplateURL.replacingOccurrences(of: "{project}", with: uuid );
+            urlString = urlString.replacingOccurrences(of: "{user}", with: encodedName );
+        }
+            
+        guard let url = URL( string: urlString ) else {
+            print( "Unlable to build URL from \(urlString)" );
+            return;
+        }
+        
+        let urlRequest = URLRequest( url: url );
+        chatWebView.load( urlRequest );
     }
     
     // MARK: - NSTableView
