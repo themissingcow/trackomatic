@@ -1318,45 +1318,6 @@
                                             <rect key="frame" x="10" y="33" width="244" height="317"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufd-8A-zSB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="244" height="285"/>
-                                                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AL0-sL-wVr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="244" height="285"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="Xxh-Zq-Ame">
-                                                                <rect key="frame" x="0.0" y="0.0" width="244" height="285"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="minSize" width="244" height="285"/>
-                                                                <size key="maxSize" width="250" height="10000000"/>
-                                                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <connections>
-                                                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="project" id="E7Y-Xa-Zdf">
-                                                                        <dictionary key="options">
-                                                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                                                        </dictionary>
-                                                                    </binding>
-                                                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="project.notes" id="9VO-BH-pJi">
-                                                                        <dictionary key="options">
-                                                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                                                        </dictionary>
-                                                                    </binding>
-                                                                </connections>
-                                                            </textView>
-                                                        </subviews>
-                                                    </clipView>
-                                                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="hCK-4Y-4rw">
-                                                        <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                    </scroller>
-                                                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CeF-g0-Tn7">
-                                                        <rect key="frame" x="228" y="0.0" width="16" height="285"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                    </scroller>
-                                                </scrollView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmZ-G8-a0X" userLabel="Project Unsaved">
                                                     <rect key="frame" x="220" y="293" width="16" height="16"/>
                                                     <constraints>
@@ -1413,11 +1374,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mmZ-G8-a0X" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="8" id="0X3-b5-gjR"/>
-                                                <constraint firstAttribute="bottom" secondItem="ufd-8A-zSB" secondAttribute="bottom" id="79q-le-Vyq"/>
-                                                <constraint firstAttribute="trailing" secondItem="ufd-8A-zSB" secondAttribute="trailing" id="NAw-ox-P55"/>
-                                                <constraint firstItem="ufd-8A-zSB" firstAttribute="top" secondItem="mmZ-G8-a0X" secondAttribute="bottom" constant="8" id="SqN-rP-VPe"/>
                                                 <constraint firstAttribute="trailing" secondItem="mmZ-G8-a0X" secondAttribute="trailing" constant="8" id="UOC-ib-9zJ"/>
-                                                <constraint firstItem="ufd-8A-zSB" firstAttribute="leading" secondItem="017-Qv-66i" secondAttribute="leading" id="Xnc-dp-ORd"/>
                                                 <constraint firstAttribute="trailing" secondItem="g2b-1c-R3w" secondAttribute="trailing" constant="8" id="fOK-Qb-vqr"/>
                                                 <constraint firstItem="g2b-1c-R3w" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="8" id="rh8-Gw-k6n"/>
                                             </constraints>

@@ -134,11 +134,6 @@ extension Project : NSFilePresenter {
             uuid = u;
         }
         
-        if let n = json["notes"] as? String
-        {
-            notes = n;
-        }
-        
         dirty = false;
     }
 
@@ -147,7 +142,6 @@ extension Project : NSFilePresenter {
         var result = JSONDict();
         
         result["uuid"] = uuid;
-        result["notes"] = notes;
         
         dirty = false;
         

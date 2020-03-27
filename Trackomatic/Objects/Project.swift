@@ -14,14 +14,6 @@ class Project: NSObject {
     
     var uuid: String;
     
-    @objc dynamic var notes: String = "" {
-        didSet {
-            if notes != oldValue {
-                dirty = true;
-            }
-        }
-    }
-    
     @objc dynamic public private(set) var baseDirectory: URL?
     
     @objc dynamic public private(set) var audioFileGroups: [ URL: [ AVAudioFile ] ] = [:];
