@@ -52,6 +52,11 @@ extension Project : NSFilePresenter {
         setBaseDirectory( directory: baseDirectory, watch: watch );
         if !load( force: true )
         {
+            // See if we have a common sample rate
+            if let rate = commonSampleRate()
+            {
+                sampleRate = rate;
+            }
             // Make sure we create the project json with the UUID regardless
             save();
         }
@@ -135,6 +140,11 @@ extension Project : NSFilePresenter {
             uuid = u;
         }
         
+        if let s = json["sampleRate"] as? Double
+        {
+            sampleRate = s;
+        }
+        
         dirty = false;
     }
 
@@ -143,6 +153,7 @@ extension Project : NSFilePresenter {
         var result = JSONDict();
         
         result["uuid"] = uuid;
+        result["sampleRate"] = sampleRate;
         
         dirty = false;
         

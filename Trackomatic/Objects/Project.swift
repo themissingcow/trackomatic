@@ -14,6 +14,12 @@ class Project: NSObject {
     
     var uuid: String;
     
+    var sampleRate: Double = 44100.0 {
+        didSet {
+            dirty = true;
+        }
+    }
+    
     @objc dynamic public private(set) var baseDirectory: URL?
     
     @objc dynamic public private(set) var audioFileGroups: [ URL: [ AVAudioFile ] ] = [:];
@@ -36,6 +42,28 @@ class Project: NSObject {
     {
         uuid = UUID().uuidString;
         super.init();
+    }
+    
+    // MARK: - Sample Rate
+    
+    func commonSampleRate() -> Double?
+    {
+        let files = allAudioFiles();
+        
+        if files.isEmpty {
+            return nil;
+        }
+
+        let rate = files.first!.fileFormat.sampleRate;
+        for file in files
+        {
+            if file.fileFormat.sampleRate != rate
+            {
+                return nil;
+            }
+        }
+        
+        return rate;
     }
     
     // MARK: - Base Directory
