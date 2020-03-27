@@ -59,6 +59,7 @@ extension Project : NSFilePresenter {
         NSFileCoordinator.addFilePresenter( self );
     }
     
+    @discardableResult
     func load( force: Bool = false ) -> Bool
     {
         var loaded = false;
