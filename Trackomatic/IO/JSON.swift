@@ -50,14 +50,20 @@ extension Project : NSFilePresenter {
         self.init();
        
         setBaseDirectory( directory: baseDirectory, watch: watch );
-        load( force: true );
+        if !load( force: true )
+        {
+            // Make sure we create the project json with the UUID regardless
+            save();
+        }
         
         NSFileCoordinator.addFilePresenter( self );
     }
     
-    func load( force: Bool = false )
+    func load( force: Bool = false ) -> Bool
     {
-        if baseDirectory == nil { return; }
+        var loaded = false;
+        
+        if baseDirectory == nil { return loaded; }
 
         let url = jsonURL();
 
@@ -74,6 +80,7 @@ extension Project : NSFilePresenter {
                 if let json: JSONDict = try LoadJSON( url: readUrl )
                 {
                     loadFromDict( json );
+                    loaded = true;
                 }
             }
             catch
@@ -85,6 +92,8 @@ extension Project : NSFilePresenter {
         if let e = error {
             print( "Coordination error: \(e)" );
         }
+        
+        return loaded;
     }
     
     func save()
