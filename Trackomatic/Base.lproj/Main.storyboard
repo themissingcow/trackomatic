@@ -737,14 +737,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="315" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGv-dT-BBp">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGv-dT-BBp">
                                 <rect key="frame" x="0.0" y="0.0" width="315" height="300"/>
-                                <clipView key="contentView" id="8Ls-hh-8lk">
-                                    <rect key="frame" x="1" y="1" width="313" height="298"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="8Ls-hh-8lk">
+                                    <rect key="frame" x="0.0" y="0.0" width="315" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView identifier="commentsView" distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAl-ob-ihX" customClass="CommentsStackView" customModule="Trackomatic" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="286" width="313" height="12"/>
+                                            <rect key="frame" x="0.0" y="288" width="315" height="12"/>
                                             <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="0.0" bottom="12"/>
                                         </stackView>
                                     </subviews>
@@ -756,11 +756,11 @@
                                 </clipView>
                                 <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1D2-sT-GdY">
-                                    <rect key="frame" x="1" y="283" width="313" height="16"/>
+                                    <rect key="frame" x="0.0" y="284" width="315" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="l8H-zf-lNd">
-                                    <rect key="frame" x="298" y="1" width="16" height="298"/>
+                                    <rect key="frame" x="299" y="0.0" width="16" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1203,7 +1203,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FSI-ze-SFJ">
-                                                    <rect key="frame" x="212" y="284" width="24" height="26"/>
+                                                    <rect key="frame" x="188" y="284" width="24" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="CjS-DN-RCy"/>
                                                         <constraint firstAttribute="width" constant="24" id="FYa-dU-pm9"/>
@@ -1231,28 +1231,8 @@
                                                         </binding>
                                                     </connections>
                                                 </textField>
-                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KPP-im-iDl" userLabel="Comments Saved">
-                                                    <rect key="frame" x="188" y="289" width="16" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="svm-LP-AOQ"/>
-                                                        <constraint firstAttribute="width" constant="16" id="xDg-JF-6UF"/>
-                                                    </constraints>
-                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="W9D-W8-u16"/>
-                                                    <connections>
-                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="j2o-of-rfE"/>
-                                                        <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="j2o-of-rfE" id="8Q7-Xa-m5L">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                <string key="NSValueTransformerName">NSIsNil</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </imageView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-hq-jY4" userLabel="Comments Unsaved">
-                                                    <rect key="frame" x="188" y="289" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="289" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="5d3-Ir-q7o"/>
                                                         <constraint firstAttribute="width" constant="16" id="gPu-Bd-W0X"/>
@@ -1275,20 +1255,39 @@
                                                         </binding>
                                                     </connections>
                                                 </imageView>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KPP-im-iDl" userLabel="Comments Saved">
+                                                    <rect key="frame" x="220" y="289" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="svm-LP-AOQ"/>
+                                                        <constraint firstAttribute="width" constant="16" id="xDg-JF-6UF"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="W9D-W8-u16"/>
+                                                    <connections>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden" keyPath="commentManager.userCommentsDirty" id="j2o-of-rfE"/>
+                                                        <binding destination="XfG-lQ-9wD" name="hidden2" keyPath="project" previousBinding="j2o-of-rfE" id="8Q7-Xa-m5L">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSIsNil</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="FSI-ze-SFJ" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="0xT-PD-hx7"/>
-                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="leading" secondItem="zqK-hq-jY4" secondAttribute="trailing" constant="8" id="4sL-u6-oF7"/>
-                                                <constraint firstItem="zqK-hq-jY4" firstAttribute="leading" secondItem="mEK-4A-KPg" secondAttribute="trailing" constant="8" id="5kg-Yg-fDE"/>
+                                                <constraint firstItem="zqK-hq-jY4" firstAttribute="top" secondItem="9YP-LO-VjF" secondAttribute="top" constant="12" id="2PK-gb-3Qh"/>
+                                                <constraint firstAttribute="trailing" secondItem="KPP-im-iDl" secondAttribute="trailing" constant="8" id="LKw-Wl-sKt"/>
                                                 <constraint firstItem="FSI-ze-SFJ" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="PBL-s5-BFk"/>
-                                                <constraint firstItem="KPP-im-iDl" firstAttribute="leading" secondItem="mEK-4A-KPg" secondAttribute="trailing" constant="8" id="bMU-zB-25z"/>
+                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="leading" secondItem="mEK-4A-KPg" secondAttribute="trailing" constant="8" id="Yij-Qg-dy7"/>
                                                 <constraint firstItem="mEK-4A-KPg" firstAttribute="leading" secondItem="9YP-LO-VjF" secondAttribute="leading" constant="8" id="bvo-N3-4oh"/>
                                                 <constraint firstItem="KPP-im-iDl" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="euX-AM-1sv"/>
                                                 <constraint firstItem="FSI-ze-SFJ" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="gPq-4r-BWX"/>
-                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="leading" secondItem="KPP-im-iDl" secondAttribute="trailing" constant="8" id="kol-IN-SfK"/>
-                                                <constraint firstAttribute="trailing" secondItem="FSI-ze-SFJ" secondAttribute="trailing" constant="8" id="lXu-hO-5YH"/>
-                                                <constraint firstItem="FSI-ze-SFJ" firstAttribute="top" secondItem="9YP-LO-VjF" secondAttribute="top" constant="8" id="mOr-il-L8t"/>
+                                                <constraint firstAttribute="trailing" secondItem="zqK-hq-jY4" secondAttribute="trailing" constant="8" id="wAe-Ar-ack"/>
                                                 <constraint firstItem="zqK-hq-jY4" firstAttribute="centerY" secondItem="mEK-4A-KPg" secondAttribute="centerY" id="wHO-gS-9Vv"/>
+                                                <constraint firstItem="KPP-im-iDl" firstAttribute="leading" secondItem="FSI-ze-SFJ" secondAttribute="trailing" constant="8" id="yed-Fy-hon"/>
                                             </constraints>
                                         </view>
                                     </tabViewItem>
@@ -1319,7 +1318,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmZ-G8-a0X" userLabel="Project Unsaved">
-                                                    <rect key="frame" x="220" y="293" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="289" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="a1L-PX-NJG"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="fbV-nH-WGc"/>
@@ -1346,7 +1345,7 @@
                                                     </connections>
                                                 </imageView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g2b-1c-R3w" userLabel="Project Saved">
-                                                    <rect key="frame" x="220" y="293" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="289" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="En3-r2-CVG"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="XCx-NO-nXP"/>
@@ -1373,10 +1372,10 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="mmZ-G8-a0X" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="8" id="0X3-b5-gjR"/>
+                                                <constraint firstItem="mmZ-G8-a0X" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="12" id="0X3-b5-gjR"/>
                                                 <constraint firstAttribute="trailing" secondItem="mmZ-G8-a0X" secondAttribute="trailing" constant="8" id="UOC-ib-9zJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="g2b-1c-R3w" secondAttribute="trailing" constant="8" id="fOK-Qb-vqr"/>
-                                                <constraint firstItem="g2b-1c-R3w" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="8" id="rh8-Gw-k6n"/>
+                                                <constraint firstItem="g2b-1c-R3w" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="12" id="rh8-Gw-k6n"/>
                                             </constraints>
                                         </view>
                                     </tabViewItem>
@@ -1605,7 +1604,7 @@ Gw
                                     </constraints>
                                 </view>
                                 <color key="borderColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                         </subviews>
                         <constraints>
