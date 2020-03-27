@@ -908,12 +908,11 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController title="Trackomatic" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1030" height="422"/>
-                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="1030" height="610"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDz-gR-z1V">
-                                <rect key="frame" x="16" y="346" width="60" height="60"/>
+                                <rect key="frame" x="16" y="534" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="mtg-mc-GZh"/>
                                     <constraint firstAttribute="height" constant="60" id="zwt-Fc-4M0"/>
@@ -928,13 +927,13 @@
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbz-wd-VIH">
-                                <rect key="frame" x="12" y="12" width="744" height="316"/>
+                                <rect key="frame" x="12" y="12" width="744" height="504"/>
                                 <clipView key="contentView" drawsBackground="NO" id="bgx-z3-E04">
-                                    <rect key="frame" x="1" y="1" width="742" height="314"/>
+                                    <rect key="frame" x="1" y="1" width="742" height="502"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="50" viewBased="YES" id="IaZ-KT-z2f">
-                                            <rect key="frame" x="0.0" y="0.0" width="742" height="314"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="742" height="502"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="0.0" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1142,7 +1141,7 @@
                                 </scroller>
                             </scrollView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="sou-Vk-srP" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
-                                <rect key="frame" x="287" y="328" width="469" height="50"/>
+                                <rect key="frame" x="287" y="516" width="469" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Y9S-bC-0bl"/>
                                 </constraints>
@@ -1160,7 +1159,7 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-DP-aH8">
-                                <rect key="frame" x="16" y="346" width="60" height="60"/>
+                                <rect key="frame" x="16" y="534" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Cet-JO-oo2"/>
                                     <constraint firstAttribute="width" constant="60" id="bfg-qz-Qaj"/>
@@ -1179,7 +1178,7 @@
                                 </connections>
                             </button>
                             <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="i9y-Ua-GoW" userLabel="Lower Playhead" customClass="TimelineView" customModule="Trackomatic" customModuleProvider="target">
-                                <rect key="frame" x="287" y="12" width="469" height="316"/>
+                                <rect key="frame" x="287" y="12" width="469" height="504"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="playheadColor">
                                         <color key="value" red="0.46168729167517431" green="0.54765336906617179" blue="0.80102412564766845" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1190,8 +1189,8 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="drawBorder" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </customView>
-                            <tabView initialItem="1Hy-1p-4Gg" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-7L-X1O">
-                                <rect key="frame" x="761" y="31" width="264" height="363"/>
+                            <tabView misplaced="YES" initialItem="1Hy-1p-4Gg" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-7L-X1O">
+                                <rect key="frame" x="761" y="31" width="264" height="565"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="1kk-G1-AJ6"/>
                                 </constraints>
@@ -1199,11 +1198,11 @@
                                 <tabViewItems>
                                     <tabViewItem label="Comments" identifier="comments" id="1Hy-1p-4Gg">
                                         <view key="view" id="9YP-LO-VjF">
-                                            <rect key="frame" x="10" y="33" width="244" height="317"/>
+                                            <rect key="frame" x="10" y="33" width="244" height="519"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FSI-ze-SFJ">
-                                                    <rect key="frame" x="188" y="284" width="24" height="26"/>
+                                                    <rect key="frame" x="188" y="472" width="24" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="CjS-DN-RCy"/>
                                                         <constraint firstAttribute="width" constant="24" id="FYa-dU-pm9"/>
@@ -1217,7 +1216,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mEK-4A-KPg">
-                                                    <rect key="frame" x="6" y="289" width="176" height="16"/>
+                                                    <rect key="frame" x="6" y="477" width="176" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingHead" title="Label" id="21W-v2-HgM">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1232,7 +1231,7 @@
                                                     </connections>
                                                 </textField>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-hq-jY4" userLabel="Comments Unsaved">
-                                                    <rect key="frame" x="220" y="289" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="477" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="5d3-Ir-q7o"/>
                                                         <constraint firstAttribute="width" constant="16" id="gPu-Bd-W0X"/>
@@ -1256,7 +1255,7 @@
                                                     </connections>
                                                 </imageView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KPP-im-iDl" userLabel="Comments Saved">
-                                                    <rect key="frame" x="220" y="289" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="477" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="svm-LP-AOQ"/>
                                                         <constraint firstAttribute="width" constant="16" id="xDg-JF-6UF"/>
@@ -1293,7 +1292,7 @@
                                     </tabViewItem>
                                     <tabViewItem label="Chat" identifier="" id="dNd-ga-S41">
                                         <view key="view" id="mnk-VF-b15">
-                                            <rect key="frame" x="10" y="33" width="244" height="317"/>
+                                            <rect key="frame" x="10" y="33" width="244" height="519"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2WD-fF-24y">
@@ -1314,11 +1313,11 @@
                                     </tabViewItem>
                                     <tabViewItem label="Project" identifier="project" id="pYh-vI-9Ld">
                                         <view key="view" id="017-Qv-66i">
-                                            <rect key="frame" x="10" y="33" width="244" height="317"/>
+                                            <rect key="frame" x="10" y="33" width="244" height="519"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmZ-G8-a0X" userLabel="Project Unsaved">
-                                                    <rect key="frame" x="220" y="289" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="491" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="a1L-PX-NJG"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="fbV-nH-WGc"/>
@@ -1345,7 +1344,7 @@
                                                     </connections>
                                                 </imageView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g2b-1c-R3w" userLabel="Project Saved">
-                                                    <rect key="frame" x="220" y="289" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="491" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="En3-r2-CVG"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="XCx-NO-nXP"/>
@@ -1398,7 +1397,7 @@
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gg8-nj-ySV" userLabel="Mix Saved">
-                                <rect key="frame" x="263" y="336" width="16" height="16"/>
+                                <rect key="frame" x="263" y="524" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="6Gn-nL-UeJ"/>
                                     <constraint firstAttribute="height" constant="16" id="vLA-3z-OOl"/>
@@ -1418,7 +1417,7 @@
                                 </connections>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uk2-F3-j5i" userLabel="Mix Unsaved">
-                                <rect key="frame" x="263" y="336" width="16" height="16"/>
+                                <rect key="frame" x="263" y="524" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="8rJ-MX-UZs"/>
                                     <constraint firstAttribute="width" constant="16" id="eOh-Xg-IS7"/>
@@ -1482,7 +1481,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="Dbt-yp-lY8"/>
             </objects>
-            <point key="canvasLocation" x="-143" y="1086"/>
+            <point key="canvasLocation" x="-143" y="1275"/>
         </scene>
         <!--New Comment View Controller-->
         <scene sceneID="3nU-5A-GN4">
@@ -1536,7 +1535,7 @@ Gw
                 </viewController>
                 <customObject id="RzU-vg-ODh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-160" y="1742"/>
+            <point key="canvasLocation" x="-143" y="1857"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="tbC-QB-ZqH">
