@@ -80,10 +80,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func initPrefs()
     {
-        let shortName = NSUserName();
-        let displayName = NSFullUserName();
-        
-        UserDefaults.standard.register( defaults: [ "shortName" : shortName, "displayName" : displayName ] );
+        UserDefaults.standard.register( defaults: [
+            "shortName" : NSUserName(),
+            "displayName" : NSFullUserName(),
+            "chatURL" : "https://chatomatic.tomcowland.com?project={project}&user={user}"
+        ] );
     }
 
 }

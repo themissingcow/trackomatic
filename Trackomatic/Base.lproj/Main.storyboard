@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -784,11 +784,11 @@
             <objects>
                 <viewController title="Preferences" showSeguePresentationStyle="single" id="3FA-Qg-hOG" customClass="PreferencesViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ccj-Xb-eiQ">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="168"/>
+                        <rect key="frame" x="0.0" y="0.0" width="788" height="215"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qM9-y4-e0L">
-                                <rect key="frame" x="67" y="110" width="77" height="16"/>
+                                <rect key="frame" x="67" y="157" width="77" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Short Name" id="JQs-2b-x6L">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -796,7 +796,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8r-Gl-Lcg">
-                                <rect key="frame" x="150" y="107" width="292" height="21"/>
+                                <rect key="frame" x="150" y="154" width="600" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="No punctuation, ideally no spaces." drawsBackground="YES" usesSingleLineMode="YES" id="f7H-Po-S83">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -807,15 +807,15 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-AN-dk6">
-                                <rect key="frame" x="148" y="91" width="296" height="14"/>
+                                <rect key="frame" x="148" y="138" width="604" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="This is used by Trackomatic for settings files." id="K9r-ns-cEV">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-FB-GAo">
-                                <rect key="frame" x="150" y="58" width="292" height="21"/>
+                                <rect key="frame" x="150" y="105" width="600" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="This can be anyting you like" drawsBackground="YES" usesSingleLineMode="YES" id="FKc-wa-pBs">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -826,7 +826,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pb4-Ym-EyF">
-                                <rect key="frame" x="57" y="61" width="87" height="16"/>
+                                <rect key="frame" x="57" y="108" width="87" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Display Name" id="3JD-nr-ay1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -834,10 +834,37 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEK-r1-hrR">
-                                <rect key="frame" x="148" y="42" width="296" height="14"/>
+                                <rect key="frame" x="148" y="89" width="604" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="This is shown in the app with your comments" id="q91-qv-e6S">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s5Z-zd-kcP">
+                                <rect key="frame" x="150" y="56" width="600" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="https://" drawsBackground="YES" usesSingleLineMode="YES" id="39o-BT-0Su">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.chatURL" id="saO-cb-cYX"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fxW-cM-IIO">
+                                <rect key="frame" x="148" y="40" width="604" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Supports {user} and {project} token substitution" id="nXR-x0-2dM">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ka1-Xs-5ai">
+                                <rect key="frame" x="41" y="59" width="103" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Chatomatic URL" id="7TJ-xA-d2E">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -848,24 +875,33 @@
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="firstBaseline" secondItem="Pb4-Ym-EyF" secondAttribute="firstBaseline" id="40S-b2-aE1"/>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="leading" secondItem="qM9-y4-e0L" secondAttribute="trailing" constant="8" id="78z-du-fz5"/>
                             <constraint firstAttribute="trailing" secondItem="w9K-FB-GAo" secondAttribute="trailing" constant="38" id="8QE-g4-vWK"/>
+                            <constraint firstAttribute="trailing" secondItem="s5Z-zd-kcP" secondAttribute="trailing" constant="38" id="Fp7-dY-H4M"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="top" secondItem="w9K-FB-GAo" secondAttribute="bottom" constant="2" id="GfM-42-j0v"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="trailing" secondItem="w9K-FB-GAo" secondAttribute="trailing" id="KTv-IK-lyO"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="leading" secondItem="Pb4-Ym-EyF" secondAttribute="trailing" constant="8" id="Q6d-zl-ErO"/>
+                            <constraint firstItem="fxW-cM-IIO" firstAttribute="leading" secondItem="s5Z-zd-kcP" secondAttribute="leading" id="QAU-fZ-iL5"/>
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="trailing" secondItem="p8r-Gl-Lcg" secondAttribute="trailing" id="SNn-SV-qQr"/>
+                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="firstBaseline" secondItem="Ka1-Xs-5ai" secondAttribute="firstBaseline" id="WFk-gl-jIC"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="leading" secondItem="w9K-FB-GAo" secondAttribute="leading" id="WoM-wM-SrE"/>
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="leading" secondItem="p8r-Gl-Lcg" secondAttribute="leading" id="b16-5w-yxv"/>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="top" secondItem="ccj-Xb-eiQ" secondAttribute="top" constant="40" id="bdX-DV-NC2"/>
+                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="leading" secondItem="Ka1-Xs-5ai" secondAttribute="trailing" constant="8" id="d2W-sH-O3y"/>
+                            <constraint firstItem="fxW-cM-IIO" firstAttribute="trailing" secondItem="s5Z-zd-kcP" secondAttribute="trailing" id="dmN-Qw-n0f"/>
+                            <constraint firstAttribute="bottom" secondItem="fxW-cM-IIO" secondAttribute="bottom" constant="40" id="eHl-aO-ODf"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="gGb-EU-nx2"/>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="firstBaseline" secondItem="qM9-y4-e0L" secondAttribute="firstBaseline" id="hEl-Mr-uBF"/>
+                            <constraint firstItem="fxW-cM-IIO" firstAttribute="top" secondItem="s5Z-zd-kcP" secondAttribute="bottom" constant="2" id="iqV-xY-86u"/>
+                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="kDw-wW-Eo8"/>
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="top" secondItem="p8r-Gl-Lcg" secondAttribute="bottom" constant="2" id="uGY-br-MOH"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="top" secondItem="JQ5-AN-dk6" secondAttribute="bottom" constant="12" id="w9g-d7-X8u"/>
+                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="top" secondItem="aEK-r1-hrR" secondAttribute="bottom" constant="12" id="wZc-XT-STp"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="mcL-Ri-PpC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="gRB-sR-5oc"/>
             </objects>
-            <point key="canvasLocation" x="510" y="500"/>
+            <point key="canvasLocation" x="664" y="521.5"/>
         </scene>
         <!--Trackomatic-->
         <scene sceneID="hIz-AP-VOD">
@@ -906,7 +942,6 @@
                                             <tableColumns>
                                                 <tableColumn width="275" minWidth="275" maxWidth="275" id="kmb-rJ-ziV">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Mix">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1044,7 +1079,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="467" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ck4-Oa-pa8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Waveform">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1572,7 +1606,7 @@ Gw
                                             <rect key="frame" x="6" y="40" width="33" height="14"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KMg-F8-adN">
                                                 <dateFormatter key="formatter" dateStyle="short" timeStyle="short" doesRelativeDateFormatting="YES" id="Xeh-oo-ryO"/>
-                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="font" metaFont="message" size="11"/>
                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
