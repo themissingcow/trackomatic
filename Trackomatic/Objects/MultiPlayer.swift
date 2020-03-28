@@ -61,7 +61,9 @@ class MultiPlayer : NSObject {
     var safeStart: TimeInterval = 0.1;
     @objc dynamic var mixDirty = false;
     
-    @objc dynamic var sampleRate: Double = 44100.0;
+    @objc dynamic var sampleRate: Double = 44100.0 {
+        didSet{ setSampleRate(); }
+    }
     
     // MARK: - Files
     
@@ -99,7 +101,7 @@ class MultiPlayer : NSObject {
     
     // MARK: - Internal vars
 
-    internal var audioFormat: AVAudioFormat;
+    internal var audioFormat: AVAudioFormat!;
     internal var engine: AVAudioEngine;
     internal var mixer: AVAudioMixerNode;
     internal var lastPlayStart: AVAudioFramePosition;
@@ -110,26 +112,37 @@ class MultiPlayer : NSObject {
     override init()
     {
         lastPlayStart = 0;
-        
+
         // TODO: Move to project sample rate
-        audioFormat = AVAudioFormat( standardFormatWithSampleRate: sampleRate, channels: 2 )!;
-        
+
         engine = AVAudioEngine();
         mixer = AVAudioMixerNode();
-        
         engine.attach( mixer );
-        engine.connect( mixer, to: engine.outputNode, fromBus: 0, toBus: 0, format: audioFormat );
         
+        super.init();
+
+        setSampleRate();
+                       
         do
         {
-            try self.engine.start();
+           try self.engine.start();
         }
         catch
         {
-            print( "Error initialising engine: \(error)" );
+           print( "Error initialising engine: \(error)" );
         }
+    }
+    
+    private func setSampleRate()
+    {
+        stop();
         
-        super.init();
+        setupFrom( files: [] );
+        
+        audioFormat = AVAudioFormat( standardFormatWithSampleRate: sampleRate, channels: 2 )!;
+        engine.connect( mixer, to: engine.outputNode, fromBus: 0, toBus: 0, format: audioFormat );
+        
+        setupFrom( files: files );
     }
     
     // MARK: - Transport Control
