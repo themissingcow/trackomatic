@@ -141,7 +141,7 @@ class MultiPlayer : NSObject {
     }
     
     // We use frames internally so we can maintain accuracy when no SRC is needed
-    @objc public private(set) dynamic var frameLength: AVAudioFramePosition = 0 {
+    @objc dynamic var frameLength: AVAudioFramePosition = 0 {
         willSet { willChangeValue( forKey: "length" ); }
         didSet { didChangeValue( forKey: "length"); }
     }

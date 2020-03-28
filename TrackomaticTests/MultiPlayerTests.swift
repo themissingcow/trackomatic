@@ -16,10 +16,9 @@ extension AVAudioPCMBuffer
     var isNull: Bool {
         
         let length: Int = Int( format.channelCount * frameLength );
-        print( "Checking \(length) samples" );
-                
+        
         if let floatSamples = floatChannelData {
-            for var i in 0..<length {
+            for i in 0..<length {
                 if floatSamples.pointee[ i ] != Float(0.0) {
                     return false;
                 }
@@ -27,7 +26,7 @@ extension AVAudioPCMBuffer
         }
         else
         {
-            fatalError( "No float data" );
+            fatalError( "No sample data" );
         }
 
         return true;
@@ -35,8 +34,8 @@ extension AVAudioPCMBuffer
 }
 
 class MultiPlayerTests: XCTestCase {
-
-    func testRenderNulls44100()
+    
+    func testPlaybackNulls44100()
     {
         let player = MultiPlayer();
         player.sampleRate = 44100.0;
@@ -44,7 +43,8 @@ class MultiPlayerTests: XCTestCase {
         var files: [ AVAudioFile ] = [];
         
         let sources = [ "44100_beat", "44100_beat_inverted" ];
-        for var source in sources
+        
+        for source in sources
         {
             do {
                 let bundle = Bundle( for: MultiPlayerTests.self );
@@ -59,6 +59,56 @@ class MultiPlayerTests: XCTestCase {
         }
     
         player.files = files;
+        // Force a loop
+        player.frameLength = player.frameLength * 3;
+            
+        var checkedSamples:AVAudioFrameCount = 0;
+        var isNull = true;
+    
+        player.mixer.installTap( onBus: 0, bufferSize: 4096, format: player.mixer.outputFormat(forBus: 0) ) { ( buffer, when ) in
+            
+            isNull = isNull && buffer.isNull;
+            checkedSamples += buffer.frameLength;
+        }
+        
+        player.play();
+        
+        while isNull && ( checkedSamples < ( player.frameLength / 2 ) )
+        {
+            sleep( 1 );
+        }
+        
+        XCTAssertTrue( isNull );
+        
+        player.stop();
+        player.mixer.removeTap( onBus: 0 );
+    }
+
+    func testRenderNulls44100()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 44100.0;
+        
+        var files: [ AVAudioFile ] = [];
+        
+        let sources = [ "44100_beat", "44100_beat_inverted" ];
+        for source in sources
+        {
+            do {
+                let bundle = Bundle( for: MultiPlayerTests.self );
+                let url = URL( fileURLWithPath: bundle.path(forResource: source, ofType: "aif" )! );
+                let audio = try AVAudioFile( forReading: url );
+                files.append( audio );
+            }
+            catch
+            {
+                fatalError( "\(error)" )
+            }
+        }
+    
+        player.files = files;
+        // Force a loop
+        player.frameLength = player.frameLength * 5;
         
         var settings: [ String: Any ] = [:];
         settings[ AVFormatIDKey ] = kAudioFormatLinearPCM;
