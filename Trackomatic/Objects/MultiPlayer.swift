@@ -122,15 +122,6 @@ class MultiPlayer : NSObject {
         super.init();
 
         setSampleRate();
-                       
-        do
-        {
-           try self.engine.start();
-        }
-        catch
-        {
-           print( "Error initialising engine: \(error)" );
-        }
     }
     
     private func setSampleRate()
@@ -139,10 +130,22 @@ class MultiPlayer : NSObject {
         
         setupFrom( files: [] );
         
+        engine.stop();
+        
         audioFormat = AVAudioFormat( standardFormatWithSampleRate: sampleRate, channels: 2 )!;
+        engine.disconnectNodeOutput( mixer );
         engine.connect( mixer, to: engine.outputNode, fromBus: 0, toBus: 0, format: audioFormat );
         
         setupFrom( files: files );
+        
+        do
+        {
+            try self.engine.start();
+        }
+        catch
+        {
+            print( "Error initialising engine: \(error)" );
+        }
     }
     
     // MARK: - Transport Control
