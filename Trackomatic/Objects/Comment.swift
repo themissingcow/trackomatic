@@ -19,9 +19,10 @@ class Comment: NSObject {
     @objc dynamic var displayName: String { didSet { dirty = true; } };
     
     @objc dynamic var anchor: String? { didSet { dirty = true; } };
-    
-    dynamic var at: AVAudioFramePosition? { didSet { dirty = true; } };
-    dynamic var length: AVAudioFramePosition? { didSet { dirty = true; } };
+
+    // Times in seconds
+    dynamic var at: Double? { didSet { dirty = true; } };
+    dynamic var length: Double? { didSet { dirty = true; } };
     
     @objc dynamic var comment: String { didSet {
         dirty = true;

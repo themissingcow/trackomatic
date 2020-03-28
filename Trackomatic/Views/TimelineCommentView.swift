@@ -18,7 +18,7 @@ class TimelineCommentView: NSView {
     var comments: [ Comment ] = [] { didSet { setNeedsDisplay( bounds ); } };
     var focusComments: [ Comment ]? { didSet { setNeedsDisplay( bounds ); } };
 
-    var length: AVAudioFramePosition = 0 {
+    var length: Double = 0 {
         didSet {
             self.setNeedsDisplay( bounds );
         }
@@ -54,8 +54,8 @@ class TimelineCommentView: NSView {
     override func mouseMoved( with event: NSEvent )
     {
         let x = convert( event.locationInWindow, from: nil ).x;
-        let position = AVAudioFramePosition( ( x / bounds.width ) * CGFloat(length) );
-        let padding = AVAudioFramePosition( CGFloat( length ) * 0.02 );
+        let position = Double( ( x / bounds.width ) * CGFloat(length) );
+        let padding = Double( CGFloat( length ) * 0.02 );
         
         for comment in comments
         {

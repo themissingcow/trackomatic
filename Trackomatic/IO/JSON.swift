@@ -346,8 +346,8 @@ extension CommentManager {
             
             if let c = dict[ "comment" ] as? String { comment.comment = c; }
             if let a = dict[ "anchor" ] as? String { comment.anchor = a; }
-            if let a = dict[ "at" ] as? AVAudioFramePosition { comment.at = a; }
-            if let l = dict[ "length" ] as? AVAudioFramePosition { comment.length = l; }
+            if let a = dict[ "at" ] as? Double { comment.at = a; }
+            if let l = dict[ "length" ] as? Double { comment.length = l; }
             if let d = dict[ "lastEdit" ] as? Double { comment.lastEdit = Date( timeIntervalSince1970: d ); }
             comment.dirty = false;
 

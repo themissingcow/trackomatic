@@ -29,7 +29,7 @@ class TrackWaveformCellView: TrackTableCellView {
         }
                 
         let width = UInt32(NSWidth( self.frame ));
-        let scale = Float( track.file.length ) / Float( track.parent.length );
+        let scale = Float( track.length ) / Float( track.parent.length );
         
         let defaultQueue = DispatchQueue.global(qos: .default)
         defaultQueue.async {

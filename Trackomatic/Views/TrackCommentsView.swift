@@ -13,7 +13,7 @@ protocol TrackCommentsViewDelegate: class
 {
     func trackCommentsView(
             _ view: TrackCommentsView,
-            requestedCommentAt position: AVAudioFramePosition, ofLength length: AVAudioFramePosition?
+            requestedCommentAt position: Double, ofLength length: Double?
     );
 }
 
@@ -112,8 +112,8 @@ class TrackCommentsView: TimelineCommentView {
         
         let upX = convert( event.locationInWindow, from: nil ).x;
         
-        let downPosition = AVAudioFramePosition( ( downX / bounds.width ) * CGFloat(length) );
-        let upPosition = AVAudioFramePosition( ( upX / bounds.width ) * CGFloat(length) );
+        let downPosition = Double( downX / bounds.width ) * length;
+        let upPosition = Double( upX / bounds.width ) * length;
         
         let atMin = min( downPosition, upPosition );
         let atMax = max( downPosition, upPosition );
@@ -123,7 +123,7 @@ class TrackCommentsView: TimelineCommentView {
 
         setNeedsDisplay( bounds );
         
-        let length: AVAudioFramePosition? = ( atMax == atMin ) ? nil : atMax - atMin;
+        let length: Double? = ( atMax == atMin ) ? nil : atMax - atMin;
 
         delegate?.trackCommentsView( self, requestedCommentAt: atMin, ofLength: length );
     }

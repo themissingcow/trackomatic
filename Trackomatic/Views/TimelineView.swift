@@ -10,7 +10,7 @@ import Cocoa
 import AVFoundation
 
 protocol TimelineViewDelegate: class {
-    func timelineView( _ view: TimelineView, didRequestPositionChange position: AVAudioFramePosition );
+    func timelineView( _ view: TimelineView, didRequestPositionChange position: Double );
 }
 
 class TimelineView: NSView {
@@ -25,13 +25,13 @@ class TimelineView: NSView {
 
     var delegate: TimelineViewDelegate?;
 
-    var length: AVAudioFramePosition = 0 {
+    var length: Double = 0 {
         didSet {
             self.setNeedsDisplay( bounds );
         }
     }
     
-    var position: AVAudioFramePosition = 0 {
+    var position: Double = 0 {
         didSet {
             self.setNeedsDisplay( bounds );
         }
@@ -63,7 +63,7 @@ class TimelineView: NSView {
             return;
         }
         
-        let x = CGFloat( Double(position) / Double(length) ) * frame.width;
+        let x = CGFloat( position / length ) * frame.width;
         
         context.setLineWidth( playheadWidth );
         context.setStrokeColor( playheadColor.cgColor );
@@ -79,7 +79,7 @@ class TimelineView: NSView {
         if let d = delegate
         {
             let p = convert( event.locationInWindow, from: nil );
-            let pos = AVAudioFramePosition( ( p.x / frame.width ) * CGFloat(length) );
+            let pos = Double( ( p.x / frame.width ) * CGFloat(length) );
             d.timelineView( self, didRequestPositionChange: pos );
         }
         else

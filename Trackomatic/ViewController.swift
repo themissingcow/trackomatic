@@ -44,7 +44,7 @@ class ViewController: NSViewController,
     
     @IBAction func playPressed(_ sender: Any)
     {
-        player.play( atFrame: timelineView.position );
+        player.play( atTime: timelineView.position );
     }
     
     @IBAction func stopPressed(_ sender: Any)
@@ -75,7 +75,7 @@ class ViewController: NSViewController,
         newComment( forAnchor: selectedAnchor );
     }
     
-    func newComment( forAnchor anchor: String?, at: AVAudioFramePosition? = nil, length: AVAudioFramePosition? = nil )
+    func newComment( forAnchor anchor: String?, at: Double? = nil, length: Double? = nil )
     {
         guard let vc = storyboard?.instantiateController(
             withIdentifier: NSStoryboard.SceneIdentifier( "newCommentController" )
@@ -328,16 +328,16 @@ class ViewController: NSViewController,
     
     // MARK: - TimelineViewDelegate
     
-    func timelineView(_ view: TimelineView, didRequestPositionChange position: AVAudioFramePosition)
+    func timelineView(_ view: TimelineView, didRequestPositionChange position: Double )
     {
         self.timelineView.position = position;
-        self.player.play( atFrame: position );
+        self.player.play( atTime: position );
     }
     
     // MARK: - CommentViewDelegate
     
     func trackCommentsView( _ view: TrackCommentsView,
-        requestedCommentAt position: AVAudioFramePosition, ofLength length: AVAudioFramePosition?
+        requestedCommentAt position: Double, ofLength length: Double?
     ) {
         if let anchor = view.anchor
         {

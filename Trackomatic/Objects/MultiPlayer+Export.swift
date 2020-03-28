@@ -31,7 +31,7 @@ extension MultiPlayer {
             let maxFrames: AVAudioFrameCount = 4096;
             try engine.enableManualRenderingMode( .offline, format: audioFormat, maximumFrameCount: maxFrames );
             try engine.start();
-            play( atFrame: 0, offline: true );
+            play( atTime: 0, offline: true );
         } catch {
             fatalError("Enabling manual rendering mode failed: \(error).")
         }
@@ -52,11 +52,11 @@ extension MultiPlayer {
             return;
         }
         
-        while engine.manualRenderingSampleTime < length
+        while engine.manualRenderingSampleTime < frameLength
         {
             do
             {
-                let frameCount = length - engine.manualRenderingSampleTime;
+                let frameCount = frameLength - engine.manualRenderingSampleTime;
                 let framesToRender = min( AVAudioFrameCount(frameCount), buffer.frameCapacity );
                 
                 let status = try engine.renderOffline( framesToRender, to: buffer );

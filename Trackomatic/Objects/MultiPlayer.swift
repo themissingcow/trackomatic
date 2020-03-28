@@ -36,6 +36,10 @@ class MultiPlayer : NSObject {
 
         @objc dynamic public fileprivate(set) var file: AVAudioFile!;
         
+        var length: Double {
+            return Double(file.length) / file.fileFormat.sampleRate;
+        }
+        
         @objc dynamic weak public fileprivate(set) var parent: MultiPlayer!;
         
         fileprivate var player: AVAudioPlayerNode!;
@@ -56,6 +60,8 @@ class MultiPlayer : NSObject {
     
     var safeStart: TimeInterval = 0.1;
     @objc dynamic var mixDirty = false;
+    
+    @objc dynamic var sampleRate: Double = 44100.0;
     
     // MARK: - Files
     
@@ -106,7 +112,7 @@ class MultiPlayer : NSObject {
         lastPlayStart = 0;
         
         // TODO: Move to project sample rate
-        audioFormat = AVAudioFormat( standardFormatWithSampleRate: 44100.0, channels: 2 )!;
+        audioFormat = AVAudioFormat( standardFormatWithSampleRate: sampleRate, channels: 2 )!;
         
         engine = AVAudioEngine();
         mixer = AVAudioMixerNode();
@@ -129,25 +135,43 @@ class MultiPlayer : NSObject {
     // MARK: - Transport Control
     
     @objc dynamic var playing: Bool = false;
-    @objc dynamic var length: AVAudioFramePosition = 0;
+    
+    @objc dynamic var length: Double {
+        return Double( frameLength ) / sampleRate;
+    }
+    
+    // We use frames internally so we can maintain accuracy when no SRC is needed
+    @objc public private(set) dynamic var frameLength: AVAudioFramePosition = 0 {
+        willSet { willChangeValue( forKey: "length" ); }
+        didSet { didChangeValue( forKey: "length"); }
+    }
 
     // TODO: Move to the more normal play/stop/position, where seeking is achieved by setting position.
 
-    var position: AVAudioFramePosition
+    var position: Double
     {
        if let player = keyPlayer, let time = player.lastRenderTime
        {
-           if !time.isSampleTimeValid { return lastPlayStart; }
-           return lastPlayStart + ( player.playerTime( forNodeTime: time )?.sampleTime ?? 0 );
+            var sampleTime = lastPlayStart;
+            if time.isSampleTimeValid
+            {
+               sampleTime += ( player.playerTime( forNodeTime: time )?.sampleTime ?? 0 );
+            }
+            return Double( sampleTime ) / sampleRate;
        }
        return 0;
     }
     
-    func play( atFrame: AVAudioFramePosition = 0, offline: Bool = false )
+    func play( atTime time: Double = 0, offline: Bool = false )
+    {
+        play( atFrame: AVAudioFramePosition( time * sampleRate ), offline: offline );
+    }
+    
+    private func play( atFrame frame: AVAudioFramePosition = 0, offline: Bool = false )
     {
         if tracks.count == 0 { return; }
         
-        lastPlayStart = atFrame;
+        lastPlayStart = frame;
         
         self.stop();
 
@@ -158,7 +182,7 @@ class MultiPlayer : NSObject {
         {
             let track = trackFor( file: file )!;
             
-            var startFrame = atFrame;
+            var startFrame = frame;
             
             // If we're not looping and we're past the end, we have nothing to do.
             if file.length <= startFrame
@@ -223,16 +247,21 @@ class MultiPlayer : NSObject {
     {
         ensureTracks( count: files.count );
         
-        length = 0;
+        frameLength = 0;
         keyPlayer = nil;
         resetMix();
 
         for ( index, file ) in files.enumerated()
         {
             tracks[ index ].file = file;
-            if file.length > length
+            
+            let fileFrameLength: AVAudioFramePosition = file.fileFormat.sampleRate == sampleRate
+                ? file.length
+                : AVAudioFramePosition( ( Double( file.length ) / file.fileFormat.sampleRate ) * sampleRate );
+            
+            if fileFrameLength > frameLength
             {
-                length = file.length;
+                frameLength = fileFrameLength;
                 keyPlayer = tracks[ index ].player;
             }
         }
@@ -240,7 +269,7 @@ class MultiPlayer : NSObject {
         for track in tracks
         {
             // Automaticlly turn on loop for relatively short files
-            if track.file.length < ( length / 2 )
+            if track.length < ( length / 2 )
             {
                 track.loop = true;
             }
