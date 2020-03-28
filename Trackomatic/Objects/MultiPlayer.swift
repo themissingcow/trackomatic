@@ -201,20 +201,19 @@ class MultiPlayer : NSObject {
             var startFrame = frame;
             
             // If we're not looping and we're past the end, we have nothing to do.
-            if file.length <= startFrame
+            let timelineFileLength = file.length( atSampleRate: audioFormat.sampleRate )
+            if timelineFileLength <= startFrame
             {
                 if track.loop
                 {
-                    startFrame = startFrame % file.length;
+                    startFrame = startFrame % timelineFileLength;
                 }
                 else
                 {
                     continue;
                 }
             }
-            
-            let remainingSamples = AUAudioFrameCount( file.length - startFrame );
-            
+                        
             func rescheduler( _ : AVAudioPlayerNodeCompletionCallbackType )
             {
                 // Check nothing has changed since we started
@@ -225,9 +224,14 @@ class MultiPlayer : NSObject {
                     completionCallbackType: .dataConsumed, completionHandler: rescheduler
                 );
             };
+            
+            let fileStartFrame = file.equivalent( positionTo: startFrame, atSampleRate: audioFormat.sampleRate )
 
             track.player.scheduleSegment(
-                file, startingFrame: startFrame, frameCount: remainingSamples, at: nil,
+                file,
+                startingFrame: fileStartFrame,
+                frameCount: AUAudioFrameCount( file.length - fileStartFrame ),
+                at: nil,
                 completionCallbackType: .dataConsumed, completionHandler: track.loop ? rescheduler : nil
             )
             
@@ -396,3 +400,35 @@ class MultiPlayer : NSObject {
         }
     }
 }
+
+// Conveniences for managing mixed sample rater playback, where an audio file be of a different rate to the engine.
+// This requires playback scheduling to determine the file-local sample positions.
+extension AVAudioFile
+{
+    func length( atSampleRate sampleRate : Double ) -> AVAudioFramePosition
+    {
+        if fileFormat.sampleRate == sampleRate
+        {
+            return length;
+        }
+        else
+        {
+            let ratio = sampleRate / fileFormat.sampleRate;
+            return AVAudioFramePosition( Double( length ) * ratio );
+        }
+    }
+    
+    func equivalent( positionTo position: AVAudioFramePosition, atSampleRate sampleRate: Double ) -> AVAudioFramePosition
+    {
+        if fileFormat.sampleRate == sampleRate
+        {
+            return position;
+        }
+        else
+        {
+            let ratio = fileFormat.sampleRate / sampleRate;
+            return  AVAudioFramePosition( Double( position ) * ratio );
+        }
+    }
+}
+

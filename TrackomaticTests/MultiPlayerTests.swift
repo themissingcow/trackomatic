@@ -37,12 +37,9 @@ extension AVAudioPCMBuffer
 
 class MultiPlayerTests: XCTestCase {
     
-    
-    func load44100Nulls( player: MultiPlayer )
+    func loadFiles( player: MultiPlayer, sources : [ String ] )
     {
         var files: [ AVAudioFile ] = [];
-               
-        let sources = [ "44100_beat", "44100_beat_inverted" ];
 
         for source in sources
         {
@@ -57,14 +54,28 @@ class MultiPlayerTests: XCTestCase {
                 fatalError( "\(error)" )
             }
         }
-
-        player.files = files;
         
-        // Force a loop
-        player.frameLength = player.frameLength * 3;
+        var all = player.files;
+        all.append( contentsOf: files );
+        player.files = all;
+    }
+      
+    func load44100Nulls( player: MultiPlayer )
+    {
+        loadFiles( player: player, sources: [ "44100_beat", "44100_beat_inverted" ] );
     }
     
-    func checkPlaybackIsNull( player: MultiPlayer, tollerance: Float = 0.0  )
+    func load96000Nulls( player: MultiPlayer )
+    {
+        loadFiles( player: player, sources: [ "96000_beat", "96000_beat_inverted" ] );
+    }
+    
+    func loadMixedNulls( player : MultiPlayer )
+    {
+        loadFiles( player: player, sources: [ "44100_beat", "96000_beat_inverted" ] );
+    }
+    
+    func checkPlaybackIsNull( player: MultiPlayer, position: Double = 0.0, tollerance: Float = 0.0  )
     {
         var checkedSamples:AVAudioFrameCount = 0;
         var isNull = true;
@@ -75,7 +86,7 @@ class MultiPlayerTests: XCTestCase {
            checkedSamples += buffer.frameLength;
         }
         
-        player.play();
+        player.play( atTime: position, offline: false );
 
         while isNull && ( checkedSamples < ( player.frameLength / 2 ) )
         {
@@ -115,13 +126,30 @@ class MultiPlayerTests: XCTestCase {
         }
     }
     
+    // MARK: - 44.1k
+    
     func testPlaybackNulls44100()
     {
         let player = MultiPlayer();
         player.sampleRate = 44100.0;
         
         load44100Nulls( player: player );
-        checkPlaybackIsNull( player:  player );
+        // Force a loop
+        player.frameLength = player.frameLength * 3;
+        
+        checkPlaybackIsNull( player: player );
+    }
+    
+    func testPlaybackSeekNulls44100()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 44100.0;
+
+        load44100Nulls( player: player );
+        // Force a loop
+        player.frameLength = player.frameLength * 3;
+        
+        checkPlaybackIsNull( player: player, position: 1.37 );
     }
 
     func testRenderNulls44100()
@@ -130,29 +158,269 @@ class MultiPlayerTests: XCTestCase {
         player.sampleRate = 44100.0;
         
         load44100Nulls( player: player );
+        // Force a loop
+        player.frameLength = player.frameLength * 3;
+        
         let output = checkOutputIsNull( player: player );
         
         XCTAssertTrue( output.fileFormat.sampleRate == 44100.0 );
     }
     
-    func testPlaybackNulls96000w44100files()
+    // MARK: - 96k
+    
+    func testPlaybackNulls96000()
     {
         let player = MultiPlayer();
         player.sampleRate = 96000.0;
         
-        load44100Nulls( player: player );
-        checkPlaybackIsNull( player:  player, tollerance: 0.0001 );
+        load96000Nulls( player: player );
+        // Force a loop
+        player.frameLength = player.frameLength * 3;
+        
+        checkPlaybackIsNull( player: player );
+    }
+    
+    func testPlaybackSeekNulls96000()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 96000.0;
+
+        load96000Nulls( player: player );
+        // Force a loop
+        player.frameLength = player.frameLength * 3;
+        
+        checkPlaybackIsNull( player: player, position: 1.37 );
     }
 
-    func testRenderNulls96000w44100files()
+    func testRenderNulls96000()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 96000.0;
+        
+        load96000Nulls( player: player );
+        // Force a loop
+        player.frameLength = player.frameLength * 3;
+        
+        let output = checkOutputIsNull( player: player );
+        
+        XCTAssertTrue( output.fileFormat.sampleRate == 96000.0 );
+    }
+    
+    // MARK: - Mixed rates, matching pairs
+    
+    func testPlaybackNulls44100wMixedFiles()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 44100.0;
+        
+        load44100Nulls( player: player );
+        load96000Nulls( player: player );
+
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+        
+        checkPlaybackIsNull( player: player, tollerance: 0.0001 );
+    }
+
+    func testRenderNulls44100wMixedFiles()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 44100.0;
+        
+        load44100Nulls( player: player );
+        load96000Nulls( player: player );
+
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+        
+        let output = checkOutputIsNull( player: player, tollerance: 0.0001 );
+        
+        XCTAssertTrue( output.fileFormat.sampleRate == 44100.0 );
+    }
+    
+    func testPlaybackNulls96000wMixedFiles()
     {
         let player = MultiPlayer();
         player.sampleRate = 96000.0;
         
         load44100Nulls( player: player );
+        load96000Nulls( player: player );
+
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+        
+        checkPlaybackIsNull( player: player, tollerance: 0.0001 );
+    }
+
+    func testRenderNulls96000wMixedFiles()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 96000.0;
+        
+        load44100Nulls( player: player );
+        load96000Nulls( player: player );
+
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+        
         let output = checkOutputIsNull( player: player, tollerance: 0.0001 );
         
         XCTAssertTrue( output.fileFormat.sampleRate == 96000.0 );
     }
+    
+    // MARK: - Mixed pair
+    
+    func testPlaybackNulls44100wMixedPair()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 44100.0;
+        
+        loadMixedNulls( player: player );
 
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+        
+        checkPlaybackIsNull( player: player, tollerance: 0.001 );
+    }
+    
+    func testPlaybackSeekNulls44100wMixedPair()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 44100.0;
+
+        loadMixedNulls( player: player );
+        
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+
+        checkPlaybackIsNull( player: player, position: 5.76, tollerance: 0.001 );
+    }
+
+    func testRenderNulls44100wMixedPair()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 44100.0;
+        
+        loadMixedNulls( player: player );
+
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+        
+        let output = checkOutputIsNull( player: player, tollerance: 0.001 );
+        
+        XCTAssertTrue( output.fileFormat.sampleRate == 44100.0 );
+    }
+
+    
+    func testPlaybackNulls96000wMixedPair()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 96000.0;
+        
+        loadMixedNulls( player: player );
+
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+        
+        checkPlaybackIsNull( player: player, tollerance: 0.001 );
+    }
+    
+    func testPlaybackSeekNulls96000wMixedPair()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 96000.0;
+
+        loadMixedNulls( player: player );
+        
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+
+        checkPlaybackIsNull( player: player, position: 5.76, tollerance: 0.001 );
+    }
+
+    func testRenderNulls96000wMixedPair()
+    {
+        let player = MultiPlayer();
+        player.sampleRate = 96000.0;
+        
+        loadMixedNulls( player: player );
+
+        // Force a loop
+        player.tracks.forEach { track in track.loop = true; }
+        player.frameLength = player.frameLength * 3;
+        
+        let output = checkOutputIsNull( player: player, tollerance: 0.001 );
+        
+        XCTAssertTrue( output.fileFormat.sampleRate == 96000.0 );
+    }
+    
+    // MARK: - AVAudioFile SR conversion helpers
+    
+    func testLengthConversion()
+    {
+        do {
+            let bundle = Bundle( for: MultiPlayerTests.self );
+            
+            let url44100 = URL( fileURLWithPath: bundle.path(forResource: "44100_beat", ofType: "aif" )! );
+            let audio44100 = try AVAudioFile( forReading: url44100 );
+            let url96000 = URL( fileURLWithPath: bundle.path(forResource: "96000_beat", ofType: "aif" )! );
+            let audio96000 = try AVAudioFile( forReading: url96000 );
+            
+            XCTAssertEqual( audio44100.length( atSampleRate: 44100.0 ), audio44100.length );
+            XCTAssertEqual( audio96000.length( atSampleRate: 96000.0 ), audio96000.length );
+                        
+            XCTAssertEqual(
+                audio44100.length( atSampleRate: 88200.0 ),
+                audio44100.length * 2
+            );
+            
+            XCTAssertEqual(
+                audio96000.length( atSampleRate: 48000.0 ),
+                audio96000.length / 2
+            );
+        }
+        catch
+        {
+            fatalError( "\(error)" )
+        }
+    }
+    
+    func testPositionConversion()
+    {
+        do {
+            let bundle = Bundle( for: MultiPlayerTests.self );
+            
+            let url44100 = URL( fileURLWithPath: bundle.path(forResource: "44100_beat", ofType: "aif" )! );
+            let audio44100 = try AVAudioFile( forReading: url44100 );
+            let url96000 = URL( fileURLWithPath: bundle.path(forResource: "96000_beat", ofType: "aif" )! );
+            let audio96000 = try AVAudioFile( forReading: url96000 );
+            
+            XCTAssertEqual( audio44100.equivalent( positionTo: 1000, atSampleRate: 44100.0 ), 1000 );
+            XCTAssertEqual( audio96000.equivalent( positionTo: 1000, atSampleRate: 96000.0 ), 1000 );
+
+            XCTAssertEqual(
+                audio44100.equivalent( positionTo: 1100, atSampleRate: 88200.0 ),
+                550
+            );
+            
+            XCTAssertEqual(
+                audio96000.equivalent( positionTo: 2200, atSampleRate: 48000.0 ),
+                4400
+            );
+        }
+        catch
+        {
+            fatalError( "\(error)" )
+        }
+    }
+    
 }

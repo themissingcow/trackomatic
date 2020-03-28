@@ -28,6 +28,8 @@
 		E2E34EE724162C620021461B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E34EE624162C620021461B /* CommentsViewController.swift */; };
 		E2EAFF81242F6FB500FD32E3 /* 44100_beat_inverted.aif in Resources */ = {isa = PBXBuildFile; fileRef = E2EAFF7F242F6FB200FD32E3 /* 44100_beat_inverted.aif */; };
 		E2EAFF82242F6FB700FD32E3 /* 44100_beat.aif in Resources */ = {isa = PBXBuildFile; fileRef = E2EAFF80242F6FB200FD32E3 /* 44100_beat.aif */; };
+		E2EAFF85242F99D300FD32E3 /* 96000_beat.aif in Resources */ = {isa = PBXBuildFile; fileRef = E2EAFF83242F99D300FD32E3 /* 96000_beat.aif */; };
+		E2EAFF86242F99D300FD32E3 /* 96000_beat_inverted.aif in Resources */ = {isa = PBXBuildFile; fileRef = E2EAFF84242F99D300FD32E3 /* 96000_beat_inverted.aif */; };
 		E2FC78E0241E55C200B617B5 /* TrackCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC78DF241E55C200B617B5 /* TrackCommentsView.swift */; };
 		E2FEC4FD2404433200C3D009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FC2404433200C3D009 /* AppDelegate.swift */; };
 		E2FEC4FF2404433200C3D009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEC4FE2404433200C3D009 /* ViewController.swift */; };
@@ -84,6 +86,8 @@
 		E2E34EE624162C620021461B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		E2EAFF7F242F6FB200FD32E3 /* 44100_beat_inverted.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 44100_beat_inverted.aif; sourceTree = "<group>"; };
 		E2EAFF80242F6FB200FD32E3 /* 44100_beat.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 44100_beat.aif; sourceTree = "<group>"; };
+		E2EAFF83242F99D300FD32E3 /* 96000_beat.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = 96000_beat.aif; path = Audio/mixed/96000_beat.aif; sourceTree = SOURCE_ROOT; };
+		E2EAFF84242F99D300FD32E3 /* 96000_beat_inverted.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = 96000_beat_inverted.aif; path = Audio/mixed/96000_beat_inverted.aif; sourceTree = SOURCE_ROOT; };
 		E2FC78DF241E55C200B617B5 /* TrackCommentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackCommentsView.swift; sourceTree = "<group>"; };
 		E2FEC4F92404433200C3D009 /* Trackomatic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackomatic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FEC4FC2404433200C3D009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 		E2015139242F636B0008C6B1 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				E2EAFF84242F99D300FD32E3 /* 96000_beat_inverted.aif */,
+				E2EAFF83242F99D300FD32E3 /* 96000_beat.aif */,
 				E2EAFF7F242F6FB200FD32E3 /* 44100_beat_inverted.aif */,
 				E2EAFF80242F6FB200FD32E3 /* 44100_beat.aif */,
 			);
@@ -322,6 +328,8 @@
 			files = (
 				E2EAFF82242F6FB700FD32E3 /* 44100_beat.aif in Resources */,
 				E2EAFF81242F6FB500FD32E3 /* 44100_beat_inverted.aif in Resources */,
+				E2EAFF85242F99D300FD32E3 /* 96000_beat.aif in Resources */,
+				E2EAFF86242F99D300FD32E3 /* 96000_beat_inverted.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
