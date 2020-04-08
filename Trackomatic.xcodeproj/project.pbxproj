@@ -521,7 +521,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Trackomatic/Info.plist;
@@ -530,7 +530,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0b1;
+				MARKETING_VERSION = 1.0b2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Trackomatic/Trackomatic-Bridging-Header.h";
@@ -548,7 +548,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Trackomatic/Info.plist;
@@ -557,7 +557,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0b1;
+				MARKETING_VERSION = 1.0b2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Trackomatic/Trackomatic-Bridging-Header.h";
