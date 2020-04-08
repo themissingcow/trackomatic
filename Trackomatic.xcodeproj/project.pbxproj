@@ -14,6 +14,7 @@
 		E2125975241689CE001A9DD1 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2125974241689CE001A9DD1 /* NewCommentViewController.swift */; };
 		E212C7FC24051287000936EB /* TrackWaveformCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212C7FB24051287000936EB /* TrackWaveformCellView.swift */; };
 		E2205DBA2415C2C3002A6F7B /* TrackRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2205DB92415C2C3002A6F7B /* TrackRowView.swift */; };
+		E2292DDD243E3BBC00F903F4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2292DDC243E3BBB00F903F4 /* WebKit.framework */; };
 		E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */; };
 		E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268BC71240446CE00C56DC6 /* MultiPlayer.swift */; };
 		E2709A6624143E69009B6AA9 /* MultiPlayer+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */; };
@@ -69,6 +70,7 @@
 		E2125974241689CE001A9DD1 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		E212C7FB24051287000936EB /* TrackWaveformCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackWaveformCellView.swift; sourceTree = "<group>"; };
 		E2205DB92415C2C3002A6F7B /* TrackRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRowView.swift; sourceTree = "<group>"; };
+		E2292DDC243E3BBB00F903F4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		E268BC71240446CE00C56DC6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
 		E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiPlayer+Export.swift"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2292DDD243E3BBC00F903F4 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +155,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E2292DDB243E3BBB00F903F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2292DDC243E3BBB00F903F4 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E268BC6F240446CE00C56DC6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +204,7 @@
 				E2FEC4FB2404433200C3D009 /* Trackomatic */,
 				E2FEC50E2404433500C3D009 /* TrackomaticTests */,
 				E2FEC4FA2404433200C3D009 /* Products */,
+				E2292DDB243E3BBB00F903F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
