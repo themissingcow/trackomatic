@@ -16,7 +16,7 @@ fileprivate enum Cells {
     static let Waveform = NSUserInterfaceItemIdentifier( rawValue: "WaveformCell" )
 }
 
-class ViewController: NSViewController,
+class ViewController: NSViewController, NSWindowDelegate,
         NSTableViewDelegate, NSTableViewDataSource,
         TimelineViewDelegate, TrackCommentsViewDelegate
 {
@@ -141,6 +141,11 @@ class ViewController: NSViewController,
            chat.view.leadingAnchor.constraint( equalTo: chatTab.leadingAnchor ).isActive = true;
            chat.view.trailingAnchor.constraint( equalTo: chatTab.trailingAnchor ).isActive = true;
         }
+    }
+    
+    override func viewDidAppear()
+    {
+        view.window?.delegate = self;
     }
         
     // MARK: - Updates
@@ -443,6 +448,18 @@ class ViewController: NSViewController,
                 saveComments( debounceDelay: 2.0 );
             }
         }
+    }
+    
+    // MARK: - NSWindowDelegate
+    
+    func windowWillClose(_ notification: Notification)
+    {
+        // TODO: Figure a better way to factor all this
+        // TODO: Ensure everything is saved
+        player.stop();
+        player.files = [];
+        updateChat( project: nil );
+        commentManager.reset();
     }
 
 }
