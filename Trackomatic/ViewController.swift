@@ -25,14 +25,15 @@ class ViewController: NSViewController,
     @IBOutlet weak var trackPlayheadView: TimelineView!
     
     @IBOutlet weak var commentsTab: NSView!
-    
-    @IBOutlet weak var chatWebView: WKWebView!
-    
+    @IBOutlet weak var chatTab: NSView!
+        
     @IBOutlet weak var exportButton: NSButton!;
     
     @objc dynamic var selectedAnchor: String? { didSet { commentsView?.anchor = selectedAnchor; } };
     @IBOutlet weak var commentsPlaceholderView: NSView!
-    private var commentsView: CommentsViewController?
+    private var commentsView: CommentsViewController?;
+    
+    private var chatView: ChatomaticViewController?;
     
     @objc dynamic var player = MultiPlayer();
     @objc dynamic var commentManager = CommentManager();
@@ -109,7 +110,7 @@ class ViewController: NSViewController,
         
         if let comments = storyboard!.instantiateController(
             withIdentifier : NSStoryboard.SceneIdentifier( "commentsViewController" )
-            ) as? CommentsViewController
+        ) as? CommentsViewController
         {
             commentsView = comments;
         
@@ -125,6 +126,21 @@ class ViewController: NSViewController,
             comments.view.heightAnchor.constraint( greaterThanOrEqualToConstant: 250 ).isActive = true;
         }
         
+        if let chat = storyboard!.instantiateController(
+            withIdentifier : NSStoryboard.SceneIdentifier( "chatViewController" )
+        ) as? ChatomaticViewController
+        {
+           chatView = chat;
+
+           addChild( chat );
+           
+           chatTab.addSubview( chat.view );
+           chat.view.translatesAutoresizingMaskIntoConstraints = false;
+           chat.view.topAnchor.constraint( equalTo: chatTab.topAnchor ).isActive = true;
+           chat.view.bottomAnchor.constraint( equalTo: chatTab.bottomAnchor ).isActive = true;
+           chat.view.leadingAnchor.constraint( equalTo: chatTab.leadingAnchor ).isActive = true;
+           chat.view.trailingAnchor.constraint( equalTo: chatTab.trailingAnchor ).isActive = true;
+        }
     }
         
     // MARK: - Updates
@@ -229,27 +245,7 @@ class ViewController: NSViewController,
     
     func updateChat( project: Project? )
     {
-        var urlString = "about:blank";
-        
-        if let uuid = project?.uuid,
-           let chatTemplateURL = UserDefaults.standard.string( forKey: "chatURL" )
-        {
-        
-            let name = commentManager.userDisplayName;
-            let encodedName = name.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed )
-                  ?? commentManager.userShortName;
-        
-            urlString = chatTemplateURL.replacingOccurrences(of: "{project}", with: uuid );
-            urlString = urlString.replacingOccurrences(of: "{user}", with: encodedName );
-        }
-            
-        guard let url = URL( string: urlString ) else {
-            print( "Unlable to build URL from \(urlString)" );
-            return;
-        }
-        
-        let urlRequest = URLRequest( url: url );
-        chatWebView.load( urlRequest );
+        chatView?.room = project?.uuid;
     }
     
     // MARK: - NSTableView

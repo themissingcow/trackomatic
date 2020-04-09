@@ -16,6 +16,7 @@
 		E2205DBA2415C2C3002A6F7B /* TrackRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2205DB92415C2C3002A6F7B /* TrackRowView.swift */; };
 		E2292DDD243E3BBC00F903F4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2292DDC243E3BBB00F903F4 /* WebKit.framework */; };
 		E22EC68B2406FEAD00C9F0FF /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */; };
+		E25CECC7243F0B6D00F9B467 /* ChatomaticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25CECC6243F0B6D00F9B467 /* ChatomaticViewController.swift */; };
 		E268BC72240446CE00C56DC6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268BC71240446CE00C56DC6 /* MultiPlayer.swift */; };
 		E2709A6624143E69009B6AA9 /* MultiPlayer+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */; };
 		E2709A6824156835009B6AA9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709A6724156835009B6AA9 /* Comment.swift */; };
@@ -72,6 +73,7 @@
 		E2205DB92415C2C3002A6F7B /* TrackRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRowView.swift; sourceTree = "<group>"; };
 		E2292DDC243E3BBB00F903F4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E22EC68A2406FEAD00C9F0FF /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		E25CECC6243F0B6D00F9B467 /* ChatomaticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatomaticViewController.swift; sourceTree = "<group>"; };
 		E268BC71240446CE00C56DC6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
 		E2709A6524143E69009B6AA9 /* MultiPlayer+Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiPlayer+Export.swift"; sourceTree = "<group>"; };
 		E2709A6724156835009B6AA9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				E20F38FE2409878E0010C1D6 /* PreferencesViewController.swift */,
 				E2E34EE624162C620021461B /* CommentsViewController.swift */,
 				E202CC9424184C300033E25A /* CommentViewController.swift */,
+				E25CECC6243F0B6D00F9B467 /* ChatomaticViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				E2125975241689CE001A9DD1 /* NewCommentViewController.swift in Sources */,
 				E2D046692405D5B00061E2E3 /* TCWaveformView.m in Sources */,
 				E202CC9524184C300033E25A /* CommentViewController.swift in Sources */,
+				E25CECC7243F0B6D00F9B467 /* ChatomaticViewController.swift in Sources */,
 				E20F38FF2409878E0010C1D6 /* PreferencesViewController.swift in Sources */,
 				E2205DBA2415C2C3002A6F7B /* TrackRowView.swift in Sources */,
 				E2709A6624143E69009B6AA9 /* MultiPlayer+Export.swift in Sources */,

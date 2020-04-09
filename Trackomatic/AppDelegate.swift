@@ -83,7 +83,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register( defaults: [
             "shortName" : NSUserName(),
             "displayName" : NSFullUserName(),
-            "chatURL" : "https://chatomatic.tomcowland.com/?room={project}&user={user}"
+            "chatEnabled" : false,
+            "chatURL" : "https://chatomatic.tomcowland.com/?room={room}&user={user}"
         ] );
     }
 

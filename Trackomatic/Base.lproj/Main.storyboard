@@ -740,11 +740,11 @@
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGv-dT-BBp">
                                 <rect key="frame" x="0.0" y="0.0" width="315" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="8Ls-hh-8lk">
-                                    <rect key="frame" x="0.0" y="0.0" width="315" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="285"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView identifier="commentsView" distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAl-ob-ihX" customClass="CommentsStackView" customModule="Trackomatic" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="288" width="315" height="12"/>
+                                            <rect key="frame" x="0.0" y="273" width="300" height="12"/>
                                             <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="0.0" bottom="12"/>
                                         </stackView>
                                     </subviews>
@@ -756,11 +756,11 @@
                                 </clipView>
                                 <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1D2-sT-GdY">
-                                    <rect key="frame" x="0.0" y="284" width="315" height="16"/>
+                                    <rect key="frame" x="0.0" y="285" width="300" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="l8H-zf-lNd">
-                                    <rect key="frame" x="299" y="0.0" width="16" height="300"/>
+                                    <rect key="frame" x="300" y="0.0" width="15" height="285"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -785,11 +785,11 @@
             <objects>
                 <viewController title="Preferences" showSeguePresentationStyle="single" id="3FA-Qg-hOG" customClass="PreferencesViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ccj-Xb-eiQ">
-                        <rect key="frame" x="0.0" y="0.0" width="788" height="215"/>
+                        <rect key="frame" x="0.0" y="0.0" width="788" height="257"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qM9-y4-e0L">
-                                <rect key="frame" x="67" y="157" width="77" height="16"/>
+                                <rect key="frame" x="67" y="199" width="77" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Short Name" id="JQs-2b-x6L">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -797,7 +797,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8r-Gl-Lcg">
-                                <rect key="frame" x="150" y="154" width="600" height="21"/>
+                                <rect key="frame" x="150" y="196" width="600" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="No punctuation, ideally no spaces." drawsBackground="YES" usesSingleLineMode="YES" id="f7H-Po-S83">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -808,7 +808,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-AN-dk6">
-                                <rect key="frame" x="148" y="138" width="604" height="14"/>
+                                <rect key="frame" x="148" y="180" width="604" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="This is used by Trackomatic for settings files." id="K9r-ns-cEV">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -816,7 +816,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-FB-GAo">
-                                <rect key="frame" x="150" y="105" width="600" height="21"/>
+                                <rect key="frame" x="150" y="147" width="600" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="This can be anyting you like" drawsBackground="YES" usesSingleLineMode="YES" id="FKc-wa-pBs">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -827,7 +827,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pb4-Ym-EyF">
-                                <rect key="frame" x="57" y="108" width="87" height="16"/>
+                                <rect key="frame" x="57" y="150" width="87" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Display Name" id="3JD-nr-ay1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -835,7 +835,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEK-r1-hrR">
-                                <rect key="frame" x="148" y="89" width="604" height="14"/>
+                                <rect key="frame" x="148" y="131" width="604" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="This is shown in the app with your comments" id="q91-qv-e6S">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -850,6 +850,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="gRB-sR-5oc" name="enabled" keyPath="values.chatEnabled" id="dRe-om-snw"/>
                                     <binding destination="gRB-sR-5oc" name="value" keyPath="values.chatURL" id="saO-cb-cYX"/>
                                 </connections>
                             </textField>
@@ -869,6 +870,32 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6mE-1K-Trg">
+                                <rect key="frame" x="148" y="103" width="71" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="APt-5T-Rft">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="tcs-8r-1GD" name="value" keyPath="values.chatEnabled" id="a8h-Ms-Bwa"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m1w-LX-GNl">
+                                <rect key="frame" x="148" y="89" width="604" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="When enabled, the Chat tab can be used to send instant messages" id="2U1-hF-NCi">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ca3-H8-YnM">
+                                <rect key="frame" x="70" y="104" width="74" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Chatomatic" id="7gB-jn-0xy">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="0gj-qS-lw9"/>
@@ -877,6 +904,7 @@
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="leading" secondItem="qM9-y4-e0L" secondAttribute="trailing" constant="8" id="78z-du-fz5"/>
                             <constraint firstAttribute="trailing" secondItem="w9K-FB-GAo" secondAttribute="trailing" constant="38" id="8QE-g4-vWK"/>
                             <constraint firstAttribute="trailing" secondItem="s5Z-zd-kcP" secondAttribute="trailing" constant="38" id="Fp7-dY-H4M"/>
+                            <constraint firstItem="6mE-1K-Trg" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="G0c-HW-0at"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="top" secondItem="w9K-FB-GAo" secondAttribute="bottom" constant="2" id="GfM-42-j0v"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="trailing" secondItem="w9K-FB-GAo" secondAttribute="trailing" id="KTv-IK-lyO"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="leading" secondItem="Pb4-Ym-EyF" secondAttribute="trailing" constant="8" id="Q6d-zl-ErO"/>
@@ -884,25 +912,30 @@
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="trailing" secondItem="p8r-Gl-Lcg" secondAttribute="trailing" id="SNn-SV-qQr"/>
                             <constraint firstItem="s5Z-zd-kcP" firstAttribute="firstBaseline" secondItem="Ka1-Xs-5ai" secondAttribute="firstBaseline" id="WFk-gl-jIC"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="leading" secondItem="w9K-FB-GAo" secondAttribute="leading" id="WoM-wM-SrE"/>
+                            <constraint firstItem="6mE-1K-Trg" firstAttribute="leading" secondItem="ca3-H8-YnM" secondAttribute="trailing" constant="8" id="Wzl-na-7if"/>
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="leading" secondItem="p8r-Gl-Lcg" secondAttribute="leading" id="b16-5w-yxv"/>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="top" secondItem="ccj-Xb-eiQ" secondAttribute="top" constant="40" id="bdX-DV-NC2"/>
                             <constraint firstItem="s5Z-zd-kcP" firstAttribute="leading" secondItem="Ka1-Xs-5ai" secondAttribute="trailing" constant="8" id="d2W-sH-O3y"/>
                             <constraint firstItem="fxW-cM-IIO" firstAttribute="trailing" secondItem="s5Z-zd-kcP" secondAttribute="trailing" id="dmN-Qw-n0f"/>
                             <constraint firstAttribute="bottom" secondItem="fxW-cM-IIO" secondAttribute="bottom" constant="40" id="eHl-aO-ODf"/>
+                            <constraint firstItem="6mE-1K-Trg" firstAttribute="top" secondItem="aEK-r1-hrR" secondAttribute="bottom" constant="12" id="eMl-SA-Uxg"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="gGb-EU-nx2"/>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="firstBaseline" secondItem="qM9-y4-e0L" secondAttribute="firstBaseline" id="hEl-Mr-uBF"/>
+                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="top" secondItem="m1w-LX-GNl" secondAttribute="bottom" constant="12" id="iDx-bi-DkG"/>
+                            <constraint firstItem="m1w-LX-GNl" firstAttribute="top" secondItem="6mE-1K-Trg" secondAttribute="bottom" constant="2" id="ifj-1i-fLL"/>
                             <constraint firstItem="fxW-cM-IIO" firstAttribute="top" secondItem="s5Z-zd-kcP" secondAttribute="bottom" constant="2" id="iqV-xY-86u"/>
                             <constraint firstItem="s5Z-zd-kcP" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="kDw-wW-Eo8"/>
+                            <constraint firstItem="6mE-1K-Trg" firstAttribute="firstBaseline" secondItem="ca3-H8-YnM" secondAttribute="firstBaseline" id="mDF-C0-5Tb"/>
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="top" secondItem="p8r-Gl-Lcg" secondAttribute="bottom" constant="2" id="uGY-br-MOH"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="top" secondItem="JQ5-AN-dk6" secondAttribute="bottom" constant="12" id="w9g-d7-X8u"/>
-                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="top" secondItem="aEK-r1-hrR" secondAttribute="bottom" constant="12" id="wZc-XT-STp"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="mcL-Ri-PpC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="gRB-sR-5oc"/>
+                <userDefaultsController id="tcs-8r-1GD"/>
             </objects>
-            <point key="canvasLocation" x="664" y="521.5"/>
+            <point key="canvasLocation" x="664" y="548"/>
         </scene>
         <!--Trackomatic-->
         <scene sceneID="hIz-AP-VOD">
@@ -1294,21 +1327,6 @@
                                         <view key="view" id="mnk-VF-b15">
                                             <rect key="frame" x="10" y="33" width="244" height="519"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2WD-fF-24y">
-                                                    <rect key="frame" x="0.0" y="0.0" width="244" height="317"/>
-                                                    <wkWebViewConfiguration key="configuration">
-                                                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                                        <wkPreferences key="preferences" javaScriptCanOpenWindowsAutomatically="NO"/>
-                                                    </wkWebViewConfiguration>
-                                                </wkWebView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="2WD-fF-24y" secondAttribute="bottom" id="AdT-4f-kh9"/>
-                                                <constraint firstAttribute="trailing" secondItem="2WD-fF-24y" secondAttribute="trailing" id="L6g-MP-9mF"/>
-                                                <constraint firstItem="2WD-fF-24y" firstAttribute="leading" secondItem="mnk-VF-b15" secondAttribute="leading" id="LH7-VO-tqf"/>
-                                                <constraint firstItem="2WD-fF-24y" firstAttribute="top" secondItem="mnk-VF-b15" secondAttribute="top" id="SLz-Dh-PeV"/>
-                                            </constraints>
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Project" identifier="project" id="pYh-vI-9Ld">
@@ -1317,7 +1335,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmZ-G8-a0X" userLabel="Project Unsaved">
-                                                    <rect key="frame" x="220" y="491" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="477" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="a1L-PX-NJG"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="fbV-nH-WGc"/>
@@ -1344,7 +1362,7 @@
                                                     </connections>
                                                 </imageView>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g2b-1c-R3w" userLabel="Project Saved">
-                                                    <rect key="frame" x="220" y="491" width="16" height="16"/>
+                                                    <rect key="frame" x="220" y="477" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="En3-r2-CVG"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="XCx-NO-nXP"/>
@@ -1470,7 +1488,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="chatWebView" destination="2WD-fF-24y" id="4Lc-dq-HbA"/>
+                        <outlet property="chatTab" destination="mnk-VF-b15" id="ZnL-Jz-Tb7"/>
                         <outlet property="commentsTab" destination="9YP-LO-VjF" id="1Gc-T4-c6Z"/>
                         <outlet property="timelineView" destination="sou-Vk-srP" id="C8J-BK-4u6"/>
                         <outlet property="trackPlayheadView" destination="i9y-Ua-GoW" id="SyR-iQ-q5v"/>
@@ -1624,9 +1642,120 @@ Gw
             </objects>
             <point key="canvasLocation" x="1368" y="86"/>
         </scene>
+        <!--Chatomatic View Controller-->
+        <scene sceneID="1Zp-RE-drT">
+            <objects>
+                <viewController storyboardIdentifier="chatViewController" id="WM7-h1-Pm2" customClass="ChatomaticViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="vc8-Hy-RW7">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="3Kk-WD-gYo">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="Tab" identifier="" id="Qfh-r9-Qb8" userLabel="Accept">
+                                        <view key="view" id="Iqq-gC-IQb">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IuI-7g-hki">
+                                                    <rect key="frame" x="22" y="39" width="406" height="12"/>
+                                                    <textFieldCell key="cell" selectable="YES" alignment="center" id="Eqi-Kq-Tyj">
+                                                        <font key="font" metaFont="system" size="9"/>
+                                                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3kS-VN-K2g">
+                                                    <rect key="frame" x="185" y="68" width="81" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Enable" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rLt-E6-Hc7">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="enabledClicked:" target="WM7-h1-Pm2" id="eIp-2t-8mB"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0X7-f3-JXY">
+                                                    <rect key="frame" x="201" y="188" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="iUl-AT-jVM"/>
+                                                        <constraint firstAttribute="width" constant="48" id="x8J-0w-BZa"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSEveryone" id="VB8-Ob-l4R"/>
+                                                </imageView>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="saM-Es-25T">
+                                                    <rect key="frame" x="22" y="110" width="406" height="64"/>
+                                                    <textFieldCell key="cell" allowsUndo="NO" alignment="left" id="SOW-Kx-kBt">
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                        <string key="title">Enabling Chat will send your display name, project ID and messages you type to our server so other users with the same project can chat to you. Information is only retained temporarily to provide chat history for each project. </string>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="saM-Es-25T" firstAttribute="centerX" secondItem="Iqq-gC-IQb" secondAttribute="centerX" id="2I4-wA-ywa"/>
+                                                <constraint firstItem="saM-Es-25T" firstAttribute="leading" secondItem="Iqq-gC-IQb" secondAttribute="leading" constant="24" id="4HJ-I6-bA9"/>
+                                                <constraint firstAttribute="trailing" secondItem="saM-Es-25T" secondAttribute="trailing" constant="24" id="857-Oy-AA8"/>
+                                                <constraint firstItem="saM-Es-25T" firstAttribute="top" secondItem="0X7-f3-JXY" secondAttribute="bottom" constant="14" id="PbV-AR-uIv"/>
+                                                <constraint firstItem="IuI-7g-hki" firstAttribute="top" secondItem="3kS-VN-K2g" secondAttribute="bottom" constant="24" id="ftF-sl-tvg"/>
+                                                <constraint firstItem="IuI-7g-hki" firstAttribute="leading" secondItem="Iqq-gC-IQb" secondAttribute="leading" constant="24" id="hdh-SM-Sjk"/>
+                                                <constraint firstItem="IuI-7g-hki" firstAttribute="centerX" secondItem="Iqq-gC-IQb" secondAttribute="centerX" id="ubV-3G-xxQ"/>
+                                                <constraint firstItem="0X7-f3-JXY" firstAttribute="top" secondItem="Iqq-gC-IQb" secondAttribute="top" constant="64" id="wH2-dh-4y9"/>
+                                                <constraint firstAttribute="trailing" secondItem="IuI-7g-hki" secondAttribute="trailing" constant="24" id="wg8-vQ-h2v"/>
+                                                <constraint firstItem="3kS-VN-K2g" firstAttribute="top" secondItem="saM-Es-25T" secondAttribute="bottom" constant="14" id="ynW-NV-d1s"/>
+                                                <constraint firstItem="3kS-VN-K2g" firstAttribute="centerX" secondItem="Iqq-gC-IQb" secondAttribute="centerX" id="ypH-gd-AbA"/>
+                                                <constraint firstItem="0X7-f3-JXY" firstAttribute="centerX" secondItem="Iqq-gC-IQb" secondAttribute="centerX" id="zJT-GS-EoB"/>
+                                            </constraints>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="View" identifier="" id="ZGE-12-rN4" userLabel="Chat">
+                                        <view key="view" id="wou-aM-Gax">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <wkWebView wantsLayer="YES" allowsLinkPreview="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRp-r2-dwt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                                    <wkWebViewConfiguration key="configuration" applicationNameForUserAgent="Trackomatic">
+                                                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                        <wkPreferences key="preferences" javaScriptCanOpenWindowsAutomatically="NO"/>
+                                                    </wkWebViewConfiguration>
+                                                </wkWebView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fRp-r2-dwt" firstAttribute="top" secondItem="wou-aM-Gax" secondAttribute="top" id="5rz-2G-kxa"/>
+                                                <constraint firstAttribute="trailing" secondItem="fRp-r2-dwt" secondAttribute="trailing" id="92k-Et-pse"/>
+                                                <constraint firstItem="fRp-r2-dwt" firstAttribute="leading" secondItem="wou-aM-Gax" secondAttribute="leading" id="gcD-vF-TP9"/>
+                                                <constraint firstAttribute="bottom" secondItem="fRp-r2-dwt" secondAttribute="bottom" id="h28-ol-YRL"/>
+                                            </constraints>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                            </tabView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="3Kk-WD-gYo" firstAttribute="leading" secondItem="vc8-Hy-RW7" secondAttribute="leading" id="1G3-rW-aVa"/>
+                            <constraint firstAttribute="trailing" secondItem="3Kk-WD-gYo" secondAttribute="trailing" id="CyX-oc-avT"/>
+                            <constraint firstAttribute="bottom" secondItem="3Kk-WD-gYo" secondAttribute="bottom" id="iPL-Xa-kkS"/>
+                            <constraint firstItem="3Kk-WD-gYo" firstAttribute="top" secondItem="vc8-Hy-RW7" secondAttribute="top" id="oQA-Ql-9O6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="infoSentLabel" destination="IuI-7g-hki" id="PDc-gr-ahj"/>
+                        <outlet property="tabContainer" destination="3Kk-WD-gYo" id="jzY-Ja-WHG"/>
+                        <outlet property="webView" destination="fRp-r2-dwt" id="SsW-uc-iHs"/>
+                    </connections>
+                </viewController>
+                <customObject id="FvG-LU-3nv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1370" y="384"/>
+        </scene>
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSEveryone" width="32" height="32"/>
         <image name="NSFolder" width="32" height="32"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="NSStatusAvailable" width="16" height="16"/>
