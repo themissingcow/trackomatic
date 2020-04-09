@@ -194,6 +194,10 @@ fileprivate class ProjectRootWatcher : NSObject, NSFilePresenter
         return OperationQueue.main;
     }
     
+    func presentedItemDidChange() {
+        updateGroups();
+    }
+    
     func presentedSubitemDidAppear(at url: URL)
     {
         handle( url: url );
@@ -220,12 +224,18 @@ fileprivate class ProjectRootWatcher : NSObject, NSFilePresenter
    
     func accommodatePresentedItemDeletion( completionHandler: @escaping (Error?) -> Void )
     {
-        // TODO: Handle project deletion
+        guard let p = project, let u = presentedItemURL else { return; }
+        if p.audioFileGroups.index( forKey: u ) != nil
+        {
+            p.removeGroup( url: u, keepWatcher: false );
+        }
+        presentedItemURL = nil;
     }
     
     func presentedItemDidMove(to newURL: URL)
     {
-       // TODO: Handle project dir rename
+        guard let p = project else { return; }
+        p.setBaseDirectory( directory: newURL, watch: true );
     }
     
     private func updateGroups()
@@ -308,6 +318,10 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
     
     var presentedItemOperationQueue: OperationQueue {
         return OperationQueue.main;
+    }
+    
+    func presentedSubitemDidAppear(at url: URL) {
+        updateFiles();
     }
     
     func presentedItemDidChange()
