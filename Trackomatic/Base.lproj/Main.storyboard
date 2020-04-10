@@ -1662,7 +1662,7 @@ Gw
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IuI-7g-hki">
                                                     <rect key="frame" x="22" y="39" width="406" height="12"/>
                                                     <textFieldCell key="cell" selectable="YES" alignment="center" id="Eqi-Kq-Tyj">
-                                                        <font key="font" metaFont="system" size="9"/>
+                                                        <font key="font" metaFont="miniSystem"/>
                                                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
