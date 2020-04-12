@@ -430,35 +430,3 @@ class MultiPlayer : NSObject {
         }
     }
 }
-
-// Conveniences for managing mixed sample rater playback, where an audio file be of a different rate to the engine.
-// This requires playback scheduling to determine the file-local sample positions.
-extension AVAudioFile
-{
-    func length( atSampleRate sampleRate : Double ) -> AVAudioFramePosition
-    {
-        if fileFormat.sampleRate == sampleRate
-        {
-            return length;
-        }
-        else
-        {
-            let ratio = sampleRate / fileFormat.sampleRate;
-            return AVAudioFramePosition( Double( length ) * ratio );
-        }
-    }
-    
-    func equivalent( positionTo position: AVAudioFramePosition, atSampleRate sampleRate: Double ) -> AVAudioFramePosition
-    {
-        if fileFormat.sampleRate == sampleRate
-        {
-            return position;
-        }
-        else
-        {
-            let ratio = fileFormat.sampleRate / sampleRate;
-            return  AVAudioFramePosition( Double( position ) * ratio );
-        }
-    }
-}
-
