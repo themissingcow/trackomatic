@@ -48,8 +48,8 @@ class CommentManager: NSObject
     
     var player: MultiPlayer?;
     
-    fileprivate var presenters: [ URL: CommentPresenter ] = [:];
-    
+    private var watcher: CommentsFolderWatcher?;
+        
     override init()
     {
         userShortName = "";
@@ -175,48 +175,144 @@ class CommentManager: NSObject
     
     func load( directory: URL, tag: String )
     {
+        watcher = CommentsFolderWatcher( folder: directory, tag: tag, commentManager: self );
+    }
+}
+
+fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
+{
+    var presentedItemURL: URL?;
+    
+    private var presenters: [ URL: CommentPresenter ] = [:];
+    private var userCommentsURL: URL?;
+    
+    private weak var manager: CommentManager?;
+    
+    private var tag: String = "comments";
+    
+    override init()
+    {
+        super.init();
+        NSFileCoordinator.addFilePresenter( self );
+    }
+    
+    deinit
+    {
+        NSFileCoordinator.removeFilePresenter( self );
+    }
+
+    convenience init( folder url: URL, tag: String, commentManager: CommentManager )
+    {
+        self.init();
+     
+        self.tag = tag;
+        manager = commentManager;
+        presentedItemURL = url;
+        
+        updateComments();
+    }
+    
+    var presentedItemOperationQueue: OperationQueue {
+        return OperationQueue.main;
+    }
+    
+    func presentedItemDidChange()
+    {
+        updateComments();
+    }
+    
+    func presentedSubitemDidAppear( at url: URL )
+    {
+        handle( url: url );
+    }
+        
+    func accommodatePresentedSubitemDeletion(at url: URL, completionHandler: @escaping (Error?) -> Void)
+    {
+        if let i = presenters.index( forKey: url )
+        {
+            presenters.remove( at: i );
+        }
+    }
+   
+    func accommodatePresentedItemDeletion( completionHandler: @escaping (Error?) -> Void )
+    {
+        guard let m = manager else { return; }
+        m.reset();
+    }
+    
+    func presentedItemDidMove(to newURL: URL)
+    {
+        // We don't presently support moving the whole thing whilst the app is open.
+        guard let m = manager else { return; }
+        m.reset();
+    }
+    
+    func updateComments()
+    {
         do
         {
             let dirContents = try FileManager.default.contentsOfDirectory(
-                at: directory,
+                at: presentedItemURL!,
                 includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
                 options: [ .skipsHiddenFiles ]
             );
             
             for url in dirContents
             {
-                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
-                if info.isDirectory! || !info.name!.starts( with: tag ) { continue; }
-
-                var error: NSError?;
-                NSFileCoordinator().coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
-                          
-                    HasBeenModified( url: readUrl );
-                
-                    guard let ( comments, name ) = loadComments( url: url ) else { return; }
-                    
-                    add( comments: comments );
-                    
-                    if name == userShortName
-                    {
-                        userCommentsDirty = false;
-                    }
-                    else
-                    {
-                        presenters[ url ] = CommentPresenter( commentFile: url, shortName: name, commentManager: self );
-                    }
-                }
-                if let e = error {
-                    print( "Coordination error: \(e)" );
-                }
+                handle( url: url );
             }
         }
         catch
         {
-            print( "Directory load error: \(error)" );
+            print( "updateComments error: \(error)" );
+        }
+    }
+    
+    private func handle( url: URL )
+    {
+        guard let m = manager else { return; }
+        
+        // Already managed by a CommentPresenter
+        if presenters.index( forKey: url ) != nil || userCommentsURL == url { return; }
+        
+        do {
+            let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
+            if info.isDirectory! || !info.name!.starts( with: tag ) { return; }
+
+            var error: NSError?;
+            NSFileCoordinator().coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
+                      
+                // Store last access time. We don't need to early out here as the logic below ensures
+                // we only load the user comments the first time. No-change optimisation is taken care of
+                // in CommentPresenter, we just have to special case user comments as we don't need to
+                // watch those, as we're in charge of them.
+                
+                HasBeenModified( url: readUrl );
+            
+                guard let ( comments, name ) = m.loadComments( url: url ) else { return; }
+                
+                if name == m.userShortName
+                {
+                    m.add( comments: comments );
+                    m.userCommentsDirty = false;
+                    userCommentsURL = url;
+                }
+                else
+                {
+                    presenters[ url ] = CommentPresenter( commentFile: url, shortName: name, commentManager: m );
+                }
+            }
+            if let e = error {
+                print( "Coordination error: \(e)" );
+            }
+        }
+        catch
+        {
+            print( "Comment load error: \(error)" );
         }
     }
 }
+
 
 fileprivate class CommentPresenter : NSObject, NSFilePresenter
 {
@@ -234,6 +330,7 @@ fileprivate class CommentPresenter : NSObject, NSFilePresenter
     deinit
     {
         NSFileCoordinator.removeFilePresenter( self );
+        removeComments();
     }
     
     convenience init( commentFile url: URL, shortName: String, commentManager: CommentManager )
@@ -243,6 +340,8 @@ fileprivate class CommentPresenter : NSObject, NSFilePresenter
         name = shortName;
         manager  = commentManager;
         presentedItemURL = url;
+        
+        updateComments( force: true );
     }
     
     var presentedItemOperationQueue: OperationQueue {
@@ -251,28 +350,45 @@ fileprivate class CommentPresenter : NSObject, NSFilePresenter
     
     func presentedItemDidChange()
     {
+        updateComments( force: false );
+    }
+    
+  
+    func accommodatePresentedItemDeletion( completionHandler: @escaping (Error?) -> Void )
+    {
+        removeComments();
+    }
+
+    func presentedItemDidMove(to newURL: URL)
+    {
+        // We don't support renaming comment files as of now
+        removeComments();
+    }
+    
+    func updateComments( force: Bool )
+    {
         guard let m = manager else { return; }
-        
+
         var error: NSError?;
         NSFileCoordinator().coordinate( readingItemAt: presentedItemURL!, options: [], error: &error ) { readUrl in
-                 
-            if !HasBeenModified( url: readUrl ) { return; }
-            
+               
+            if !force && !HasBeenModified( url: readUrl ) { return; }
+
             guard let ( comments, name ) = m.loadComments( url: readUrl ) else { return; }
 
             if name != self.name { return; }
-            
+
             let oldComments = m.commentsForUser( user: name );
             if !oldComments.isEmpty
             {
                 m.remove( comments: oldComments );
             }
-            
+
             m.add( comments: comments );
         }
     }
     
-    func accommodatePresentedItemDeletion( completionHandler: @escaping (Error?) -> Void )
+    private func removeComments()
     {
         guard let m = manager else { return; }
         
