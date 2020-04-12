@@ -132,7 +132,6 @@ class ViewController: NSViewController, NSWindowDelegate,
         let defaults = UserDefaults.standard;
         commentManager.userShortName = defaults.string( forKey: "shortName" ) ?? "";
         commentManager.userDisplayName = defaults.string( forKey: "displayName" ) ?? "";
-        commentManager.player = player;
         commentManager.addObserver( self, forKeyPath: "userCommentsDirty", options: [], context: nil );
         
         player.addObserver( self, forKeyPath: "playing", options: [.initial, .new] , context: nil );
@@ -185,8 +184,8 @@ class ViewController: NSViewController, NSWindowDelegate,
         if playing
         {
             updateTimer = Timer.scheduledTimer( withTimeInterval: 0.1, repeats: true ) { _ in
-                self.timelineView.position = self.player.position;
-                self.trackPlayheadView.position = self.player.position;
+                self.timelineView.position = self.player.currentTime;
+                self.trackPlayheadView.position = self.player.currentTime;
             }
             updateTimer!.fire();
         }
@@ -215,8 +214,8 @@ class ViewController: NSViewController, NSWindowDelegate,
         setupPlayer( project: project );
         setupTracksView( project: project );
         
-        timelineView.length = player.length;
-        trackPlayheadView.length = player.length;
+        timelineView.length = player.duration;
+        trackPlayheadView.length = player.duration;
         timelineView.position = 0;
         trackPlayheadView.position = 0;
         
@@ -228,15 +227,13 @@ class ViewController: NSViewController, NSWindowDelegate,
     private func setupPlayer( project: Project? )
     {
         if let p = project
-        {
-            player.baseDirectory = p.baseDirectory;
+        {  
             player.files = p.allAudioFiles();
-            player.load( url: p.userJsonURL( tag: "mix" ) );
+            player.load( url: p.userJsonURL( tag: "mix" ), anchorsRelativeTo: p.baseDirectory! );
         }
         else
         {
             player.files = [];
-            player.baseDirectory = nil;
         }
     }
     
@@ -324,11 +321,11 @@ class ViewController: NSViewController, NSWindowDelegate,
             let trackView = tableView.makeView( withIdentifier: identifier, owner: nil ) as? TrackTableCellView
             trackView?.track = track;
             
-            if let waveformView = trackView as? TrackWaveformCellView
+            if let waveformView = trackView as? TrackWaveformCellView, let t = track
             {
-                waveformView.commentView.anchor = track?.anchor() ?? "";
+                waveformView.commentView.anchor = t.file.url.anchor(relativeTo: project!.baseDirectory! );
                 waveformView.commentView.delegate = self;
-                waveformView.commentView.length = player.length;
+                waveformView.commentView.length = player.duration;
                 waveformView.commentView.manager = commentManager;
                 waveformView.commentView.highlightOnHover = true;
             }
@@ -347,7 +344,7 @@ class ViewController: NSViewController, NSWindowDelegate,
             let file = rows[ row ] as? AVAudioFile,
             let track = player.trackFor( file: file )
         {
-            let anchor = track.anchor();
+            let anchor = track.file.url.anchor( relativeTo: project!.baseDirectory! );
             selectedAnchor = anchor;
         }
         else
@@ -393,7 +390,7 @@ class ViewController: NSViewController, NSWindowDelegate,
             if let p = project
             {
                 if player.mixDirty {
-                    player.save( url: p.userJsonURL( tag: "mix" ) );
+                    player.save( url: p.userJsonURL( tag: "mix" ), anchorsRelativeTo: p.baseDirectory! );
                 }
             }
         }

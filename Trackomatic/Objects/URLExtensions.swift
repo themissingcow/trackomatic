@@ -36,62 +36,46 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-import Cocoa
+import Foundation
 
-class TrackWaveformCellView: TrackTableCellView {
-
-    @IBOutlet weak var waveformView: TCWaveformView!
-    @IBOutlet weak var commentView: TrackCommentsView!
+extension URL {
     
-    override var track: MultiPlayer.Track! {
-        didSet {
-            updateWaveform();
-        }
-    }
-    
-    private func updateWaveform()
+    /// Derives a string that represents the url relative to the supplied base. This can be used as a
+    /// portable, human friendly refeence to the url's item.
+    ///
+    /// When storing a human readable persistant reference to an url's item,  anchors allow this
+    /// to be made relative to some parent url (eg: data files within a project root directory). This
+    /// allows the base directory to be re-loacted without invalidating any anchors.
+    ///
+    /// - Parameter base : Some parent of the url. If the url isn't a descendant of base,
+    ///   an absolute anchor wil be generated, which doesn't support re-location.
+    ///
+    func anchor( relativeTo base: URL ) -> String
     {
-        self.waveformView.setSampleData( nil, numSamples: 0, scale: 1 );
+        if !path.starts( with: base.path ) { return path; }
 
-        if( track == nil )
-        {
-            return;
-        }
-                
-        let width = UInt32(NSWidth( self.frame ));
-        let scale = Float( track.duration ) / Float( track.parent.duration );
-        
-        let defaultQueue = DispatchQueue.global(qos: .default)
-        defaultQueue.async {
-            
-            let fileURL = self.track.file.url;
-            
-            let dataSource = WaveformCache.Shared.global.sourceFor( fileURL );
-            dataSource.preDecimate( 256 );
-            
-            var numPoints: UInt32 = 0
-            var pointDuration: Float = 0.0
-            var data: UnsafeMutablePointer<Float>? = nil
-            
-            data = dataSource.getSampleData(
-                withMaxPoints: width,
-                storingNumDataPointsIn: &numPoints,
-                pointLength: &pointDuration
-            );
-            
-            if data != nil {
-           
-                DispatchQueue.main.async {
-               
-                    // Ensure that we're still supposed to be displaying the right track
-                    if self.track.file.url == fileURL
-                    {
-                        self.waveformView.setSampleData( data, numSamples: numPoints, scale: scale );
-                    }
-                    free( data )
-               }
-            }
-        }
+        let basePathLength = base.path.count;
+        let pathStart = path.index( path.startIndex, offsetBy: basePathLength + 1 );
+        return String( path[ pathStart... ] );
     }
     
+    /// Reconstructs an URL from a human friedly reference anchor, relative to the supplied base.
+    ///
+    /// If the supplied anchor is absolute, then the item must still exist in the same location as when
+    /// the anchor was made.
+    ///
+    /// - Parameter anchor: An anchor generated from `anchor(relativeTo: URL)`.
+    /// - Parameter base: A root directory under which the anchor's item should be parented.
+    ///
+    static func fromAnchor( _ anchor: String, relativeTo base: URL ) -> URL
+    {
+       if anchor.starts( with: "/" )
+       {
+           return URL.init( fileURLWithPath: anchor );
+       }
+       else
+       {
+           return URL.init( fileURLWithPath: "\(base.path)/\(anchor)" );
+       }
+    }
 }

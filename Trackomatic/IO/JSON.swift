@@ -229,7 +229,7 @@ extension Project : NSFilePresenter {
 
 extension MultiPlayer {
     
-    func load( url: URL )
+    func load( url: URL, anchorsRelativeTo baseDirectory: URL )
     {
         if !FileManager.default.fileExists( atPath: url.path ) { return; }
 
@@ -240,7 +240,7 @@ extension MultiPlayer {
             {
                 if let json: JSONDict = try LoadJSON( url: readUrl )
                 {
-                    loadFromDict( json );
+                    loadFromDict( json, anchorsRelativeTo: baseDirectory );
                 }
             }
             catch
@@ -253,14 +253,14 @@ extension MultiPlayer {
         }
     }
     
-    func save( url: URL )
+    func save( url: URL, anchorsRelativeTo baseDirectory: URL )
     {
         var error: NSError?;
         NSFileCoordinator().coordinate( writingItemAt: url, options: .forReplacing, error: &error ) { writeUrl in
         
             do
             {
-                let json = saveToDict();
+                let json = saveToDict( anchorsRelativeTo: baseDirectory );
                 try SaveJSON( json: json, url: writeUrl );
             }
             catch
@@ -274,14 +274,14 @@ extension MultiPlayer {
         }
     }
 
-    func loadFromDict( _ json: JSONDict )
+    func loadFromDict( _ json: JSONDict, anchorsRelativeTo baseDirectory: URL )
     {
         for ( anchor, data ) in json
         {
             guard let dict = data as? JSONDict
                 else { continue; }
             
-            if let track = trackFor( anchor: anchor )
+            if let track = trackFor( url: URL.fromAnchor( anchor, relativeTo: baseDirectory ) )
             {
                 if let l = dict[ "loop" ] as? Bool { track.loop = l; }
                 if let m = dict[ "mute" ] as? Bool { track.mute = m; }
@@ -294,13 +294,13 @@ extension MultiPlayer {
         mixDirty = false;
     }
 
-    private func saveToDict() -> JSONDict
+    private func saveToDict( anchorsRelativeTo baseDirectory: URL ) -> JSONDict
     {
         var result = JSONDict();
         
         for track in tracks
         {
-            guard let anchor = track.anchor() else { continue; };
+            let anchor = track.file.url.anchor( relativeTo: baseDirectory );
             result[ anchor ] = [
                 "loop" : track.loop,
                 "mute" : track.mute,

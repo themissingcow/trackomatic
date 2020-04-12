@@ -46,10 +46,8 @@ class CommentManager: NSObject
     var userDisplayName: String;
     @objc dynamic var userCommentsDirty: Bool;
     
-    var player: MultiPlayer?;
-    
     private var watcher: CommentsFolderWatcher?;
-        
+    
     override init()
     {
         userShortName = "";
@@ -67,11 +65,7 @@ class CommentManager: NSObject
         for comment in comments
         {
             comment.manager = self;
-            if let a = comment.anchor
-            {
-                comment.track = player?.trackFor( anchor: a );
-            }
-            
+        
             addObservers( comment );
             if comment.shortName == userShortName
             {
@@ -89,7 +83,6 @@ class CommentManager: NSObject
         for comment in comments
         {
             comment.manager = nil;
-            comment.track = nil;
             if let index = self.comments.firstIndex( of: comment )
             {
                 if comment.shortName == userShortName
@@ -122,12 +115,7 @@ class CommentManager: NSObject
         comment.anchor = anchor;
         comment.shortName = userShortName;
         comment.displayName = userDisplayName;
-        
-        if let a = anchor
-        {
-            comment.track = player?.trackFor( anchor: a );
-        }
-        
+    
         if add
         {
             self.add( comments: [ comment ] );

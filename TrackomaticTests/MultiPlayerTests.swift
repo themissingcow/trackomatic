@@ -116,7 +116,7 @@ class MultiPlayerTests: XCTestCase {
            checkedSamples += buffer.frameLength;
         }
         
-        player.play( atTime: position, offline: false );
+        player.play( atTime: position );
 
         while isNull && ( checkedSamples < ( player.frameLength / 2 ) )
         {
