@@ -224,11 +224,16 @@ fileprivate class ProjectRootWatcher : NSObject, NSFilePresenter
         return OperationQueue.main;
     }
     
-    func presentedItemDidChange() {
+    func presentedItemDidChange()
+    {
+        // This gets called whenever the hierarchy underneath the root folder
+        // changes. I think this is due to modification time propogation.
+        // Methods like presentedSubitemDidAppear, etc... are not neccesarily
+        // called however.
         updateGroups();
     }
     
-    func presentedSubitemDidAppear(at url: URL)
+    func presentedSubitemDidAppear( at url: URL )
     {
         handle( url: url );
     }
@@ -308,7 +313,12 @@ fileprivate class ProjectRootWatcher : NSObject, NSFilePresenter
             if url == p.sidecarDirectory() { return; }
             if !( info.isDirectory ?? false ) { return; }
 
-            p.addGroup( url: url );
+            // We only add an audio file group if we don't have it already. If we do
+            // it will already have a watcher and be taking care of child changes itself.
+            if p.audioFileGroups.index( forKey: url ) == nil
+            {
+                p.addGroup( url: url );
+            }
         }
         catch
         {
