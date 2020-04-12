@@ -208,8 +208,8 @@ fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
         self.tag = tag;
         manager = commentManager;
         presentedItemURL = url;
-        
-        updateComments();
+
+        updateComments( initialLoad: true );
     }
     
     var presentedItemOperationQueue: OperationQueue {
@@ -218,12 +218,12 @@ fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
     
     func presentedItemDidChange()
     {
-        updateComments();
+        updateComments( initialLoad: false );
     }
     
     func presentedSubitemDidAppear( at url: URL )
     {
-        handle( url: url );
+        handle( url: url, initialLoad: false );
     }
         
     func accommodatePresentedSubitemDeletion(at url: URL, completionHandler: @escaping (Error?) -> Void)
@@ -247,7 +247,7 @@ fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
         m.reset();
     }
     
-    func updateComments()
+    func updateComments( initialLoad: Bool )
     {
         do
         {
@@ -259,7 +259,7 @@ fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
             
             for url in dirContents
             {
-                handle( url: url );
+                handle( url: url, initialLoad: initialLoad );
             }
         }
         catch
@@ -268,8 +268,10 @@ fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
         }
     }
     
-    private func handle( url: URL )
+    private func handle( url: URL, initialLoad: Bool )
     {
+        // TODO: Need to refactor all this
+        
         guard let m = manager else { return; }
         
         // Already managed by a CommentPresenter
@@ -293,8 +295,14 @@ fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
                 
                 if name == m.userShortName
                 {
-                    m.add( comments: comments );
-                    m.userCommentsDirty = false;
+                    // We only load the comments from the file if there are non already, as we'll be
+                    // in a 'first load' scenario. Otherwise, if we end up here later, its because the
+                    // user's comments have been saved for the first time.
+                    if initialLoad
+                    {
+                        m.add( comments: comments );
+                        m.userCommentsDirty = false;
+                    }
                     userCommentsURL = url;
                 }
                 else
