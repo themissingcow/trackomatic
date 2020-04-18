@@ -856,7 +856,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fxW-cM-IIO">
                                 <rect key="frame" x="148" y="40" width="604" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Supports {user} and {project} token substitution" id="nXR-x0-2dM">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Supports {user} and {room} token substitution" id="nXR-x0-2dM">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

@@ -73,7 +73,7 @@ class ChatomaticViewController: NSViewController {
             var info = "";
             if let name = UserDefaults.standard.string( forKey: "displayName" ), let r = room
             {
-                info = "Display Name:\n\(name)\n\nProject ID:\n\(r)";
+                info = "Display Name:\n\(name)\nRoom:\n\(r)";
             }
             
             infoSentLabel.stringValue = info;
