@@ -114,7 +114,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             "shortName" : NSUserName(),
             "displayName" : NSFullUserName(),
             "chatEnabled" : false,
-            "chatURL" : "https://chatomatic.tomcowland.com/?room={room}&user={user}"
+            "chatURL" : "https://chatomatic.tomcowland.com/?room={room}&name={name}"
         ] );
     }
 

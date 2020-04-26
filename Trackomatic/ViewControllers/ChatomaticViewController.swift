@@ -92,7 +92,7 @@ class ChatomaticViewController: NSViewController {
         {
             let user = name.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed ) ?? "Unknown";
             urlString = chatTemplateURL.replacingOccurrences(of: "{room}", with: r );
-            urlString = urlString.replacingOccurrences(of: "{user}", with: user );
+            urlString = urlString.replacingOccurrences(of: "{name}", with: user );
         }
 
         guard let url = URL( string: urlString ) else {
