@@ -106,6 +106,8 @@ class CommentManager: NSObject
         comments = [];
         didChangeValue( forKey: "comments" );
         userCommentsDirty = false;
+        watcher?.unwatch();
+        watcher = nil;
     }
     
     func newComment( anchor: String?, add: Bool ) -> Comment
@@ -186,6 +188,16 @@ fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
     
     deinit
     {
+        unwatch();
+    }
+    
+    func unwatch()
+    {
+        for p in presenters.values
+        {
+            p.unwatch();
+        }
+        presenters = [:];
         NSFileCoordinator.removeFilePresenter( self );
     }
 
@@ -324,6 +336,11 @@ fileprivate class CommentPresenter : NSObject, NSFilePresenter
     }
     
     deinit
+    {
+        unwatch();
+    }
+    
+    func unwatch()
     {
         NSFileCoordinator.removeFilePresenter( self );
         removeComments();

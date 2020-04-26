@@ -487,6 +487,8 @@ class ViewController: NSViewController, NSWindowDelegate,
         player.files = [];
         updateChat( project: nil );
         commentManager.reset();
+        project?.close();
+        project = nil;
     }
 
 }
