@@ -798,13 +798,17 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8r-Gl-Lcg">
                                 <rect key="frame" x="150" y="196" width="600" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="No punctuation, ideally no spaces." drawsBackground="YES" usesSingleLineMode="YES" id="f7H-Po-S83">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="No punctuation, ideally no spaces." drawsBackground="YES" usesSingleLineMode="YES" id="f7H-Po-S83">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.shortName" id="4ST-K3-PCh"/>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.shortName" id="ya4-DK-lvM">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-AN-dk6">
@@ -817,13 +821,17 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-FB-GAo">
                                 <rect key="frame" x="150" y="147" width="600" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="This can be anyting you like" drawsBackground="YES" usesSingleLineMode="YES" id="FKc-wa-pBs">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="This can be anyting you like" drawsBackground="YES" usesSingleLineMode="YES" id="FKc-wa-pBs">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.displayName" id="kqX-vc-asN"/>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.displayName" id="M4T-k2-aQQ">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pb4-Ym-EyF">
@@ -844,14 +852,18 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s5Z-zd-kcP">
                                 <rect key="frame" x="150" y="56" width="600" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="https://" drawsBackground="YES" usesSingleLineMode="YES" id="39o-BT-0Su">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="https://" drawsBackground="YES" usesSingleLineMode="YES" id="39o-BT-0Su">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.chatURL" id="ooj-X2-zrR">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="gRB-sR-5oc" name="enabled" keyPath="values.chatEnabled" id="dRe-om-snw"/>
-                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.chatURL" id="saO-cb-cYX"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fxW-cM-IIO">
@@ -872,7 +884,7 @@
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6mE-1K-Trg">
                                 <rect key="frame" x="148" y="103" width="71" height="18"/>
-                                <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="APt-5T-Rft">
+                                <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" continuous="YES" state="on" inset="2" id="APt-5T-Rft">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
