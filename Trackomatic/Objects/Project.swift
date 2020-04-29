@@ -371,7 +371,8 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
     }
     
     func presentedSubitemDidChange(at url: URL) {
-        updateFiles();
+        // Force as our mtime might not have changed
+        updateFiles( force: true );
     }
     
     func presentedItemDidChange()
@@ -402,7 +403,7 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
         var error: NSError?;
         NSFileCoordinator( filePresenter: self ).coordinate( readingItemAt: presentedItemURL!, options: [], error: &error ) { readUrl in
             
-            // We should count as being modified even if its one of our children
+            
             if !force && !HasBeenModified( url: readUrl ) { return; }
            
             let files = filesFrom(directory: readUrl );
