@@ -49,20 +49,21 @@ class WaveformCache : NSObject
 
     func sourceFor( _ url: URL ) -> TCWaveformDataSource
     {
-        if let source = dataSources[ url ] {
-            return source
-        } else {
-            var source: TCWaveformDataSource?
-            objc_sync_enter( dataSources )
-            source = dataSources[ url ]
-            if source == nil  {
-                source = TCWaveformDataSource()
-                source!.audioFile = url
-                dataSources[ url ] = source!
-            }
-            objc_sync_exit( dataSources )
-            return source!
+        let changed = HasBeenModified( url: url );
+        
+        objc_sync_enter( dataSources )
+        defer { objc_sync_exit( dataSources ); }
+        
+        let existing = dataSources[ url ];
+        
+        if !changed && existing != nil {
+            return existing!;
         }
+        
+        let source = TCWaveformDataSource();
+        source.audioFile = url;
+        dataSources[ url ] = source;
+        return source;
     }
     
     func clear( _ url: URL? = nil ) -> Void
