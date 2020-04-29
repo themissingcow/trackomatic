@@ -371,6 +371,14 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
     }
     
     func presentedSubitemDidChange(at url: URL) {
+        
+        guard let p = project else { return; }
+        
+        // Ignore anything in our data directory, sometimes this gets called
+        // for item changes several layers deep if it's done with coordiantion
+        // (as our saves are).
+        if url.path.starts( with: p.sidecarDirectory().path ) { return; }
+        
         // Force as our mtime might not have changed
         updateFiles( force: true );
     }
