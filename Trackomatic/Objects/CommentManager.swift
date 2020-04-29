@@ -280,6 +280,11 @@ fileprivate class CommentsFolderWatcher : NSObject, NSFilePresenter
         do {
             let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
             if info.isDirectory! || !info.name!.starts( with: tag ) { return; }
+            
+            // Make sure we don't inadvertently load any other files eg: sync conflict files.
+            // Name should be <token>.<username>.json.
+            if !info.name!.hasSuffix(".json") { return; }
+            if info.name!.components(separatedBy: ".").count != 3 { return; }
 
             var error: NSError?;
             NSFileCoordinator().coordinate( readingItemAt: url, options: [], error: &error ) { readUrl in
