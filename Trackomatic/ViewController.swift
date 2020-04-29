@@ -87,7 +87,7 @@ class ViewController: NSViewController, NSWindowDelegate,
     {
         let savePanel = NSSavePanel();
         savePanel.canCreateDirectories = true;
-        savePanel.allowedFileTypes = [ "aif" ];
+        savePanel.allowedFileTypes = [ "wav" ];
         
         savePanel.beginSheetModal( for: view.window! ){ ( result ) in
 
@@ -95,7 +95,7 @@ class ViewController: NSViewController, NSWindowDelegate,
             {
                 if let url = savePanel.url
                 {
-                    self.player.renderTo( output: url, settings: self.player.aiffSettings() );
+                    self.player.renderTo( output: url, settings: self.player.pcm24Settings() );
                 }
             }
         }

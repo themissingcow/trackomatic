@@ -217,8 +217,8 @@ class MultiPlayer : NSObject {
     
     // MARK: - Bounce-to-disk
 
-    /// Settings for uncompressed 24bit PCM AIFF audio.
-    func aiffSettings() -> [ String: Any ]
+    /// Settings for uncompressed 24bit PCM audio.
+    func pcm24Settings() -> [ String: Any ]
     {
         var settings: [ String: Any ] = [:];
         settings[ AVFormatIDKey ] = kAudioFormatLinearPCM;
