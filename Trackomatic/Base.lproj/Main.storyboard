@@ -1341,7 +1341,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </tabViewItem>
-                                    <tabViewItem label="Project" identifier="project" id="pYh-vI-9Ld">
+                                    <tabViewItem label="Settings" identifier="project" id="pYh-vI-9Ld">
                                         <view key="view" id="017-Qv-66i">
                                             <rect key="frame" x="10" y="33" width="244" height="519"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1399,12 +1399,36 @@
                                                         </binding>
                                                     </connections>
                                                 </imageView>
+                                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipm-Hv-Cyh">
+                                                    <rect key="frame" x="15" y="439" width="227" height="12"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="HME-8k-v9K">
+                                                        <font key="font" metaFont="system" size="9"/>
+                                                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="XfG-lQ-9wD" name="value" keyPath="project.uuid" id="ffB-GT-ITc"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6g9-8a-eFE">
+                                                    <rect key="frame" x="15" y="455" width="56" height="14"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Project ID" id="fsU-h7-yb5">
+                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mmZ-G8-a0X" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="12" id="0X3-b5-gjR"/>
+                                                <constraint firstItem="ipm-Hv-Cyh" firstAttribute="top" secondItem="6g9-8a-eFE" secondAttribute="bottom" constant="4" id="BVB-jY-q0i"/>
+                                                <constraint firstItem="ipm-Hv-Cyh" firstAttribute="top" secondItem="mmZ-G8-a0X" secondAttribute="bottom" constant="26" id="EFW-21-TvW"/>
+                                                <constraint firstItem="ipm-Hv-Cyh" firstAttribute="leading" secondItem="017-Qv-66i" secondAttribute="leading" constant="17" id="PoU-7o-vn5"/>
+                                                <constraint firstItem="6g9-8a-eFE" firstAttribute="leading" secondItem="017-Qv-66i" secondAttribute="leading" constant="17" id="R5k-Bc-Va4"/>
                                                 <constraint firstAttribute="trailing" secondItem="mmZ-G8-a0X" secondAttribute="trailing" constant="8" id="UOC-ib-9zJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="g2b-1c-R3w" secondAttribute="trailing" constant="8" id="fOK-Qb-vqr"/>
                                                 <constraint firstItem="g2b-1c-R3w" firstAttribute="top" secondItem="017-Qv-66i" secondAttribute="top" constant="12" id="rh8-Gw-k6n"/>
+                                                <constraint firstAttribute="trailing" secondItem="ipm-Hv-Cyh" secondAttribute="trailing" constant="4" id="uK5-ql-MQt"/>
                                             </constraints>
                                         </view>
                                     </tabViewItem>
@@ -1674,7 +1698,7 @@ Gw
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IuI-7g-hki">
                                                     <rect key="frame" x="22" y="39" width="406" height="12"/>
                                                     <textFieldCell key="cell" selectable="YES" alignment="center" id="Eqi-Kq-Tyj">
-                                                        <font key="font" metaFont="miniSystem"/>
+                                                        <font key="font" metaFont="system" size="9"/>
                                                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>

@@ -42,7 +42,7 @@ import Foundation
 
 class Project: NSObject {
     
-    var uuid: String;
+    @objc dynamic var uuid: String;
     
     var sampleRate: Double = 44100.0 {
         didSet {
