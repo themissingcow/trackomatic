@@ -138,6 +138,11 @@ class Project: NSObject {
         didChangeValue( forKey: "audioFileGroups" );
     }
     
+    func getFiles( forGroup url: URL ) -> [ AVAudioFile ]?
+    {
+        return audioFileGroups[ url ];
+    }
+    
     // MARK: - Support files
     
     func sidecarDirectory() -> URL
@@ -360,7 +365,12 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
         return OperationQueue.main;
     }
     
+    // Seems like this is never called
     func presentedSubitemDidAppear(at url: URL) {
+        updateFiles();
+    }
+    
+    func presentedSubitemDidChange(at url: URL) {
         updateFiles();
     }
     
@@ -392,13 +402,32 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
         var error: NSError?;
         NSFileCoordinator( filePresenter: self ).coordinate( readingItemAt: presentedItemURL!, options: [], error: &error ) { readUrl in
             
+            // We should count as being modified even if its one of our children
             if !force && !HasBeenModified( url: readUrl ) { return; }
            
             let files = filesFrom(directory: readUrl );
                       
             if files.count > 0
             {
-                p.setFiles( forGroup: presentedItemURL!, files: files );
+                // First check to see if any have actually changed, due to presentedSubitemDidAppear
+                // seemingly never being called[1], we may end up calling this for changes to atime.
+                // We don't want to over-update the UI, so see if anything actually changed.
+                //
+                // [1] https://stackoverflow.com/questions/50439658/swift-cocoa-how-to-watch-folder-for-changes
+                //
+                let shouldUpdate: Bool = {
+                    if force { return true; }
+                    if files != p.getFiles(forGroup: presentedItemURL!) { return true; }
+                    // If the lists are the same, check if any files have actually changed
+                    return files.reduce( false ) { ( result, file ) -> Bool in
+                        return result || HasBeenModified( url: file.url );
+                    };
+                }();
+                                
+                if( shouldUpdate  )
+                {
+                    p.setFiles( forGroup: presentedItemURL!, files: files );
+                }
             }
             else
             {
