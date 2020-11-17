@@ -740,11 +740,11 @@
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGv-dT-BBp">
                                 <rect key="frame" x="0.0" y="0.0" width="315" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="8Ls-hh-8lk">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="285"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="315" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView identifier="commentsView" distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAl-ob-ihX" customClass="CommentsStackView" customModule="Trackomatic" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="273" width="300" height="12"/>
+                                            <rect key="frame" x="0.0" y="288" width="315" height="12"/>
                                             <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="0.0" bottom="12"/>
                                         </stackView>
                                     </subviews>
@@ -756,11 +756,11 @@
                                 </clipView>
                                 <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1D2-sT-GdY">
-                                    <rect key="frame" x="0.0" y="285" width="300" height="15"/>
+                                    <rect key="frame" x="0.0" y="284" width="315" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="l8H-zf-lNd">
-                                    <rect key="frame" x="300" y="0.0" width="15" height="285"/>
+                                    <rect key="frame" x="299" y="0.0" width="16" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
