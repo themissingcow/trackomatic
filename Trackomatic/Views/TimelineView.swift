@@ -39,7 +39,7 @@
 import Cocoa
 import AVFoundation
 
-protocol TimelineViewDelegate: class {
+protocol TimelineViewDelegate: AnyObject {
     func timelineView( _ view: TimelineView, didRequestPositionChange position: Double );
 }
 

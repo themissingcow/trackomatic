@@ -307,7 +307,7 @@ extension MultiPlayer {
                 "solo" : track.solo,
                 "volume" : track.volume,
                 "pan" : track.pan
-            ]
+			] as [String : Any]
         }
         
         mixDirty = false;

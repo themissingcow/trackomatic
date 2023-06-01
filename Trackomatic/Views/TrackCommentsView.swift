@@ -39,7 +39,7 @@
 import Cocoa
 import AVFoundation
 
-protocol TrackCommentsViewDelegate: class
+protocol TrackCommentsViewDelegate: AnyObject
 {
     func trackCommentsView(
             _ view: TrackCommentsView,
