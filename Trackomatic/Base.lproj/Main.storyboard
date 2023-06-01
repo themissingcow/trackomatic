@@ -785,11 +785,11 @@
             <objects>
                 <viewController title="Preferences" showSeguePresentationStyle="single" id="3FA-Qg-hOG" customClass="PreferencesViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ccj-Xb-eiQ">
-                        <rect key="frame" x="0.0" y="0.0" width="788" height="259"/>
+                        <rect key="frame" x="0.0" y="0.0" width="788" height="166"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qM9-y4-e0L">
-                                <rect key="frame" x="68" y="201" width="76" height="16"/>
+                                <rect key="frame" x="68" y="108" width="76" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Short Name" id="JQs-2b-x6L">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -797,7 +797,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8r-Gl-Lcg">
-                                <rect key="frame" x="150" y="198" width="600" height="21"/>
+                                <rect key="frame" x="150" y="105" width="600" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="No punctuation, ideally no spaces." drawsBackground="YES" usesSingleLineMode="YES" id="f7H-Po-S83">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -812,7 +812,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-AN-dk6">
-                                <rect key="frame" x="148" y="182" width="604" height="14"/>
+                                <rect key="frame" x="148" y="89" width="604" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="This is used by Trackomatic for settings files." id="K9r-ns-cEV">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -820,7 +820,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-FB-GAo">
-                                <rect key="frame" x="150" y="149" width="600" height="21"/>
+                                <rect key="frame" x="150" y="56" width="600" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="This can be anyting you like" drawsBackground="YES" usesSingleLineMode="YES" id="FKc-wa-pBs">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -835,7 +835,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pb4-Ym-EyF">
-                                <rect key="frame" x="57" y="152" width="87" height="16"/>
+                                <rect key="frame" x="57" y="59" width="87" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Display Name" id="3JD-nr-ay1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -843,68 +843,10 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEK-r1-hrR">
-                                <rect key="frame" x="148" y="133" width="604" height="14"/>
+                                <rect key="frame" x="148" y="40" width="604" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="This is shown in the app with your comments" id="q91-qv-e6S">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s5Z-zd-kcP">
-                                <rect key="frame" x="150" y="56" width="600" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="https://" drawsBackground="YES" usesSingleLineMode="YES" id="39o-BT-0Su">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="gRB-sR-5oc" name="enabled" keyPath="values.chatEnabled" id="dRe-om-snw"/>
-                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.chatURL" id="ooj-X2-zrR">
-                                        <dictionary key="options">
-                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fxW-cM-IIO">
-                                <rect key="frame" x="148" y="40" width="604" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Supports {name} and {room} token substitution" id="nXR-x0-2dM">
-                                    <font key="font" metaFont="message" size="11"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ka1-Xs-5ai">
-                                <rect key="frame" x="41" y="59" width="103" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Chatomatic URL" id="7TJ-xA-d2E">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6mE-1K-Trg">
-                                <rect key="frame" x="148" y="104" width="75" height="18"/>
-                                <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" continuous="YES" state="on" inset="2" id="APt-5T-Rft">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="tcs-8r-1GD" name="value" keyPath="values.chatEnabled" id="a8h-Ms-Bwa"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m1w-LX-GNl">
-                                <rect key="frame" x="148" y="89" width="604" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="When enabled, the Chat tab can be used to send instant messages" id="2U1-hF-NCi">
-                                    <font key="font" metaFont="message" size="11"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ca3-H8-YnM">
-                                <rect key="frame" x="70" y="105" width="74" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Chatomatic" id="7gB-jn-0xy">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -915,29 +857,16 @@
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="firstBaseline" secondItem="Pb4-Ym-EyF" secondAttribute="firstBaseline" id="40S-b2-aE1"/>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="leading" secondItem="qM9-y4-e0L" secondAttribute="trailing" constant="8" id="78z-du-fz5"/>
                             <constraint firstAttribute="trailing" secondItem="w9K-FB-GAo" secondAttribute="trailing" constant="38" id="8QE-g4-vWK"/>
-                            <constraint firstAttribute="trailing" secondItem="s5Z-zd-kcP" secondAttribute="trailing" constant="38" id="Fp7-dY-H4M"/>
-                            <constraint firstItem="6mE-1K-Trg" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="G0c-HW-0at"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="top" secondItem="w9K-FB-GAo" secondAttribute="bottom" constant="2" id="GfM-42-j0v"/>
+                            <constraint firstAttribute="bottom" secondItem="aEK-r1-hrR" secondAttribute="bottom" constant="40" id="JdH-SG-4EZ"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="trailing" secondItem="w9K-FB-GAo" secondAttribute="trailing" id="KTv-IK-lyO"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="leading" secondItem="Pb4-Ym-EyF" secondAttribute="trailing" constant="8" id="Q6d-zl-ErO"/>
-                            <constraint firstItem="fxW-cM-IIO" firstAttribute="leading" secondItem="s5Z-zd-kcP" secondAttribute="leading" id="QAU-fZ-iL5"/>
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="trailing" secondItem="p8r-Gl-Lcg" secondAttribute="trailing" id="SNn-SV-qQr"/>
-                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="firstBaseline" secondItem="Ka1-Xs-5ai" secondAttribute="firstBaseline" id="WFk-gl-jIC"/>
                             <constraint firstItem="aEK-r1-hrR" firstAttribute="leading" secondItem="w9K-FB-GAo" secondAttribute="leading" id="WoM-wM-SrE"/>
-                            <constraint firstItem="6mE-1K-Trg" firstAttribute="leading" secondItem="ca3-H8-YnM" secondAttribute="trailing" constant="8" id="Wzl-na-7if"/>
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="leading" secondItem="p8r-Gl-Lcg" secondAttribute="leading" id="b16-5w-yxv"/>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="top" secondItem="ccj-Xb-eiQ" secondAttribute="top" constant="40" id="bdX-DV-NC2"/>
-                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="leading" secondItem="Ka1-Xs-5ai" secondAttribute="trailing" constant="8" id="d2W-sH-O3y"/>
-                            <constraint firstItem="fxW-cM-IIO" firstAttribute="trailing" secondItem="s5Z-zd-kcP" secondAttribute="trailing" id="dmN-Qw-n0f"/>
-                            <constraint firstAttribute="bottom" secondItem="fxW-cM-IIO" secondAttribute="bottom" constant="40" id="eHl-aO-ODf"/>
-                            <constraint firstItem="6mE-1K-Trg" firstAttribute="top" secondItem="aEK-r1-hrR" secondAttribute="bottom" constant="12" id="eMl-SA-Uxg"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="gGb-EU-nx2"/>
                             <constraint firstItem="p8r-Gl-Lcg" firstAttribute="firstBaseline" secondItem="qM9-y4-e0L" secondAttribute="firstBaseline" id="hEl-Mr-uBF"/>
-                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="top" secondItem="m1w-LX-GNl" secondAttribute="bottom" constant="12" id="iDx-bi-DkG"/>
-                            <constraint firstItem="m1w-LX-GNl" firstAttribute="top" secondItem="6mE-1K-Trg" secondAttribute="bottom" constant="2" id="ifj-1i-fLL"/>
-                            <constraint firstItem="fxW-cM-IIO" firstAttribute="top" secondItem="s5Z-zd-kcP" secondAttribute="bottom" constant="2" id="iqV-xY-86u"/>
-                            <constraint firstItem="s5Z-zd-kcP" firstAttribute="leading" secondItem="ccj-Xb-eiQ" secondAttribute="leading" constant="150" id="kDw-wW-Eo8"/>
-                            <constraint firstItem="6mE-1K-Trg" firstAttribute="firstBaseline" secondItem="ca3-H8-YnM" secondAttribute="firstBaseline" id="mDF-C0-5Tb"/>
                             <constraint firstItem="JQ5-AN-dk6" firstAttribute="top" secondItem="p8r-Gl-Lcg" secondAttribute="bottom" constant="2" id="uGY-br-MOH"/>
                             <constraint firstItem="w9K-FB-GAo" firstAttribute="top" secondItem="JQ5-AN-dk6" secondAttribute="bottom" constant="12" id="w9g-d7-X8u"/>
                         </constraints>
@@ -947,7 +876,7 @@
                 <userDefaultsController id="gRB-sR-5oc"/>
                 <userDefaultsController id="tcs-8r-1GD"/>
             </objects>
-            <point key="canvasLocation" x="664" y="548"/>
+            <point key="canvasLocation" x="670" y="594.5"/>
         </scene>
         <!--Trackomatic-->
         <scene sceneID="hIz-AP-VOD">
@@ -1336,12 +1265,6 @@
                                             </constraints>
                                         </view>
                                     </tabViewItem>
-                                    <tabViewItem label="Chat" identifier="" id="dNd-ga-S41">
-                                        <view key="view" id="mnk-VF-b15">
-                                            <rect key="frame" x="10" y="33" width="244" height="519"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
                                     <tabViewItem label="Settings" identifier="project" id="pYh-vI-9Ld">
                                         <view key="view" id="017-Qv-66i">
                                             <rect key="frame" x="10" y="33" width="244" height="519"/>
@@ -1525,7 +1448,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="chatTab" destination="mnk-VF-b15" id="ZnL-Jz-Tb7"/>
                         <outlet property="commentsTab" destination="9YP-LO-VjF" id="1Gc-T4-c6Z"/>
                         <outlet property="timelineView" destination="sou-Vk-srP" id="C8J-BK-4u6"/>
                         <outlet property="trackPlayheadView" destination="i9y-Ua-GoW" id="SyR-iQ-q5v"/>
@@ -1590,7 +1512,7 @@ Gw
                 </viewController>
                 <customObject id="RzU-vg-ODh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-143" y="1857"/>
+            <point key="canvasLocation" x="-143" y="1990"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="tbC-QB-ZqH">
@@ -1723,7 +1645,7 @@ Gw
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSEveryone" id="VB8-Ob-l4R"/>
                                                 </imageView>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="saM-Es-25T">
-                                                    <rect key="frame" x="22" y="110" width="406" height="64"/>
+                                                    <rect key="frame" x="30" y="110" width="390" height="64"/>
                                                     <textFieldCell key="cell" allowsUndo="NO" alignment="left" id="SOW-Kx-kBt">
                                                         <font key="font" usesAppearanceFont="YES"/>
                                                         <string key="title">Enabling Chat will send your display name, project ID and messages you type to our server so other users with the same project can chat to you. Information is only retained temporarily to provide chat history for each project. </string>
@@ -1734,8 +1656,8 @@ Gw
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="saM-Es-25T" firstAttribute="centerX" secondItem="Iqq-gC-IQb" secondAttribute="centerX" id="2I4-wA-ywa"/>
-                                                <constraint firstItem="saM-Es-25T" firstAttribute="leading" secondItem="Iqq-gC-IQb" secondAttribute="leading" constant="24" id="4HJ-I6-bA9"/>
-                                                <constraint firstAttribute="trailing" secondItem="saM-Es-25T" secondAttribute="trailing" constant="24" id="857-Oy-AA8"/>
+                                                <constraint firstItem="saM-Es-25T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Iqq-gC-IQb" secondAttribute="leading" id="4HJ-I6-bA9"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="saM-Es-25T" secondAttribute="trailing" constant="32" id="857-Oy-AA8"/>
                                                 <constraint firstItem="saM-Es-25T" firstAttribute="top" secondItem="0X7-f3-JXY" secondAttribute="bottom" constant="14" id="PbV-AR-uIv"/>
                                                 <constraint firstItem="IuI-7g-hki" firstAttribute="top" secondItem="3kS-VN-K2g" secondAttribute="bottom" constant="24" id="ftF-sl-tvg"/>
                                                 <constraint firstItem="IuI-7g-hki" firstAttribute="leading" secondItem="Iqq-gC-IQb" secondAttribute="leading" constant="24" id="hdh-SM-Sjk"/>
@@ -1788,6 +1710,182 @@ Gw
                 <customObject id="FvG-LU-3nv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1370" y="384"/>
+        </scene>
+        <!--Preferences w/Chat-->
+        <scene sceneID="cCd-fw-AQm">
+            <objects>
+                <viewController title="Preferences w/Chat" storyboardIdentifier="preferencesWithChat" showSeguePresentationStyle="single" id="Z0z-8T-aqn" customClass="PreferencesViewController" customModule="Trackomatic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="htr-9F-BGu">
+                        <rect key="frame" x="0.0" y="0.0" width="788" height="259"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1S9-Dh-NG4">
+                                <rect key="frame" x="68" y="201" width="76" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Short Name" id="PQk-La-zdA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D7z-ad-yXP">
+                                <rect key="frame" x="150" y="198" width="600" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="No punctuation, ideally no spaces." drawsBackground="YES" usesSingleLineMode="YES" id="StP-JL-Nlj">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.shortName" id="uTC-B5-aY1">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UeV-Ry-jDy">
+                                <rect key="frame" x="148" y="182" width="604" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="This is used by Trackomatic for settings files." id="rtp-O1-ncE">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e7x-6R-yL4">
+                                <rect key="frame" x="150" y="149" width="600" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="This can be anyting you like" drawsBackground="YES" usesSingleLineMode="YES" id="WY6-6V-Kas">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.displayName" id="2ic-a2-mBP">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yke-XR-BAI">
+                                <rect key="frame" x="57" y="152" width="87" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Display Name" id="gOf-RN-NQK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lg2-Sp-bfs">
+                                <rect key="frame" x="148" y="133" width="604" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="This is shown in the app with your comments" id="6V5-eK-0Hu">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S5k-2S-bXe">
+                                <rect key="frame" x="150" y="56" width="600" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="https://" drawsBackground="YES" usesSingleLineMode="YES" id="lpm-zL-hkK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="gRB-sR-5oc" name="enabled" keyPath="values.chatEnabled" id="b4H-ZW-rXB"/>
+                                    <binding destination="gRB-sR-5oc" name="value" keyPath="values.chatURL" id="7wf-eH-I0H">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLl-da-96v">
+                                <rect key="frame" x="148" y="40" width="604" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Supports {name} and {room} token substitution" id="9nJ-kY-gJv">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t3d-e3-eF7">
+                                <rect key="frame" x="41" y="59" width="103" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Chatomatic URL" id="ECM-nL-Fe4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fb9-kC-G5N">
+                                <rect key="frame" x="148" y="104" width="75" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" continuous="YES" state="on" inset="2" id="FWg-Cs-9Dp">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="tcs-8r-1GD" name="value" keyPath="values.chatEnabled" id="ZXH-rg-kS0"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SMl-qO-cvZ">
+                                <rect key="frame" x="148" y="89" width="604" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="When enabled, the Chat tab can be used to send instant messages" id="FBr-Pf-EtG">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BMs-Qu-1yU">
+                                <rect key="frame" x="70" y="105" width="74" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Chatomatic" id="zVS-6l-uwa">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="SMl-qO-cvZ" firstAttribute="leading" secondItem="fb9-kC-G5N" secondAttribute="leading" id="0Pp-Xt-6BW"/>
+                            <constraint firstAttribute="trailing" secondItem="S5k-2S-bXe" secondAttribute="trailing" constant="38" id="213-qq-YoP"/>
+                            <constraint firstItem="D7z-ad-yXP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1S9-Dh-NG4" secondAttribute="trailing" symbolic="YES" id="3xv-z4-Zbi"/>
+                            <constraint firstItem="1S9-Dh-NG4" firstAttribute="leading" secondItem="htr-9F-BGu" secondAttribute="leading" constant="70" id="5zD-9Z-VeY"/>
+                            <constraint firstItem="e7x-6R-yL4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yke-XR-BAI" secondAttribute="trailing" symbolic="YES" id="7OK-BS-9cc"/>
+                            <constraint firstItem="fb9-kC-G5N" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BMs-Qu-1yU" secondAttribute="trailing" constant="8" symbolic="YES" id="9XJ-je-Acf"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fb9-kC-G5N" secondAttribute="trailing" constant="20" symbolic="YES" id="ATO-hR-mwR"/>
+                            <constraint firstItem="t3d-e3-eF7" firstAttribute="leading" secondItem="htr-9F-BGu" secondAttribute="leading" constant="43" id="Aa9-aj-i1k"/>
+                            <constraint firstItem="BMs-Qu-1yU" firstAttribute="leading" secondItem="htr-9F-BGu" secondAttribute="leading" constant="72" id="CBU-3g-uVi"/>
+                            <constraint firstItem="S5k-2S-bXe" firstAttribute="top" secondItem="SMl-qO-cvZ" secondAttribute="bottom" constant="12" id="CWS-lx-yKs"/>
+                            <constraint firstItem="e7x-6R-yL4" firstAttribute="leading" secondItem="htr-9F-BGu" secondAttribute="leading" constant="150" id="DLU-J0-d47"/>
+                            <constraint firstItem="SLl-da-96v" firstAttribute="top" secondItem="S5k-2S-bXe" secondAttribute="bottom" constant="2" id="Fh3-n8-9kJ"/>
+                            <constraint firstAttribute="bottom" secondItem="SLl-da-96v" secondAttribute="bottom" constant="40" id="GIs-CD-XEC"/>
+                            <constraint firstItem="S5k-2S-bXe" firstAttribute="leading" secondItem="htr-9F-BGu" secondAttribute="leading" constant="150" id="GgI-e1-YJ5"/>
+                            <constraint firstItem="Lg2-Sp-bfs" firstAttribute="trailing" secondItem="e7x-6R-yL4" secondAttribute="trailing" id="Ipm-8T-0dp"/>
+                            <constraint firstItem="e7x-6R-yL4" firstAttribute="firstBaseline" secondItem="Yke-XR-BAI" secondAttribute="firstBaseline" id="J3X-HP-dxv"/>
+                            <constraint firstItem="fb9-kC-G5N" firstAttribute="leading" secondItem="htr-9F-BGu" secondAttribute="leading" constant="150" id="JRZ-uq-T5A"/>
+                            <constraint firstAttribute="trailing" secondItem="D7z-ad-yXP" secondAttribute="trailing" constant="38" id="L70-Kv-hGj"/>
+                            <constraint firstItem="D7z-ad-yXP" firstAttribute="firstBaseline" secondItem="1S9-Dh-NG4" secondAttribute="firstBaseline" id="R8t-qk-fVC"/>
+                            <constraint firstItem="Yke-XR-BAI" firstAttribute="leading" secondItem="htr-9F-BGu" secondAttribute="leading" constant="59" id="SM3-8v-snZ"/>
+                            <constraint firstAttribute="trailing" secondItem="e7x-6R-yL4" secondAttribute="trailing" constant="38" id="Sh5-kW-P1R"/>
+                            <constraint firstItem="D7z-ad-yXP" firstAttribute="top" secondItem="htr-9F-BGu" secondAttribute="top" constant="40" id="WW6-JA-XX0"/>
+                            <constraint firstItem="S5k-2S-bXe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="t3d-e3-eF7" secondAttribute="trailing" symbolic="YES" id="YmE-yw-I40"/>
+                            <constraint firstItem="S5k-2S-bXe" firstAttribute="firstBaseline" secondItem="t3d-e3-eF7" secondAttribute="firstBaseline" id="YrB-cy-1Nq"/>
+                            <constraint firstItem="SMl-qO-cvZ" firstAttribute="top" secondItem="fb9-kC-G5N" secondAttribute="bottom" constant="2" id="ZEa-3q-hdN"/>
+                            <constraint firstItem="SLl-da-96v" firstAttribute="trailing" secondItem="S5k-2S-bXe" secondAttribute="trailing" id="db9-iY-jmO"/>
+                            <constraint firstItem="D7z-ad-yXP" firstAttribute="leading" secondItem="htr-9F-BGu" secondAttribute="leading" constant="150" id="dgz-Bc-sxs"/>
+                            <constraint firstItem="UeV-Ry-jDy" firstAttribute="trailing" secondItem="D7z-ad-yXP" secondAttribute="trailing" id="fHI-hL-3aj"/>
+                            <constraint firstItem="SLl-da-96v" firstAttribute="leading" secondItem="S5k-2S-bXe" secondAttribute="leading" id="h9K-ce-zjn"/>
+                            <constraint firstItem="Lg2-Sp-bfs" firstAttribute="leading" secondItem="e7x-6R-yL4" secondAttribute="leading" id="iyN-do-s3S"/>
+                            <constraint firstItem="Lg2-Sp-bfs" firstAttribute="top" secondItem="e7x-6R-yL4" secondAttribute="bottom" constant="2" id="oMi-WY-vPO"/>
+                            <constraint firstItem="e7x-6R-yL4" firstAttribute="top" secondItem="UeV-Ry-jDy" secondAttribute="bottom" constant="12" id="qGE-2n-wVw"/>
+                            <constraint firstItem="UeV-Ry-jDy" firstAttribute="leading" secondItem="D7z-ad-yXP" secondAttribute="leading" id="quf-QD-ct1"/>
+                            <constraint firstItem="UeV-Ry-jDy" firstAttribute="top" secondItem="D7z-ad-yXP" secondAttribute="bottom" constant="2" id="srz-Db-tOd"/>
+                            <constraint firstItem="fb9-kC-G5N" firstAttribute="top" secondItem="Lg2-Sp-bfs" secondAttribute="bottom" constant="12" id="u9U-zL-vpH"/>
+                            <constraint firstItem="fb9-kC-G5N" firstAttribute="firstBaseline" secondItem="BMs-Qu-1yU" secondAttribute="firstBaseline" id="vAn-WV-v5T"/>
+                            <constraint firstItem="SMl-qO-cvZ" firstAttribute="trailing" secondItem="S5k-2S-bXe" secondAttribute="trailing" id="vLv-8J-zjh"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="KKA-aD-7XV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="kHd-cm-7fS"/>
+                <userDefaultsController id="WOq-sI-6U7"/>
+            </objects>
+            <point key="canvasLocation" x="911" y="1108"/>
         </scene>
     </scenes>
     <resources>

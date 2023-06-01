@@ -155,7 +155,8 @@ class ViewController: NSViewController, NSWindowDelegate,
             comments.view.heightAnchor.constraint( greaterThanOrEqualToConstant: 250 ).isActive = true;
         }
         
-        if let chat = storyboard!.instantiateController(
+        if let tab = chatTab,
+		   let chat = storyboard!.instantiateController(
             withIdentifier : NSStoryboard.SceneIdentifier( "chatViewController" )
         ) as? ChatomaticViewController
         {
@@ -163,12 +164,12 @@ class ViewController: NSViewController, NSWindowDelegate,
 
            addChild( chat );
            
-           chatTab.addSubview( chat.view );
+           tab.addSubview( chat.view );
            chat.view.translatesAutoresizingMaskIntoConstraints = false;
-           chat.view.topAnchor.constraint( equalTo: chatTab.topAnchor ).isActive = true;
-           chat.view.bottomAnchor.constraint( equalTo: chatTab.bottomAnchor ).isActive = true;
-           chat.view.leadingAnchor.constraint( equalTo: chatTab.leadingAnchor ).isActive = true;
-           chat.view.trailingAnchor.constraint( equalTo: chatTab.trailingAnchor ).isActive = true;
+           chat.view.topAnchor.constraint( equalTo: tab.topAnchor ).isActive = true;
+           chat.view.bottomAnchor.constraint( equalTo: tab.bottomAnchor ).isActive = true;
+           chat.view.leadingAnchor.constraint( equalTo: tab.leadingAnchor ).isActive = true;
+           chat.view.trailingAnchor.constraint( equalTo: tab.trailingAnchor ).isActive = true;
         }
     }
     
