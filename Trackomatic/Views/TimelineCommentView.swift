@@ -42,8 +42,8 @@ import AVFoundation
 class TimelineCommentView: NSView {
     
     @IBInspectable var backgroundColor: NSColor = NSColor.clear;
-    @IBInspectable var commentColor: NSColor = NSColor( white: 0.0, alpha: 0.2 );
-    @IBInspectable var focusCommentColor: NSColor = NSColor( red: 0.8, green: 0.0, blue: 0.0, alpha: 0.2 );
+	@IBInspectable var commentColor: NSColor = NSColor.controlAccentColor.withAlphaComponent(0.2)
+	@IBInspectable var focusCommentColor: NSColor = NSColor.controlAccentColor.withAlphaComponent(0.5)
     
     var comments: [ Comment ] = [] { didSet { setNeedsDisplay( bounds ); } };
     var focusComments: [ Comment ]? { didSet { setNeedsDisplay( bounds ); } };
@@ -105,6 +105,8 @@ class TimelineCommentView: NSView {
             if highlighted != comment.highlighted
             {
                 comment.highlighted = highlighted;
+				// TODO: comment bounds
+				self.setNeedsDisplay(self.frame)
             }
         }
     }
@@ -116,6 +118,8 @@ class TimelineCommentView: NSView {
             if comment.highlighted
             {
                 comment.highlighted = false;
+				// TODO: comment bounds
+				self.setNeedsDisplay(self.frame)
             }
         }
     }
@@ -145,7 +149,7 @@ class TimelineCommentView: NSView {
                 continue;
             }
          
-            let isFocused = focusComments?.firstIndex( of: comment ) != nil;
+			let isFocused = focusComments?.firstIndex( of: comment ) != nil || comment.highlighted;
             let x = CGFloat( Double(position) / Double(length) ) * bounds.width;
             
             if let l = comment.length

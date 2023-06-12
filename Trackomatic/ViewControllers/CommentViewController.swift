@@ -41,7 +41,7 @@ import Cocoa
 class CommentViewController: NSViewController, NSTextViewDelegate
 {
     @IBInspectable var color: NSColor = NSColor( white: 0.0, alpha: 0.05 );
-    @IBInspectable var highlighedColor: NSColor = NSColor.selectedControlColor;
+	@IBInspectable var highlighedColor: NSColor = NSColor.controlAccentColor.withAlphaComponent(0.2);
     
     enum Mode {
         case new;
