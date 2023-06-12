@@ -48,15 +48,15 @@
 
 @property float verticalScale;
 
-
 @property CGPoint *pointData;
 @property unsigned int numPoints;
 @property float scale;
   
 @property IBInspectable NSColor *backgroundColor;
 @property IBInspectable NSColor *waveformColor;
+@property IBInspectable NSColor *waveformLoopColor;
 
-@property BOOL dropShadow;
+@property(nonatomic) BOOL displayAsLoop;
 
 
 @end

@@ -40,9 +40,11 @@
 
 
 @implementation TCWaveformView
+{
+	bool _displayAsLoop;
+}
 
-
-@synthesize verticalScale, pointData, numPoints, waveformColor, backgroundColor, dropShadow;
+@synthesize verticalScale, pointData, numPoints, waveformColor, waveformLoopColor, backgroundColor;
 
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -82,8 +84,9 @@
   
     self.backgroundColor = [NSColor whiteColor];
     self.waveformColor = [NSColor grayColor];
-    
-    self.dropShadow = false;
+	self.waveformLoopColor = [[NSColor grayColor] colorWithAlphaComponent:0.4];
+	
+	self.displayAsLoop = false;
 }
 
 
@@ -130,12 +133,19 @@
 	[self setNeedsDisplay: true];
 }
 
+- (void)setDisplayAsLoop:(bool)loops
+{
+	_displayAsLoop = loops;
+	[self setNeedsDisplay:true];
+}
 
+- (bool)displayAsLoop{ return _displayAsLoop; }
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = [[NSGraphicsContext currentContext] CGContext];
- 
+	
+	CGContextRef context = [[NSGraphicsContext currentContext] CGContext];
+	
 	if( self.opaque )
 	{
 		CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
@@ -143,70 +153,84 @@
 	}
 	
 	if ( !self.pointData || self.numPoints == 0 ) { return; }
-  
-    CGFloat xScale = (float)self.bounds.size.width / ((float)self.numPoints - 1) * self.scale;
-    CGFloat yScale = self.bounds.size.height * self.verticalScale;
-  
+	
+	// I'm sure there is a nice way to refactor this, and be a little more
+	// modular, but I'm sleepy.
+	
+	// Work out x/y scale to normalize our data in the view frame (with a user
+	// scale override)
+	CGFloat xScale = (float)self.bounds.size.width / ((float)self.numPoints - 1) * self.scale;
+	CGFloat yScale = self.bounds.size.height * self.verticalScale;
+	
 	// Offset by xScale as the waveform data points are the 'middle' not the left edge
-    CGAffineTransform lowerXform = CGAffineTransformMake( 1, 0, 0, 1, xScale/2, rect.size.height/2);
-    lowerXform = CGAffineTransformScale( lowerXform, xScale, yScale/2 );
-
-    CGAffineTransform upperXform = CGAffineTransformMake( 1, 0, 0, -1, xScale/2, rect.size.height/2 );
-    upperXform = CGAffineTransformScale( upperXform, xScale, yScale/2 );
-  
-
+	CGAffineTransform lowerXform = CGAffineTransformMake( 1, 0, 0, 1, xScale/2, rect.size.height/2);
+	lowerXform = CGAffineTransformScale( lowerXform, xScale, yScale/2 );
+	CGAffineTransform upperXform = CGAffineTransformMake( 1, 0, 0, -1, xScale/2, rect.size.height/2 );
+	upperXform = CGAffineTransformScale( upperXform, xScale, yScale/2 );
+	
 	const CGPoint *data = self.pointData;
 	const unsigned long nPoints = self.numPoints;
 	
-    CGMutablePathRef waveformPath = CGPathCreateMutable();
+	// Draw the waveform that represents the samples themselves
+	
+	CGMutablePathRef waveformPath = CGPathCreateMutable();
+	
 	CGPathMoveToPoint(waveformPath, &lowerXform, 0.0f, 0.0f);
 	CGPathAddLineToPoint(waveformPath, &lowerXform, 0.0f, data[0].y);
 	for (unsigned long i = 0; i < nPoints; i++)
 	{
 		CGPathAddLineToPoint(waveformPath, &lowerXform, data[i].x, data[i].y);
 	}
-  
+	
 	for (long i = nPoints-1; i >= 0; --i)
 	{
 		CGPathAddLineToPoint(waveformPath, &upperXform, data[i].x, data[i].y);
 	}
 	CGPathAddLineToPoint(waveformPath, &upperXform, 0.0f, 0.0f);
 	
-	
-	// Fill this path
 	[self.waveformColor setFill];
-	
 	CGContextAddPath(context, waveformPath);
 	CGContextFillPath(context);
 	
-    if( self.dropShadow ) {
-        
-    	// Now create a larger rectangle, which we're going to subtract the visible path from
-    	// and apply a shadow
-    	CGMutablePathRef path = CGPathCreateMutable();
-    	CGPathAddRect(path, NULL, rect);
-    	
-    	// Add the visible path (so that it gets subtracted for the shadow)
-    	CGPathAddPath(path, NULL, waveformPath);
-    	CGPathCloseSubpath(path);
-    	
-    	// Add the visible paths as the clipping path to the context
-    	CGContextAddPath(context, waveformPath);
-    	CGContextClip(context);
-    	
-    	// Now setup the shadow properties on the context
-    	NSColor *aColor = [NSColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f];
-    	CGContextSaveGState(context);
-    	CGContextSetShadowWithColor(context, CGSizeMake(1.0f, 1.0f), 2.0f, [aColor CGColor]);
-    	
-    	// Now fill the rectangle, so the shadow gets drawn
-    	[self.backgroundColor setFill];
-    	CGContextSaveGState(context);
-    	CGContextAddPath(context, path);
-    	CGContextEOFillPath(context);
+	// If we're in loop mode - draw repeats to fill the view if we've been
+	// scaled down such that the samples are less than the full width.
 	
-    	CGPathRelease(path);
-    }
+	const int numCopies = ceil(1.0f / self.scale) - 1;
+	if( self.displayAsLoop && numCopies > 0) {
+		
+		CGMutablePathRef copiesPath = CGPathCreateMutable();
+
+		CGFloat copyOriginX = self.numPoints;
+		
+		CGPathMoveToPoint(copiesPath, &lowerXform, copyOriginX, 0.0f);
+		
+		// Draw the top half n times
+		for( unsigned int c = 1; c <= numCopies; ++c ) {
+			CGPathAddLineToPoint(copiesPath, &lowerXform, copyOriginX, data[0].y);
+			for (unsigned long i = 0; i < nPoints; i++)
+			{
+				CGPathAddLineToPoint(copiesPath, &lowerXform, copyOriginX + data[i].x, data[i].y);
+			}
+			copyOriginX += self.numPoints;
+		}
+		
+		// Come back from the far end and draw the bottom half
+		for( unsigned int c = numCopies; c >= 1; --c ) {
+			copyOriginX -= self.numPoints;
+			for (long i = nPoints-1; i >= 0; --i)
+			{
+				CGPathAddLineToPoint(copiesPath, &upperXform, copyOriginX + data[i].x, data[i].y);
+			}
+		}
+		
+		CGPathAddLineToPoint(copiesPath, &upperXform, copyOriginX, 0.0f);
+		
+		[self.waveformLoopColor setFill];
+		CGContextAddPath(context, copiesPath);
+		CGContextFillPath(context);
+		
+		CGPathRelease( copiesPath );
+	}
     
 	CGPathRelease( waveformPath );
 }

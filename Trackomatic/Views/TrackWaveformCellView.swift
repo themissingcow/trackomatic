@@ -45,9 +45,27 @@ class TrackWaveformCellView: TrackTableCellView {
     
     override var track: MultiPlayer.Track! {
         didSet {
+			removeObservers(oldValue);
+			addObservers(track);
             updateWaveform();
         }
     }
+	
+	private func addObservers( _ track: MultiPlayer.Track? )
+	{
+		track?.addObserver( self, forKeyPath: "loop", options: [], context: nil );
+	}
+	
+	private func removeObservers( _ track: MultiPlayer.Track? )
+	{
+	   track?.removeObserver( self, forKeyPath: "loop" );
+	}
+	
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if keyPath == "loop" {
+			self.waveformView.displayAsLoop = track.loop
+		}
+	}
     
     private func updateWaveform()
     {
@@ -86,6 +104,7 @@ class TrackWaveformCellView: TrackTableCellView {
                     // Ensure that we're still supposed to be displaying the right track
                     if self.track.file.url == fileURL
                     {
+						self.waveformView.displayAsLoop = self.track.loop;
                         self.waveformView.setSampleData( data, numSamples: numPoints, scale: scale );
 						self.waveformView.normalize();
                     }
