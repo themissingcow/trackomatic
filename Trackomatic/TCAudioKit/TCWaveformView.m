@@ -114,6 +114,22 @@
 	[self setNeedsDisplay:true];
 }
 
+- (void) normalize
+{
+	if (!self.pointData) { return; }
+	
+	CGFloat maxVal = 0.0f;
+	for (unsigned int i = 0; i < numPoints; ++i) {
+		maxVal = MAX(self.pointData[i].y, maxVal);
+	}
+	
+	if( maxVal > 0 ) {
+		verticalScale = 1 / maxVal;
+	}
+	
+	[self setNeedsDisplay: true];
+}
+
 
 
 - (void)drawRect:(CGRect)rect

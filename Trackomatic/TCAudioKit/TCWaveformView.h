@@ -43,6 +43,9 @@
 - (void)initView;
 
 - (void)setSampleData:(float *)sampleData numSamples:(unsigned int)numSamples scale:(float)scale;
+
+- (void)normalize;
+
 @property float verticalScale;
 
 

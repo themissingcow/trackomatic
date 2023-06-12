@@ -87,6 +87,7 @@ class TrackWaveformCellView: TrackTableCellView {
                     if self.track.file.url == fileURL
                     {
                         self.waveformView.setSampleData( data, numSamples: numPoints, scale: scale );
+						self.waveformView.normalize();
                     }
                     free( data )
                }
