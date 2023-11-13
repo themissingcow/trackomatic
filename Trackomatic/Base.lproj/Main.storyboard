@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="21701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22155"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -885,16 +885,16 @@
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1030" height="611"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QDz-gR-z1V">
+                            <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDz-gR-z1V">
                                 <rect key="frame" x="16" y="535" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="mtg-mc-GZh"/>
-                                    <constraint firstAttribute="height" constant="60" id="zwt-Fc-4M0"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" title="Play" bezelStyle="shadowlessSquare" image="play.fill" catalog="system" imagePosition="above" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sMs-RT-4ne">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="mtg-mc-GZh"/>
+                                    <constraint firstAttribute="height" constant="60" id="zwt-Fc-4M0"/>
+                                </constraints>
                                 <connections>
                                     <action selector="playPressed:" target="XfG-lQ-9wD" id="Vgd-fS-9lf"/>
                                     <binding destination="XfG-lQ-9wD" name="hidden" keyPath="self.player.playing" id="fQm-dC-r9J"/>
@@ -931,28 +931,28 @@
                                                             <subviews>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zcU-yK-rn1" userLabel="Solo Button">
                                                                     <rect key="frame" x="184" y="-3" width="42" height="33"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="28" id="UQi-g9-YDD"/>
-                                                                        <constraint firstAttribute="height" constant="21" id="h8h-ZS-STO"/>
-                                                                    </constraints>
                                                                     <buttonCell key="cell" type="push" title="S" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P5c-Ox-ZGD">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="28" id="UQi-g9-YDD"/>
+                                                                        <constraint firstAttribute="height" constant="21" id="h8h-ZS-STO"/>
+                                                                    </constraints>
                                                                     <connections>
                                                                         <binding destination="SZT-BL-96O" name="value" keyPath="track.solo" id="aMQ-t5-LT4"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Mv-bt-fHj" userLabel="Mute Button">
                                                                     <rect key="frame" x="152" y="-3" width="42" height="33"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="28" id="3cO-2r-oWd"/>
-                                                                        <constraint firstAttribute="height" constant="21" id="Wqy-FL-NXm"/>
-                                                                    </constraints>
                                                                     <buttonCell key="cell" type="push" title="M" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lhj-tK-620">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="28" id="3cO-2r-oWd"/>
+                                                                        <constraint firstAttribute="height" constant="21" id="Wqy-FL-NXm"/>
+                                                                    </constraints>
                                                                     <connections>
                                                                         <binding destination="SZT-BL-96O" name="value" keyPath="track.mute" id="peC-Jq-ZtQ"/>
                                                                     </connections>
@@ -987,14 +987,14 @@
                                                                 </slider>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-NH-grp" userLabel="Loop Button">
                                                                     <rect key="frame" x="1" y="-3" width="42" height="33"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="28" id="Q8t-2n-WMX"/>
-                                                                        <constraint firstAttribute="height" constant="21" id="fPy-Pf-9hM"/>
-                                                                    </constraints>
                                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SiM-Z8-guN">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="28" id="Q8t-2n-WMX"/>
+                                                                        <constraint firstAttribute="height" constant="21" id="fPy-Pf-9hM"/>
+                                                                    </constraints>
                                                                     <connections>
                                                                         <binding destination="SZT-BL-96O" name="value" keyPath="track.loop" id="Q29-GC-KT3"/>
                                                                     </connections>
@@ -1133,16 +1133,16 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="drawBorder" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </customView>
-                            <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-DP-aH8">
+                            <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-DP-aH8">
                                 <rect key="frame" x="16" y="535" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Cet-JO-oo2"/>
-                                    <constraint firstAttribute="width" constant="60" id="bfg-qz-Qaj"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" title="Stop" bezelStyle="shadowlessSquare" image="stop.fill" catalog="system" imagePosition="above" alignment="center" borderStyle="border" inset="2" id="Krs-6O-NNC">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Cet-JO-oo2"/>
+                                    <constraint firstAttribute="width" constant="60" id="bfg-qz-Qaj"/>
+                                </constraints>
                                 <connections>
                                     <action selector="stopPressed:" target="XfG-lQ-9wD" id="IDj-pJ-5qy"/>
                                     <binding destination="XfG-lQ-9wD" name="hidden" keyPath="self.player.playing" id="RZh-oP-aJw">
@@ -1178,14 +1178,14 @@
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FSI-ze-SFJ">
                                                     <rect key="frame" x="193" y="474" width="24" height="26"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="CjS-DN-RCy"/>
-                                                        <constraint firstAttribute="width" constant="24" id="FYa-dU-pm9"/>
-                                                    </constraints>
                                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mtQ-UW-D4G">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="CjS-DN-RCy"/>
+                                                        <constraint firstAttribute="width" constant="24" id="FYa-dU-pm9"/>
+                                                    </constraints>
                                                     <connections>
                                                         <action selector="newComment:" target="XfG-lQ-9wD" id="tgn-R9-4zf"/>
                                                     </connections>
@@ -1541,13 +1541,13 @@ Gw
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-CV-SaR">
                                             <rect key="frame" x="391" y="62" width="25" height="16.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="25" id="fyW-5K-Yw0"/>
-                                            </constraints>
                                             <buttonCell key="cell" type="recessed" bezelStyle="recessed" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" inset="2" id="pxr-so-ipL">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="systemBold" size="12"/>
                                             </buttonCell>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="fyW-5K-Yw0"/>
+                                            </constraints>
                                             <connections>
                                                 <action selector="delete:" target="c7b-0g-AfL" id="Tw4-EV-gbf"/>
                                                 <binding destination="c7b-0g-AfL" name="hidden" keyPath="deletable" id="OW9-uO-bpp">
