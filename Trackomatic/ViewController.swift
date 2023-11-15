@@ -59,7 +59,6 @@ class ViewController: NSViewController, NSWindowDelegate,
         
     @IBOutlet weak var exportButton: NSButton!;
     
-    @objc dynamic var selectedAnchor: String? { didSet { commentsView?.anchor = selectedAnchor; } };
     @IBOutlet weak var commentsPlaceholderView: NSView!
     private var commentsView: CommentsViewController?;
     
@@ -103,7 +102,7 @@ class ViewController: NSViewController, NSWindowDelegate,
     
     @IBAction func newComment( _ sender: Any )
     {
-        newComment( forAnchor: selectedAnchor );
+        newComment( forAnchor: nil );
     }
     
     func newComment( forAnchor anchor: String?, at: Double? = nil, length: Double? = nil )
@@ -337,24 +336,6 @@ class ViewController: NSViewController, NSWindowDelegate,
         return view;
     }
     
-    func tableViewSelectionDidChange( _ notification: Notification )
-    {
-        let row = trackTableView.selectedRow;
-        
-        if row > -1,
-            let file = rows[ row ] as? AVAudioFile,
-            let track = player.trackFor( file: file )
-        {
-            let anchor = track.file.url.anchor( relativeTo: project!.baseDirectory! );
-            selectedAnchor = anchor;
-        }
-        else
-        {
-            // Project comments
-            selectedAnchor = nil;
-        }
-    }
-	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 		return false
 	}

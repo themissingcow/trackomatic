@@ -61,13 +61,6 @@ class CommentsViewController: NSViewController
         }
     };
     
-    @objc dynamic var anchor: String? {
-        didSet
-        {
-            update();
-        }
-    };
-    
     @IBOutlet weak var stackView: CommentsStackView!
     private var commentViewControllers : [ CommentViewController ] = [];
     

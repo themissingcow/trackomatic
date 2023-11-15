@@ -411,12 +411,11 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
         var error: NSError?;
         NSFileCoordinator( filePresenter: self ).coordinate( readingItemAt: presentedItemURL!, options: [], error: &error ) { readUrl in
             
-            
             if !force && !HasBeenModified( url: readUrl ) { return; }
            
-            let files = filesFrom(directory: readUrl );
+            let urls = audioURLsFrom(directory: readUrl );
                       
-            if files.count > 0
+            if urls.count > 0
             {
                 // First check to see if any have actually changed, due to presentedSubitemDidAppear
                 // seemingly never being called[1], we may end up calling this for changes to atime.
@@ -426,16 +425,20 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
                 //
                 let shouldUpdate: Bool = {
                     if force { return true; }
-                    if files != p.getFiles(forGroup: presentedItemURL!) { return true; }
+					guard let existing = p.getFiles(forGroup: presentedItemURL!) else { return true }
+					
+					let existingURLs = Set<URL>(existing.map { $0.url })
+					if Set<URL>(urls) != existingURLs { return true }
+					
                     // If the lists are the same, check if any files have actually changed
-                    return files.reduce( false ) { ( result, file ) -> Bool in
-                        return result || HasBeenModified( url: file.url );
+                    return urls.reduce( false ) { ( result, url ) -> Bool in
+                        return result || HasBeenModified( url: url );
                     };
                 }();
                                 
-                if( shouldUpdate  )
+                if( shouldUpdate )
                 {
-                    p.setFiles( forGroup: presentedItemURL!, files: files );
+                    p.setFiles( forGroup: presentedItemURL!, files: audioFilesFrom(urls: urls) );
                 }
             }
             else
@@ -447,51 +450,62 @@ fileprivate class AudioFolderWatcher : NSObject, NSFilePresenter
             print( "Coordination error: \(e)" );
         }
     }
-    
-    private func filesFrom( directory: URL ) -> [ AVAudioFile ]
-    {
-        var files: [ AVAudioFile ] = [];
-
-        if !FileManager.default.fileExists( atPath: directory.path ) { return files; }
+	
+	private func audioURLsFrom( directory: URL ) -> [ URL ]
+	{
+		var urls: [ URL ] = []
+		
+        if !FileManager.default.fileExists( atPath: directory.path ) { return urls; }
 
         // TODO: We may want to support recursive searches here, but this complicates watching
 
-        do {
-            let contents = try FileManager.default.contentsOfDirectory(
-              at: directory,
-              includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
-              options: [ .skipsHiddenFiles ]
-            );
+		do {
+			let contents = try FileManager.default.contentsOfDirectory(
+			  at: directory,
+			  includingPropertiesForKeys: [ .nameKey, .isDirectoryKey ],
+			  options: [ .skipsHiddenFiles ]
+			);
 
-            let suppportedExtensions = Set( [ "aif", "wav", "mp3", "m4a" ] );
+			let suppportedExtensions = Set( [ "aif", "wav", "mp3", "m4a" ] );
 
-            for url in contents
-            {
-                let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
+			for url in contents
+			{
+				let info = try url.resourceValues(forKeys: [ .nameKey, .isDirectoryKey ] );
 
-                if info.isDirectory! { continue; }
-                if !suppportedExtensions.contains( url.pathExtension ) { continue; }
+				if info.isDirectory! { continue; }
+				if !suppportedExtensions.contains( url.pathExtension ) { continue; }
+				
+				urls.append( url )
+			}
+		}
+		catch
+		{
+		  print( "Unable to list directory \(directory)" );
+		}
+		  
+		urls.sort { (a, b) in a.lastPathComponent < b.lastPathComponent; }
 
-                do {
-                    let file = try AVAudioFile(forReading: url );
-                    files.append( file );
-                }
-                catch
-                {
-                    print( "Unable to load audio file \(url)" );
-                }
-            }
-        }
-          catch
-          {
-              print( "Unable to list directory \(directory)" );
+		return urls;
+	}
+    
+    private func audioFilesFrom( urls: [ URL ] ) -> [ AVAudioFile ]
+    {
+        var files: [ AVAudioFile ] = [];
 
-          }
+		for url in urls
+		{
+			do {
+				let file = try AVAudioFile(forReading: url );
+				files.append( file );
+			}
+			catch
+			{
+				print( "Unable to load audio file \(url)" );
+			}
+		}
           
-          files.sort { (a, b) in a.url.lastPathComponent < b.url.lastPathComponent; }
-          
-          return files;
-      }
+		return files;
+	}
 }
 
 
