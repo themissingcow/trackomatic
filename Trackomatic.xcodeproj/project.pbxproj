@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -52,14 +52,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E222DF7B2405B3A200EE9EB1 /* Embed App Extensions */ = {
+		E222DF7B2405B3A200EE9EB1 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -82,6 +82,7 @@
 		E27AA3702440E3EB0060D374 /* AVAudioFileExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioFileExtensions.swift; sourceTree = "<group>"; };
 		E27AA37224426F070060D374 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		E27FF9D0241A34F9001C7904 /* FileAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAttributes.swift; sourceTree = "<group>"; };
+		E285A6122B02E31000D69E20 /* Trackomatic.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Trackomatic.xctestplan; sourceTree = "<group>"; };
 		E2AF75142409100F00618022 /* TrackTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableCellView.swift; sourceTree = "<group>"; };
 		E2D046642405D5B00061E2E3 /* TCWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWaveformView.h; sourceTree = "<group>"; };
 		E2D046652405D5B00061E2E3 /* TCWaveformDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWaveformDataSource.m; sourceTree = "<group>"; };
@@ -207,6 +208,7 @@
 		E2FEC4F02404433200C3D009 = {
 			isa = PBXGroup;
 			children = (
+				E285A6122B02E31000D69E20 /* Trackomatic.xctestplan */,
 				E2FEC4FB2404433200C3D009 /* Trackomatic */,
 				E2FEC50E2404433500C3D009 /* TrackomaticTests */,
 				E2FEC4FA2404433200C3D009 /* Products */,
@@ -262,7 +264,7 @@
 				E2FEC4F52404433200C3D009 /* Sources */,
 				E2FEC4F62404433200C3D009 /* Frameworks */,
 				E2FEC4F72404433200C3D009 /* Resources */,
-				E222DF7B2405B3A200EE9EB1 /* Embed App Extensions */,
+				E222DF7B2405B3A200EE9EB1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -297,8 +299,9 @@
 		E2FEC4F12404433200C3D009 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Tom Cowland";
 				TargetAttributes = {
 					E2FEC4F82404433200C3D009 = {
@@ -449,13 +452,15 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -512,9 +517,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -544,6 +551,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 15;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Trackomatic/Info.plist;
@@ -551,8 +559,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0b4;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -574,6 +582,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 15;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Trackomatic/Info.plist;
@@ -581,8 +590,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0b4;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.Trackomatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -600,6 +609,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
 				INFOPLIST_FILE = TrackomaticTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -607,7 +617,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.TrackomaticTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT}/Trackomatic/Trackomatic-Bridging-Header.h";
@@ -623,6 +633,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 2ZD4KMFRRB;
 				INFOPLIST_FILE = TrackomaticTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -630,7 +641,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomcowland.TrackomaticTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT}/Trackomatic/Trackomatic-Bridging-Header.h";

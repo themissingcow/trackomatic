@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "5A7A93F2-937E-4AD8-916A-4BBA3561AFB4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Trackomatic.xcodeproj",
+      "identifier" : "E2FEC4F82404433200C3D009",
+      "name" : "Trackomatic"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Trackomatic.xcodeproj",
+        "identifier" : "E2FEC50A2404433400C3D009",
+        "name" : "TrackomaticTests"
+      }
+    }
+  ],
+  "version" : 1
+}
