@@ -101,6 +101,7 @@ class CommentViewController: NSViewController, NSTextViewDelegate
         t.textContainer?.widthTracksTextView = true;
         t.isRichText = false;
         t.drawsBackground = editable;
+		t.backgroundColor = .init(white: 1, alpha: 0.4)
         
         boxView.addSubview( t );
 
