@@ -354,6 +354,10 @@ class ViewController: NSViewController, NSWindowDelegate,
             selectedAnchor = nil;
         }
     }
+	
+	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+		return false
+	}
     
     // MARK: - TimelineViewDelegate
     

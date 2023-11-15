@@ -46,10 +46,16 @@ class CommentsViewController: NSViewController
             if let old = oldValue
             {
                 old.removeObserver( self, forKeyPath: "comments" );
+				NotificationCenter.default.removeObserver(
+					self, name: CommentManager.CommentHighlightingDidChange,
+					object: oldValue)
             }
             if let new = commentManager
             {
                 new.addObserver( self, forKeyPath: "comments", options: [], context: nil );
+				NotificationCenter.default.addObserver(
+					self, selector: #selector(highlightingChanged),
+					name: CommentManager.CommentHighlightingDidChange, object: new)
             }
             update();
         }
@@ -97,7 +103,7 @@ class CommentsViewController: NSViewController
         
         guard let sb = storyboard else { return; }
         
-        var comments = manager.commentsFor( anchor: anchor );
+        var comments = manager.comments;
         
         comments.sort { ( a, b ) -> Bool in
             return a.lastEdit > b.lastEdit;
@@ -112,6 +118,16 @@ class CommentsViewController: NSViewController
             stackView.addArrangedSubview( vc.view );
         }
     }
+	
+	@objc func highlightingChanged() {
+		for vc in commentViewControllers {
+			if vc.commentHighted {
+				let frame = vc.view.frame
+				stackView.scrollToVisible(frame)
+				break
+			}
+		}
+	}
 }
 
 class CommentsStackView : NSStackView

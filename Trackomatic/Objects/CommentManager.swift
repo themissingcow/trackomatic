@@ -40,6 +40,8 @@ import Cocoa
 
 class CommentManager: NSObject
 {
+	static let CommentHighlightingDidChange = Notification.Name(rawValue: "CommentHighightingDiDChange")
+	
     dynamic public private(set) var comments: [ Comment ] = [];
 
     var userShortName: String;
@@ -125,7 +127,7 @@ class CommentManager: NSObject
         
         return comment;
     }
-    
+	
     func commentsFor( anchor: String? ) -> [ Comment ]
     {
         return comments.filter { comment in
@@ -140,15 +142,17 @@ class CommentManager: NSObject
             return comment.shortName == shortName;
         };
     }
-    
+	
     private func addObservers( _ comment: Comment )
     {
         comment.addObserver( self, forKeyPath: "dirty", options: [], context: nil );
+        comment.addObserver( self, forKeyPath: "highlighted", options: [], context: nil );
     }
     
     private func removeObservers( _ comment: Comment )
     {
         comment.removeObserver( self, forKeyPath: "dirty" );
+        comment.removeObserver( self, forKeyPath: "highlighted" );
     }
     
     override func observeValue(
@@ -157,10 +161,14 @@ class CommentManager: NSObject
     ) {
         guard let comment = object as? Comment else { return; }
         
-        if comment.shortName == userShortName
-        {
-            userCommentsDirty = true;
-        }
+		if keyPath == "dirty" {
+			if comment.shortName == userShortName
+			{
+				userCommentsDirty = true;
+			}
+		} else if keyPath == "highlighted" {
+			NotificationCenter.default.post(name: CommentManager.CommentHighlightingDidChange, object: self)
+		}
     }
     
     func load( directory: URL, tag: String )
