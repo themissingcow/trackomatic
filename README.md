@@ -25,7 +25,7 @@ aren't working, ideas or if you want to help make it better!
 
 ## Download
 
-From the [Relases](https://github.com/themissingcow/trackomatic/releases)https://github.com/themissingcow/trackomatic/releases) 
+From the [Relases](https://github.com/themissingcow/trackomatic/releases) 
 page!
 
 Needs macOS `10.14` or later.
